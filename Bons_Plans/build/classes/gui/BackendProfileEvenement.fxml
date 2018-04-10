@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="main" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BackendProfileEvenementController">
+     <children>
+      <Text fx:id="nom" layoutX="196.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="CENTER" wrappingWidth="228.02947886101902">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="interests" layoutX="288.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnes Intéressés" />
+      <Text fx:id="goings" layoutX="288.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnes partants" />
+      <TextArea fx:id="des" layoutX="208.0" layoutY="223.0" prefHeight="82.0" prefWidth="269.0" text="Description" />
+      <Text layoutX="207.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="49.99999962747097" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="232.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PI/Bons_Plans/src/images/going.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="232.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PI/Bons_Plans/src/images/interest.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="date" layoutX="268.0" layoutY="196.0" text="Date" />
+      <JFXButton id="loginbtn" fx:id="supp" layoutX="293.0" layoutY="320.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Supprimer" textFill="WHITE" />
+     <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="150.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="550.0" layoutY="20.0" />
+      <Text layoutX="343.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" wrappingWidth="54.861328125" />
+      <Hyperlink fx:id="adresse" layoutX="405.0" layoutY="193.0" text="Adresse" />
+   </children>
+</AnchorPane>

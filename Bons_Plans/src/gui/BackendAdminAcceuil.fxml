@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BackendAdminAcceuilController">
+   <children>
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="150.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="550.0" layoutY="20.0" />
+      <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="178.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/users.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="276.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/offers.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="375.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/offerss.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="70.0" layoutX="473.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/etabs.PNG" />
+         </image>
+      </ImageView>
+      <Label fx:id="users" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="80.0" text="users" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <AnchorPane fx:id="Main" layoutX="169.0" layoutY="117.0" prefHeight="266.0" prefWidth="412.0">
+         <children>
+            <StackPane fx:id="stack" prefHeight="273.0" prefWidth="412.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="etabs" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="80.0" text="Etablissements" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <Label fx:id="offers" alignment="CENTER" contentDisplay="CENTER" layoutX="382.0" layoutY="80.0" text="Utilisateurs" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <Label fx:id="events" alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="80.0" text="Evenements" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+   </children>
+</AnchorPane>

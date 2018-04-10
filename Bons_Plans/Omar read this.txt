@@ -1,0 +1,13 @@
+1- fama hajet fel EtablissementService tmeshomch
+2- des constrvcteurs fel etablissement hachti bihom 5alihom zid 
+3- etab entity zid les attributs li t7eb alihom w aaamel les constructeurs li theb alihom sans 
+toucher mes constructeurs 
+4- etab entity zid id_representant fel base de donnée
+5- j changé de base de donnée walit nekhdem aal base el principale
+bonsplans
+6- créez deux tables
+wahda demande_partenariat w lokhra partenariat hani baaaathet deux captures aal les structures
+7- fel table offre zidou les champs code_promo w pourcentage 
+hani baathet taswira aal structure 
+8- testez sur Main.java et MainAdmin.java li ta7t package el Gui 
+9- Installez le .jar jfoenix-8.0.1 pour pouvoir ouvrir les .fxml

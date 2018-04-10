@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomePanelBackendController">
+   <children>
+      <JFXButton fx:id="dash" onAction="#SetDash" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="DashBoard" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="180.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="Etabs" onAction="#SetEtabs" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Etablissements" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="166.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="Events" onAction="#SetEvents" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Evenements" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="180.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="Offres" onAction="#SetOffres" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Offres" textFill="#eeeeee" />
+      <Label prefHeight="17.0" prefWidth="187.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="demandes" onAction="#SetDemandes" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Demandes Etablissement" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="mail" onAction="#SetMail" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Mail" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="179.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="Reclamations" onAction="#SetReclamations" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Réclamations" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="179.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="demandePartenariat" onAction="#AfficherDemandesPartenariat" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Demandes partenariat" textFill="WHITE" />
+      <Label prefHeight="17.0" prefWidth="179.0" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="partenaires" onAction="#showPartners" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ea5463;" text="Partenaires" textFill="WHITE" />
+   </children>
+</VBox>

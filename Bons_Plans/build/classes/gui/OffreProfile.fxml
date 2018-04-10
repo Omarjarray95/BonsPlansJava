@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OffreProfileController">
+   <children>
+      <Text fx:id="nom" layoutX="203.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="CENTER" wrappingWidth="263.029478861019">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="240.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début :" wrappingWidth="54.861328125" />
+      <Label fx:id="deb" layoutX="339.0" layoutY="94.0" text="deb" />
+      <Text layoutX="240.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin :" wrappingWidth="54.861328125" />
+      <Label fx:id="fin" layoutX="339.0" layoutY="156.0" text="fin" />
+      <TextArea fx:id="des" layoutX="237.0" layoutY="193.0" prefHeight="92.0" prefWidth="195.0" text="Description" />
+      <JFXButton id="loginbtn" fx:id="modifer" layoutX="237.0" layoutY="336.0" onAction="#modify" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Modifier" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="supp" layoutX="237.0" layoutY="303.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Supprimer" textFill="WHITE" />
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="550.0" layoutY="20.0" />
+   </children>
+</AnchorPane>

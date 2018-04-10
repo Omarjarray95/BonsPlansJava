@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListEtablissementsController">
+    <children>
+<Separator fx:id="sep" layoutX="167.0" layoutY="54.0" prefHeight="0.0" prefWidth="317.0" />
+      <AnchorPane fx:id="Main" layoutX="147.0" layoutY="59.0" prefHeight="305.0" prefWidth="352.0">
+         <children>
+      <VBox fx:id="VboxEvent" layoutY="-14.0" prefHeight="315.0" prefWidth="352.0">
+         <children>
+                  <Hyperlink fx:id="etab" prefHeight="29.0" prefWidth="361.0" text="Hyperlink" />
+         </children>
+      </VBox>
+         </children>
+      </AnchorPane>
+      <Label layoutX="215.0" layoutY="18.0" prefHeight="35.0" prefWidth="171.0" text="Les établissements :" textFill="#009688">
+         <font>
+            <Font name="Gill Sans MT Ext Condensed Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXHamburger fx:id="Hamburger" layoutX="541.0" layoutY="35.0" />
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
+   </children>
+</AnchorPane>

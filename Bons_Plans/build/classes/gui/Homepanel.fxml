@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="137.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomepanelController">
+   <children>
+      <JFXButton fx:id="acceuil" onAction="#SetAcceuil" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Acceuil" textFill="WHITE" />
+      <Label prefHeight="47.0" prefWidth="100.0" />
+      <JFXButton fx:id="actu" onAction="#SetAct" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Actualités" textFill="WHITE" />
+      <Label prefHeight="55.0" prefWidth="100.0" />
+      <JFXButton fx:id="profile" onAction="#GoProfile" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Profile" textFill="WHITE" />
+      <Label prefHeight="57.0" prefWidth="100.0" />
+      <JFXButton fx:id="para" onAction="#SetPara" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Paramètres" textFill="#eeeeee" />
+      <Label prefHeight="49.0" prefWidth="100.0" />
+      <JFXButton fx:id="contact" onAction="#GoContact" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Contact" textFill="WHITE" />
+   </children>
+</VBox>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListEventsController">
+   <children>
+      <Label layoutX="158.0" layoutY="18.0" prefHeight="35.0" prefWidth="117.0" text="Les évenements actuels" textFill="#009688">
+         <font>
+            <Font name="Gill Sans MT Ext Condensed Bold" size="20.0" />
+         </font>
+      </Label>
+<Label layoutX="182.0" layoutY="75.0" prefHeight="17.0" prefWidth="72.0" text="Evenement" textFill="#f59d63" />
+<Label layoutX="361.0" layoutY="75.0" prefHeight="17.0" prefWidth="60.0" text="Date" textFill="#f59d63" />
+<Separator fx:id="sep" layoutX="158.0" layoutY="100.0" prefHeight="0.0" prefWidth="317.0" />
+<VBox fx:id="VboxEvent" layoutX="147.0" layoutY="100.0" prefHeight="292.0" prefWidth="317.0">
+   <children>
+      <AnchorPane fx:id="EventsAnchorPane" prefHeight="23.0" prefWidth="329.0">
+               <children>
+                  <Label fx:id="date" layoutX="211.0" layoutY="3.0" prefHeight="17.0" prefWidth="72.0" text="Label" />
+                  <Hyperlink fx:id="event" layoutX="28.0" prefHeight="23.0" prefWidth="131.0" text="Hyperlink" />
+               </children>
+            </AnchorPane>
+   </children>
+</VBox>
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="541.0" layoutY="35.0" />
+      <JFXTextField fx:id="searchText" focusColor="#f59d63" labelFloat="true" layoutX="300.0" layoutY="23.0" onKeyTyped="#ChangeList" />
+   </children>
+</AnchorPane>

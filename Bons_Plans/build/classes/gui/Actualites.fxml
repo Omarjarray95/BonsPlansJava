@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="Pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ActualitesController">
+<children>
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="100.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="544.0" layoutY="41.0" />
+      <Button fx:id="events" layoutX="260.0" layoutY="152.0" mnemonicParsing="false" onAction="#getEvents" text="Evenements" />
+      <Button fx:id="offers" layoutX="260.0" layoutY="200.0" mnemonicParsing="false" onAction="#getOffers" prefHeight="25.0" prefWidth="80.0" text="Offres" />
+      <Button fx:id="Etabs" layoutX="260.0" layoutY="244.0" mnemonicParsing="false" onAction="#getEtabs" text="Etablissements" />
+   </children>
+</AnchorPane>
