@@ -246,7 +246,7 @@ public class ProfileEtablissementController implements Initializable {
        visited.setText("Marquer visité");}
        else {visited.setText("Visité");}
     System.out.println(id);
-    setId(id);
+    
     DemandePartenariatService service=new DemandePartenariatService();
                PartenariatService service4=new PartenariatService();
                System.out.println(id);
@@ -267,7 +267,7 @@ public class ProfileEtablissementController implements Initializable {
                 labelPartenaire.setText("Demande partenariat en attente");
                }
                }
-              
+              setId(id);
     }
 
     @FXML
