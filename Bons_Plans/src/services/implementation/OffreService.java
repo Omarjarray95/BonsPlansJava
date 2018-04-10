@@ -32,14 +32,16 @@ public class OffreService{
                     + "date_debut,"
                     + "date_fin,"
                     + "description,"
-                    + "offre)"
-                    + " values (?,?,?,?,?)";
+                    + "offre,code_promo,pourcentage)"
+                    + " values (?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setInt(1, offre.getId_etablissement());
             ps.setDate(2, offre.getDate_debut());
             ps.setDate(3, offre.getDate_fin());
             ps.setString(4,offre.getDescription());
             ps.setString(5,offre.getOffre());
+            ps.setString(6,offre.getCode());
+            ps.setDouble(7, offre.getPourcentage());
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -50,13 +52,15 @@ public class OffreService{
     public void update(Offre offre,Offre o ) {
 
         try {
-            String req = "update offre set offre = ? , description = ?, date_debut = ? , date_fin = ? where id = ?";
+            String req = "update offre set offre = ? , description = ?, date_debut = ? , date_fin = ?, pourcentage=?, code_promo=? where id = ?";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, o.getOffre());
             ps.setString(2, o.getDescription());
             ps.setDate(3, o.getDate_debut());
             ps.setDate(4, o.getDate_fin());
-            ps.setInt(5, offre.getId());
+            ps.setInt(7, offre.getId());
+            ps.setDouble(5, o.getPourcentage());
+            ps.setString (6,o.getCode());
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -84,7 +88,7 @@ public class OffreService{
             PreparedStatement ps = connection.prepareStatement(req);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3));
+                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
                 offres.add(offer);
             }
         } catch (SQLException ex) {
@@ -104,7 +108,7 @@ public class OffreService{
             ps.setString(2, "%" + mot+ "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3));
+                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
                 offres.add(offer);
             }
         } catch (SQLException ex) {
@@ -124,7 +128,7 @@ public class OffreService{
             ps.setInt(1,id_etab);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3));
+                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
                 offres.add(offer);
             }
         } catch (SQLException ex) {
@@ -144,7 +148,7 @@ public class OffreService{
             ps.setString(3, "%" + mot+ "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3));
+                Offre offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
                 offres.add(offer);
             }
         } catch (SQLException ex) {
@@ -165,7 +169,7 @@ public class OffreService{
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                 offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3));
+                 offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

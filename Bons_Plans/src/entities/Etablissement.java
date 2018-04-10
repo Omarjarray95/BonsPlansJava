@@ -13,6 +13,23 @@ public class Etablissement {
     private int id;
     private String nom;
     private String type;
+    private int partenaire;
+
+    public Etablissement(int id, String nom, String type, int partenaire, int responsable) {
+        this.id = id;
+        this.nom = nom;
+        this.type = type;
+        this.partenaire = partenaire;
+        this.responsable = responsable;
+    }
+
+    public int getPartenaire() {
+        return partenaire;
+    }
+
+    public void setPartenaire(int partenaire) {
+        this.partenaire = partenaire;
+    }
     private int responsable;
 
     public Etablissement(String nom, String type, int responsable) {

@@ -41,6 +41,29 @@ public class EtablissementService {
         }
         return etab;  
     }
+        public int checkPartner(int id)
+        {
+            int resultat=0;
+        Etablissement etab = null;
+    try {
+            String req = "select * from etablissement where id =?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) 
+            {
+                
+                 etab = new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(20),rs.getInt(19));
+                 resultat=etab.getPartenaire();
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println(resultat + " Hedha");
+        return resultat;
+    
+    }
     public int countVisited(int etablissement){
         int res=0;
         try {

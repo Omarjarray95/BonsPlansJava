@@ -7,7 +7,9 @@ package gui;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Etablissement;
 import entities.Evenement;
 import entities.Offre;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import org.controlsfx.validation.ValidationMessage;
 import org.controlsfx.validation.ValidationSupport;
 import services.implementation.EvenementService;
 import org.controlsfx.control.Notifications;
+import services.implementation.EtablissementService;
 import services.implementation.OffreService;
 
 /**
@@ -46,6 +49,14 @@ import services.implementation.OffreService;
  */
 public class AjoutOffreController implements Initializable {
     private int id;
+    @FXML
+    private JFXTextField pourcentage;
+    @FXML
+    private JFXTextField code;
+    @FXML
+    private Label pourLabel;
+    @FXML
+    private Label codeLabel;
 
     public int getId() {
         return id;
@@ -70,6 +81,21 @@ public class AjoutOffreController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public void loadDate(int id)
+    {
+        System.out.println(id);
+    setId(id);
+    EtablissementService serviceEtab=new EtablissementService();
+                        Etablissement etab=serviceEtab.findById(id);
+                        System.out.println(serviceEtab.checkPartner(id));
+                        System.out.println(id);
+     if (serviceEtab.checkPartner(id)==0){
+                                code.setVisible(false);
+                                pourcentage.setVisible(false);
+                                pourLabel.setVisible(false);
+                                codeLabel.setVisible(false);
+            }
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                  try {
@@ -91,18 +117,22 @@ public class AjoutOffreController implements Initializable {
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
+                
+                	
+                        
+                    
     }    
 
     
-    public void loadDate(int id){
-    setId(id);
-    }
+    
     @FXML
     private void AjoutOffre(ActionEvent event) {
         ValidationSupport validationSupport = new ValidationSupport();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 	LocalDate localDate = LocalDate.now();
-	
+	EtablissementService serviceEtab=new EtablissementService();
+        Etablissement etab=serviceEtab.findById(id);
+
 
         if(offre.getText().isEmpty() ){
            validationSupport.getValidationDecorator().applyValidationDecoration(ValidationMessage.error(offre, "Veuillez saisir le nom de l'offre"));
@@ -120,8 +150,17 @@ public class AjoutOffreController implements Initializable {
             LocalDate debut=deb.getValue();
             Date dateDebut = Date.valueOf(debut);
             LocalDate finD=fin.getValue();
-            Date dateFin = Date.valueOf(finD);            
+            Date dateFin = Date.valueOf(finD);  
+
             Offre offer=new Offre(id, dateDebut, dateFin,des.getText(),offre.getText());
+                                if (serviceEtab.checkPartner(id)==0){
+                        offer.setCode("");
+                        offer.setPourcentage(0);
+            }
+                                else {
+                                offer.setCode(code.getText());
+                                offer.setPourcentage(Double.parseDouble(pourcentage.getText()));
+                                }
             OffreService service=new OffreService();
             service.add(offer);
             Notifications NotificationBuilder = Notifications.create()
