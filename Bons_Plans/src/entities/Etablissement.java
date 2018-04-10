@@ -27,6 +27,7 @@ public class Etablissement {
         this.type = type;
         this.responsable = responsable;
     }
+    public Etablissement(){}
 
     public int getResponsable() {
         return responsable;

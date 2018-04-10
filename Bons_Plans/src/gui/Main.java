@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene=new Scene(root);
-        primaryStage.setTitle("Bons Plans - Login");
+        primaryStage.setTitle("Bons Plans - Inscription");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
