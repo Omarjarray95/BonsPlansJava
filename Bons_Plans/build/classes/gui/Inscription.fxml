@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="604.0" prefWidth="760.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InscriptionController">
    <children>
-      <JFXTextField fx:id="pseudo" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="84.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Peudo">
+      <JFXTextField fx:id="login" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="84.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Peudo">
          <font>
             <Font size="13.0" />
          </font>
@@ -21,7 +21,7 @@
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="126.0" layoutY="548.0" onAction="#login" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="S'inscrire" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="127.0" layoutY="451.0" onAction="#sinscrire" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="S'inscrire" textFill="WHITE" />
       <JFXTextField fx:id="mail" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="128.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Email">
          <font>
             <Font size="13.0" />
@@ -37,11 +37,6 @@
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
-      <JFXTextField fx:id="ville" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="382.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Ville">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
       <ChoiceBox fx:id="sexe" layoutX="189.0" layoutY="313.0" prefHeight="25.0" prefWidth="119.0" />
       <Text fill="#4d4d4d" layoutX="43.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe">
          <font>
@@ -53,12 +48,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="num" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="427.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Numéro de téléphone">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="web" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="473.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Site Web / Blog">
+      <JFXTextField fx:id="num" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="397.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Numéro de téléphone">
          <font>
             <Font size="13.0" />
          </font>
