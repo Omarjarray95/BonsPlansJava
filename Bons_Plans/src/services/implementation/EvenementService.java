@@ -153,6 +153,40 @@ public class EvenementService {
         }
         return events;
     }
+          public ArrayList<Evenement> getInteresting(int id) {
+        ArrayList<Evenement> events = new ArrayList<>();
+        try {
+
+            String req = "select * from evenement inner join interest on evenement.id=interest.event_id where 	user_id=? ";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Evenement event = new Evenement(rs.getInt(1),rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5),rs.getInt(7), rs.getInt(6));
+                events.add(event);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return events;
+    }
+                    public ArrayList<Evenement> getGoing(int id) {
+        ArrayList<Evenement> events = new ArrayList<>();
+        try {
+
+            String req = "select * from evenement inner join going_event on evenement.id=going_event.event_id  where user_id=? ";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Evenement event = new Evenement(rs.getInt(1),rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5),rs.getInt(7), rs.getInt(6));
+                events.add(event);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return events;
+    }
                 public ArrayList<Evenement> getAllMotCle(String mot) {
                     if (!mot.equals("")){
                         ArrayList<Evenement> events = new ArrayList<>();

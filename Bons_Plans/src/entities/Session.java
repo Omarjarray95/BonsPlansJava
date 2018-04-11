@@ -58,7 +58,7 @@ public class Session {
             PreparedStatement ps;
 
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
-            ps = connection.prepareStatement("SELECT `id`, `Email`, `test` ,`nom` , `username` FROM `user` WHERE `email` = ? AND `password` = ? ");
+            ps = connection.prepareStatement("SELECT `id`, `Email`, `test` ,`nom` , `username` FROM `user1` WHERE `email` = ? AND `password` = ? ");
             ps.setString(1, String.valueOf(usr));
 
             ps.setString(2, String.valueOf(pass));
@@ -79,13 +79,13 @@ public class Session {
                 String mr = result.getString("test");
                 switch (mr) { 
                     case "Admin":
-                        in.setStage("/gui/BackendAdmin.fxml");
+                        in.setStage("/gui/BackendAdminAcceuil.fxml");
 
                         Al("Hello Admin!");
 
                         break;
                     case "Member":
-
+                        in.setStage("/gui/Home.fxml");   
                         Al("Hello Membre!");
 
                         break;

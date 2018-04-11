@@ -1,7 +1,11 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entities.Etablissement;
+import entities.Session;
 import entities.Tag;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -44,7 +49,6 @@ public class EtablissementVBoxController implements Initializable {
 
     @FXML
     private Pane Pane;
-    @FXML
     private Label Label;
     @FXML
     private ImageView IV;
@@ -90,11 +94,33 @@ public class EtablissementVBoxController implements Initializable {
     private Label labelPartenaire;
     @FXML
     private JFXButton Demande;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+                 try {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
     }    
     
     public void ShowEtablissement(int Id)
@@ -104,40 +130,27 @@ public class EtablissementVBoxController implements Initializable {
         VisitedEtablissementService service2=new VisitedEtablissementService();
         EtablissementService ES = new EtablissementService();
         
-        
+
         likes.setText("Aimé par "+ES.countLikes(Id)+" personne(e)");
         visits.setText("Visité par "+ES.countVisited(Id)+" personne(e)");
-        if (service1.count(3,Id)==0){
-        like.setText("J'aime");
-        }
-        else {like.setText("Aimé!");}
-        if (service2.count(3,Id)==0){
-        visited.setText("Marquer visité");}
-        else {visited.setText("Visité");}
-        System.out.println(Id);
+
         
         Etablissement E = ES.findById(Id);
-        File F = new File(E.getImage());
-        Image I = new Image(F.toURI().toString());
-        IV.setImage(I);
-        Label.setText(E.getNom());
-        Adresse.setText(Adresse.getText() + " " + E.getAdresse());
-        Horaire.setText(Horaire.getText() + " " + E.getHoraire_ouverture() + " - " + E.getHoraire_fermeture());
-        NDT.setText(NDT.getText() + " " + E.getNumtel());
-        BM.setText(BM.getText() + " " + E.getBudgetmoyen() + " DT");
-        SWB.setText(E.getUrl());
-        Text T = new Text(E.getDescription());
-        this.Id = E.getId();
+        Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
+        System.out.println(E.getResponsable());
+        if (id_user==E.getResponsable()){
         Modifier.setText(Modifier.getText() + " " + E.getNom());
         Supprimer.setText(Supprimer.getText() + " " + E.getNom());
-        Description.getChildren().addAll(T);
-        DemandePartenariatService service=new DemandePartenariatService();
+        like.setVisible(false);
+        visited.setVisible(false);
+               DemandePartenariatService service=new DemandePartenariatService();
                PartenariatService service4=new PartenariatService();
                System.out.println(Id);
                System.out.println(service4.check(Id));
                System.out.println(service.check(Id));
-               
-               if (service4.check(Id)==0 && service.check(Id)==0){
+                      if (service4.check(Id)==0 && service.check(Id)==0){
                Demande.setVisible(true);
                labelPartenaire.setVisible(false);
                }
@@ -151,6 +164,39 @@ public class EtablissementVBoxController implements Initializable {
                 labelPartenaire.setText("Demande partenariat en attente");
                }
                }
+        }
+        else{
+               Modifier.setVisible(false);
+               Supprimer.setVisible(false);
+               event.setVisible(false);
+               offre.setVisible(false);
+               Demande.setVisible(false);
+               labelPartenaire.setVisible(false);
+            if (service1.count(id_user,Id)==0){
+        like.setText("J'aime");
+        }
+        else {like.setText("Aimé!");}
+        if (service2.count(id_user,Id)==0){
+        visited.setText("Marquer visité");}
+        else {visited.setText("Visité");}}
+
+        System.out.println(Id);
+        File F = new File(E.getImage());
+        Image I = new Image(F.toURI().toString());
+        IV.setImage(I);
+        Label.setText(E.getNom());
+        Adresse.setText(Adresse.getText() + " " + E.getAdresse());
+        Horaire.setText(Horaire.getText() + " " + E.getHoraire_ouverture() + " - " + E.getHoraire_fermeture());
+        NDT.setText(NDT.getText() + " " + E.getNumtel());
+        BM.setText(BM.getText() + " " + E.getBudgetmoyen() + " DT");
+        SWB.setText(E.getUrl());
+        Text T = new Text(E.getDescription());
+        this.Id = E.getId();
+        
+        Description.getChildren().addAll(T);
+ 
+               
+ 
     }
 
     @FXML
@@ -322,14 +368,17 @@ public class EtablissementVBoxController implements Initializable {
 
     @FXML
     private void SetVisited(ActionEvent event) {
+                Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
          LikedEtablissementService service1=new LikedEtablissementService();
     
     VisitedEtablissementService service2=new VisitedEtablissementService();
         if (visited.getText().equals("Marquer visité")){
-        service2.add(Id, 3);
+        service2.add(Id, id_user);
         visited.setText("Visité");}
         else {
-        service2.delete(Id, 3);
+        service2.delete(Id, id_user);
         visited.setText("Marquer visité");
         }
     EtablissementService service3=new EtablissementService();
@@ -341,15 +390,18 @@ public class EtablissementVBoxController implements Initializable {
 
     @FXML
     private void SetLike(ActionEvent event) {
+           Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
             LikedEtablissementService service1=new LikedEtablissementService();
     
     VisitedEtablissementService service2=new VisitedEtablissementService();
     if (like.getText().equals("J'aime")){
-    service1.add(Id, 3);
+    service1.add(Id, id_user);
     like.setText("Aimé");
     }
     else {
-        service1.delete(Id, 3);
+        service1.delete(Id, id_user);
         like.setText("J'aime");
     }
     EtablissementService service3=new EtablissementService();

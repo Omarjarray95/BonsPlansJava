@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +37,8 @@ public class HomepanelController implements Initializable {
     private JFXButton para;
     @FXML
     private JFXButton contact;
+    @FXML
+    private JFXButton deconnexion;
 
     /**
      * Initializes the controller class.
@@ -107,6 +111,21 @@ public class HomepanelController implements Initializable {
         app_stage.setScene(homePage_scene);
         
         app_stage.show();
+    }
+
+    @FXML
+    private void deconnect(ActionEvent event) throws IOException  {
+        Parent homePage = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        
+        Scene homePage_scene=new Scene(homePage);
+        
+        Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+        app_stage.setScene(homePage_scene);
+        
+        app_stage.show();
+        
+  
     }
     
 }

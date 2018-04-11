@@ -55,7 +55,7 @@ public class Etablissement
         return responsable;
 
     }
-    public Etablissement(int id,String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String image, String type_resto, String type_loisirs, String type_shops, String nbrStars) 
+    public Etablissement(int id,String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String image, String type_resto, String type_loisirs, String type_shops, String nbrStars,int resp) 
     {
         this.id = id;
         this.nom = nom;
@@ -72,6 +72,7 @@ public class Etablissement
         this.type_loisirs = type_loisirs;
         this.type_shops = type_shops;
         this.nbrStars = nbrStars;
+        this.responsable=resp;
     }
 
     public int getId() 

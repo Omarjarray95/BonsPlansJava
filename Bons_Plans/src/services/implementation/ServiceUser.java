@@ -45,7 +45,7 @@ public class ServiceUser {
         
         
         
-            String req = "INSERT INTO `user` (username,email,password,roles,nom,datedenaissance,phone,sex,valid,test)"
+            String req = "INSERT INTO `user1` (username,email,password,roles,nom,datedenaissance,phone,sex,valid,test)"
                     + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             
             PreparedStatement pre ;
@@ -71,7 +71,7 @@ public class ServiceUser {
     public static int deleteUser (User u){
     int status =0;
         try {
-            String sql = "DELETE FROM `user` WHERE id=?";
+            String sql = "DELETE FROM `user1` WHERE id=?";
 
             PreparedStatement src = ds.getConnection().prepareStatement(sql);
 
@@ -85,7 +85,7 @@ public class ServiceUser {
         return status;}
     
 //          public void Loginn(String usr, String pass) throws SQLException{
-//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user` WHERE `email` = ? AND `password` = ? ");
+//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user1` WHERE `email` = ? AND `password` = ? ");
 //              PreparedStatement ps = ds.getConnection().prepareStatement(sql);
 //            
 //            ps.setString(1, String.valueOf(usr));
@@ -138,7 +138,7 @@ public class ServiceUser {
        public List<User> afficher() {
             List<User> user = new ArrayList<User>();
         try {
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user1";
 
             PreparedStatement src = con.prepareStatement(sql);
               
@@ -187,7 +187,7 @@ public class ServiceUser {
 //      Connection conn = DriverManager.getConnection(myUrl, "root", "");
     
       // create the java mysql update preparedstatement
-      String query = "update user set username = ? ,nom = ? ,email = ?,phone = ? where `username` = ?";
+      String query = "update user1 set username = ? ,nom = ? ,email = ?,phone = ? where `username` = ?";
 //      PreparedStatement preparedStmt = con.prepareStatement(query);
 //PreparedStatement preparedStmt ;
             

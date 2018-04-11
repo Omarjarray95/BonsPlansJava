@@ -121,8 +121,6 @@ public class AjoutOffreController implements Initializable {
                     else drawer.open();
                 });
                 
-                	
-                        
                     
     }    
 

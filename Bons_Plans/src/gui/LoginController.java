@@ -34,7 +34,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import java.util.regex.*; 
 
+
+//Ok : la saisie est bonne
 /**
  * FXML Controller class
  *
@@ -68,8 +71,13 @@ public Session sess;
    private void login(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException {
      
         boolean test = false;
-      
-      if (passwordtxt.getText().trim().isEmpty() && emailtxt.getText().trim().isEmpty()) {
+        String masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(masque);
+        Matcher controler = pattern.matcher(emailtxt.getText());
+        if (!controler.matches()){Al("Entrez un email valide");
+        return;}
+        if (passwordtxt.getText().trim().isEmpty() && emailtxt.getText().trim().isEmpty()) {
         Al("Entrez vote email et votre mot de passe");
         return;
        }else{}

@@ -1,6 +1,9 @@
 package gui;
 
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import entities.Etablissement;
 import java.io.File;
@@ -92,10 +95,33 @@ public class EtablissementController implements Initializable
     private Button AGlobe;
     
     public String Add;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+                 try {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
         Type.setItems(TypeItems);
         Image I = new Image(getClass().getResourceAsStream("Phone.png"));
         Image I1 = new Image(getClass().getResourceAsStream("Globe.png"));
@@ -104,7 +130,6 @@ public class EtablissementController implements Initializable
         AGlobe.setGraphic(new ImageView(I1));
     }
 
-    @FXML
     private void ChoisirImage(ActionEvent event) 
     {
         final Stage stage = null;

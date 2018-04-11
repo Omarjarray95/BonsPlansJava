@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,37 +14,63 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EtablissementVBoxController">
+<Pane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EtablissementVBoxController">
    <children>
-      <VBox alignment="BASELINE_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="300.0" prefWidth="300.0">
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="BASELINE_CENTER" layoutX="181.0" layoutY="21.0" prefHeight="201.0" prefWidth="220.0">
          <children>
             <ImageView fx:id="IV" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="Label">
+            <Hyperlink fx:id="Modifier" onAction="#ModifierInfo" prefHeight="21.0" prefWidth="230.0" text="Modifier Les Informations De" textAlignment="CENTER" textFill="#f59d63">
                <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Hyperlink fx:id="Modifier" onAction="#ModifierInfo" text="Modifier Les Informations De" />
-            <Hyperlink fx:id="Supprimer" onAction="#Supp" text="Supprimer" />
+                  <Font name="System Bold" size="10.0" />
+               </font></Hyperlink>
+            <Hyperlink fx:id="Supprimer" onAction="#Supp" prefHeight="21.0" prefWidth="229.0" text="Supprimer" textAlignment="CENTER" textFill="#f59d63">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font></Hyperlink>
          </children>
       </VBox>
-      <Label fx:id="Adresse" layoutX="347.0" layoutY="30.0" text="Adresse :" />
-      <Label fx:id="Horaire" layoutX="347.0" layoutY="65.0" text="Horaire :" />
-      <Label fx:id="NDT" layoutX="347.0" layoutY="106.0" text="Numéro De Téléphone :" />
-      <Label fx:id="BM" layoutX="347.0" layoutY="147.0" text="Budget Moyen :" />
-      <Label layoutX="347.0" layoutY="186.0" text="Site Web / Blog :" />
+      <Label fx:id="Adresse" layoutX="411.0" layoutY="32.0" text="Adresse :" />
+      <Label fx:id="Horaire" layoutX="412.0" layoutY="59.0" text="Horaire :" />
+      <Label fx:id="NDT" layoutX="414.0" layoutY="89.0" text="Numéro De Téléphone :" />
+      <Label fx:id="BM" layoutX="413.0" layoutY="120.0" text="Budget Moyen :" />
+      <Label layoutX="413.0" layoutY="151.0" text="Site Web / Blog :" />
       <Hyperlink fx:id="SWB" layoutX="444.0" layoutY="183.0" />
-      <TextFlow fx:id="Description" layoutX="23.0" layoutY="294.0" prefHeight="130.0" prefWidth="704.0" textAlignment="JUSTIFY" />
-      <Button fx:id="Tags" layoutX="349.0" layoutY="219.0" mnemonicParsing="false" onAction="#AfficheTags" text="Tags" />
-      <ToggleButton fx:id="visited" layoutX="42.0" layoutY="424.0" mnemonicParsing="false" onAction="#SetVisited" style="-fx-background-color: #f59d63;" text="Marquer visité" textFill="WHITE" />
-      <ToggleButton fx:id="like" layoutX="147.0" layoutY="424.0" mnemonicParsing="false" onAction="#SetLike" style="-fx-background-color: #f59d63;" text="J'aime" textFill="WHITE" />
-      <JFXButton id="loginbtn" fx:id="event" layoutX="42.0" layoutY="472.0" onAction="#AjouterEvent" prefHeight="32.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un évenement" textFill="WHITE" />
-      <JFXButton id="loginbtn" fx:id="offre" layoutX="210.0" layoutY="519.0" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un offre" textFill="WHITE" />
-      <Text fx:id="visits" layoutX="564.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visits" />
-      <Text fx:id="likes" layoutX="565.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="likes" />
-      <JFXButton id="loginbtn" fx:id="events" layoutX="42.0" layoutY="519.0" onAction="#AllEvents" prefHeight="32.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les évenements" textFill="WHITE" />
-      <JFXButton id="loginbtn" fx:id="offres" layoutX="210.0" layoutY="472.0" onAction="#AllOffers" prefHeight="32.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les offres" textFill="WHITE" />
-      <Label fx:id="labelPartenaire" layoutX="527.0" layoutY="543.0" text="Vous etes un partenaire" />
-      <JFXButton id="loginbtn" fx:id="Demande" layoutX="516.0" layoutY="536.0" onAction="#DemandePartenariat" prefHeight="32.0" prefWidth="147.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Demande Partenariat" textFill="WHITE" />
+      <TextFlow fx:id="Description" layoutX="183.0" layoutY="222.0" prefHeight="60.0" prefWidth="640.0" textAlignment="JUSTIFY" />
+      <ToggleButton fx:id="visited" layoutX="687.0" layoutY="65.0" mnemonicParsing="false" onAction="#SetVisited" style="-fx-background-color: #f59d63;" text="Marquer visité" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></ToggleButton>
+      <ToggleButton fx:id="like" layoutX="720.0" layoutY="37.0" mnemonicParsing="false" onAction="#SetLike" style="-fx-background-color: #f59d63;" text="J'aime" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="event" layoutX="644.0" layoutY="74.0" onAction="#AjouterEvent" prefHeight="25.0" prefWidth="125.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un évenement" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></JFXButton>
+      <JFXButton id="loginbtn" fx:id="offre" layoutX="644.0" layoutY="40.0" onAction="#AjouterOffre" prefHeight="25.0" prefWidth="126.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un offre" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></JFXButton>
+      <Text fx:id="visits" layoutX="695.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visits" />
+      <Text fx:id="likes" layoutX="644.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="likes" />
+      <JFXButton id="loginbtn" fx:id="events" layoutX="455.0" layoutY="181.0" onAction="#AllEvents" prefHeight="25.0" prefWidth="92.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les évenements" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></JFXButton>
+      <JFXButton id="loginbtn" fx:id="offres" layoutX="551.0" layoutY="182.0" onAction="#AllOffers" prefHeight="25.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les offres" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></JFXButton>
+      <Label fx:id="labelPartenaire" layoutX="663.0" layoutY="113.0" text="Vous etes notre partenaire" />
+      <JFXButton id="loginbtn" fx:id="Demande" layoutX="645.0" layoutY="108.0" onAction="#DemandePartenariat" prefHeight="25.0" prefWidth="125.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Demande Partenariat" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></JFXButton>
+      <JFXDrawer fx:id="drawer" prefHeight="480.0" prefWidth="160.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="786.0" layoutY="40.0" />
+      <JFXButton fx:id="Tags" layoutX="411.0" layoutY="181.0" onAction="#AfficheTags" style="-fx-background-color: #023956;" text="Tags" textFill="WHITE" />
    </children>
 </Pane>
