@@ -5,68 +5,111 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ChoiceBox?>
+<<<<<<< HEAD
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+=======
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="main" prefHeight="504.0" prefWidth="806.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InscriptionController">
    <children>
+<<<<<<< HEAD
       <ImageView fitHeight="506.0" fitWidth="812.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/b.jpg" />
          </image>
       </ImageView>
       <JFXTextField fx:id="login" focusColor="#f59d63" labelFloat="true" layoutX="46.0" layoutY="67.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Peudo" unFocusColor="WHITE">
+=======
+      <JFXTextField fx:id="login" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="90.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="280.0" promptText="Pseudo">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
+<<<<<<< HEAD
       <JFXPasswordField fx:id="password1" focusColor="#f59d63" labelFloat="true" layoutX="46.0" layoutY="172.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Mot de passe" unFocusColor="WHITE">
+=======
+      <JFXPasswordField fx:id="password1" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="270.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Mot De Passe">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
+<<<<<<< HEAD
       <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="329.0" layoutY="410.0" onAction="#login" prefHeight="36.0" prefWidth="103.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="S'inscrire" textFill="WHITE" />
       <JFXTextField fx:id="mail" focusColor="#f59d63" labelFloat="true" layoutX="46.0" layoutY="102.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Email" unFocusColor="WHITE">
+=======
+      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="325.0" layoutY="530.0" onAction="#login" prefHeight="36.0" prefWidth="110.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="S'Inscrire" textFill="WHITE" />
+      <JFXTextField fx:id="mail" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="150.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="E-mail">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
+<<<<<<< HEAD
       <JFXTextField fx:id="name" focusColor="#f59d63" labelFloat="true" layoutX="46.0" layoutY="137.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Nom &amp; prénom" unFocusColor="WHITE">
+=======
+      <JFXTextField fx:id="name" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="210.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Nom &amp; Prénom">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
+<<<<<<< HEAD
       <JFXPasswordField fx:id="password2" focusColor="#f59d63" labelFloat="true" layoutX="46.0" layoutY="208.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Confirmer le mot De Passe" unFocusColor="WHITE">
+=======
+      <JFXPasswordField fx:id="password2" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="330.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Confirmer Le Mot De Passe">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
+<<<<<<< HEAD
       <ChoiceBox fx:id="sexe" layoutX="199.0" layoutY="252.0" prefHeight="25.0" prefWidth="103.0" />
       <Text fill="WHITE" layoutX="53.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe">
+=======
+      <ChoiceBox fx:id="sexe" layoutX="373.0" layoutY="372.0" prefHeight="25.0" prefWidth="119.0" />
+      <Text fill="#4d4d4d" layoutX="249.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </Text>
+<<<<<<< HEAD
       <Text fill="WHITE" layoutX="54.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance">
+=======
+      <Text fill="#4d4d4d" layoutX="249.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date De Naissance">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </Text>
+<<<<<<< HEAD
       <JFXTextField fx:id="num" focusColor="#f59d63" labelFloat="true" layoutX="43.0" layoutY="328.0" maxWidth="252.0" minWidth="252.0" onKeyPressed="#recheck" prefHeight="35.0" prefWidth="252.0" promptText="Numéro de téléphone" unFocusColor="WHITE">
+=======
+      <JFXTextField fx:id="num" focusColor="#f59d63" labelFloat="true" layoutX="240.0" layoutY="470.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Numéro De Téléphone">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
+<<<<<<< HEAD
       <Text fill="#023956" fontSmoothingType="LCD" layoutX="516.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscription" textAlignment="CENTER" wrappingWidth="153.328125">
+=======
+      <Text layoutX="481.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2018 BONS PLANS POWERED BY DIGIMINDS" />
+      <Text fill="#f59d63" layoutX="308.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscription" textAlignment="CENTER">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font name="Gill Sans MT Ext Condensed Bold" size="51.0" />
          </font>
       </Text>
+<<<<<<< HEAD
       <JFXDatePicker fx:id="date" defaultColor="#f59d63" layoutX="199.0" layoutY="284.0" prefHeight="31.0" prefWidth="103.0" promptText="Date" />
       <RadioButton fx:id="mem" layoutX="73.0" layoutY="385.0" mnemonicParsing="false" selected="true" text="Membre">
          <toggleGroup>
@@ -85,5 +128,8 @@
          </image>
       </ImageView>
       <JFXButton fx:id="connect" layoutX="338.0" layoutY="451.0" onAction="#connecter" text="Se connecter" />
+=======
+      <JFXDatePicker fx:id="date" defaultColor="#f59d63" layoutX="373.0" layoutY="411.0" prefHeight="25.0" prefWidth="119.0" promptText="Date" />
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
    </children>
 </AnchorPane>

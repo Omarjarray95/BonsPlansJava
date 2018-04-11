@@ -221,7 +221,7 @@ public class ServiceUser {
      public boolean notExistUser(String email,String pas) throws ClassNotFoundException, SQLException {
          
              PreparedStatement ps;            
-             ps = con.prepareStatement("SELECT `email` ,`password` FROM `user` WHERE `email` = ? AND `password` = ?");
+             ps = con.prepareStatement("SELECT `email` ,`password` FROM `user1` WHERE `email` = ? AND `password` = ?");
              ps.setString(1, String.valueOf(email));
              ps.setString(2, String.valueOf(pas));
              ResultSet result = ps.executeQuery();

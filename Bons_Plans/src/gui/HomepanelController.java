@@ -49,7 +49,8 @@ public class HomepanelController implements Initializable {
     }    
 
     @FXML
-    private void SetAcceuil(ActionEvent event) throws IOException {
+    private void SetAcceuil(ActionEvent event) throws IOException 
+    {
          Parent homePage = FXMLLoader.load(getClass().getResource("Home.fxml"));
         
         Scene homePage_scene=new Scene(homePage);

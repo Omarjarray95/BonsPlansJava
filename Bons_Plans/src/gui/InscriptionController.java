@@ -117,18 +117,17 @@ public class InscriptionController implements Initializable {
     private static Pattern pattern;
     
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
-    @FXML
     private RadioButton mem;
-    @FXML
-    private ToggleGroup gender;
-    @FXML
     private RadioButton mempro;
+<<<<<<< HEAD
     @FXML
     private ToggleGroup gender1;
     @FXML
     private JFXButton connect;
     @FXML
     private AnchorPane main;
+=======
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
 
     /**
      * Initializes the controller class.

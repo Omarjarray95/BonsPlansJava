@@ -72,6 +72,7 @@ public class CompteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< HEAD
                   try {
                 VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
                 drawer.setSidePane(box);
@@ -92,142 +93,164 @@ public class CompteController implements Initializable {
                     else drawer.open();
                 });
         try{
+=======
+         try
+         {
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
             Session ss =new Session();
               lbnom.setText(ss.user.nom);
-              emailu.setText(ss.user.Email);
+              /*emailu.setText(ss.user.Email);
               nomu.setText(ss.user.nom);
-              
-        }finally{
-        }   
+              usernameu.setText(ss.user.login);*/
+             System.out.println(lbnom);
+             sett();
+        }
+         finally
+         {
+             
+         }   
   
         // TODO
     }    
 
-    public void setlbnom(String lbnom) {
+    public void setlbnom(String lbnom) 
+    {
         this.lbnom.setText(lbnom);
+    }
     
-     
-}
-    public void sett(){
-        change(false); 
-        try {
+    public void sett()
+    {
+        change(true); 
+        try
+        {
             Connection connection;
             PreparedStatement ps;
-           
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
-            ps = connection.prepareStatement("SELECT `username`, `nom`, `email`, `phone` FROM `user` WHERE `nom` = ? " );
-         
+            ps = connection.prepareStatement("SELECT `username`, `nom`, `email`, `phone` FROM `user1` WHERE `nom` = ? " );
             ps.setString(1, String.valueOf(lbnom.getText()));
-            
-           
-            
             ResultSet result = ps.executeQuery();
-            
-            
-            if(result.next()){
-                
-                
+            if(result.next())
+            {
                 nomu.setText(lbnom.getText());
+                System.out.println(result.getString("username"));
+                System.out.println(result.getString("phone"));
                 usernameu.setText(result.getString("username"));
 //                     nomu.setText(result.getString("nom"));
 //                     prenomu.setText(result.getString("prenom"));
                 emailu.setText(result.getString("email"));
                 phoneu.setText(result.getString("phone"));
-               
-               
-                try {
+                try 
+                {
                     //            System.out.println(decrypt(result.getString("password").toString().trim(),"2018"));
 //            System.out.println(result.getString("password"));
 //Al(encrypt(result.getString("password"),"2018"));
 //  passu.setText(decrypt(result.getString("password"),"2018"));
-                } catch (Exception ex) {
+                } 
+                catch (Exception ex) 
+                {
                     Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) 
+        {
             Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       public void change(Boolean b){
-           if (b == false) {
+    
+       public void change(Boolean b)
+       {
+           if (b == false) 
+           {
                nomu.setEditable(false);
                usernameu.setEditable(false);
                emailu.setEditable(false);
                phoneu.setEditable(false);
                
-           }else{
-                nomu.setEditable(true);
+           }
+           else
+           {
+               nomu.setEditable(true);
                usernameu.setEditable(true);
                emailu.setEditable(true);
                phoneu.setEditable(true);
            }
-                   
        }
-         public void Al(String txt){
-     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       
+         public void Al(String txt)
+         {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Information Dialog");
         alert.setContentText(txt);
         alert.showAndWait();
-    }
+        }
 
 
+<<<<<<< HEAD
     private void closeStage(MouseEvent event) {
+=======
+    @FXML
+    private void closeStage(MouseEvent event) 
+    {
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
         nomu.getScene().getWindow().hide();
     }
 
     @FXML
-    private void deconnecter(ActionEvent event) {
-     try {
-           
+    private void deconnecter(ActionEvent event) 
+    {
+     try 
+     {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Login.fxml"));
-            
             Parent root = loader.load();
-            
             LoginController logi = loader.getController();
- nomu.getScene().setRoot(root);
-        } catch (IOException ex) {
+            nomu.getScene().setRoot(root);
+     } 
+     catch (IOException ex) 
+     {
             Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     }
     }
 
     @FXML
-    private void updatecompte(ActionEvent event) {
+    private void updatecompte(ActionEvent event) 
+    {
+        
     }
 
     @FXML
-    private void saveActio(ActionEvent event) throws ClassNotFoundException {
-   
-        try {
+    private void saveActio(ActionEvent event) throws ClassNotFoundException 
+    {
+        try 
+        {
             ServiceUser ser=new ServiceUser();
             User us=new User();
-          
             ser.updateUser(phoneu.getText(),nomu.getText(),usernameu.getText(),lbnom.getText(),emailu.getText());
         } 
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 //
         @FXML
-        private void envoyerrecla(ActionEvent event) throws IOException {
+        private void envoyerrecla(ActionEvent event) throws IOException 
+        {
     //         ((Node)event.getSource()).getScene().getWindow().hide();
-                try {
-                    
-               
+                try 
+                {  
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
                 
                 Parent root = loader.load();
                 
                 ReclamationController rec = loader.getController();
-     nomu.getScene().setRoot(root);
-            } catch (IOException ex) {
+                nomu.getScene().setRoot(root);
+                } 
+                catch (IOException ex) 
+                {
                 Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                
+                }
         }
 
 }

@@ -77,13 +77,20 @@ public class AffichagePaneController implements Initializable {
     private final EtablissementService ES0 = new EtablissementService();
     
     private ArrayList<Etablissement> ESL0 = new ArrayList<>();
+    
     @FXML
     private Pagination Pagination;
+<<<<<<< HEAD
     @FXML
     private JFXDrawer drawer;
     @FXML
     private JFXHamburger Hamburger;
 
+=======
+    
+    private String type;
+    
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
     /**
      * Initializes the controller class.
      */
@@ -207,7 +214,7 @@ public class AffichagePaneController implements Initializable {
                 return Grid;
             }
         });
-    }    
+    }  
 
     @FXML
     private void RechercherParNom(ActionEvent event) 
@@ -580,5 +587,13 @@ public class AffichagePaneController implements Initializable {
                 return Grid;
             }
         });
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

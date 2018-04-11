@@ -23,16 +23,20 @@ import gui.LoginController;
  * @author DADOU
  */
  
-public class Session {
+public class Session 
+{
     private StackPane rootPane;
     public static String Vnom, Vprenom;
     public static User user;
+    
     @FXML
     public static String username;
+    
     public static String password;
     private String nom;
 
-    public Session() {
+    public Session() 
+    {
 
     }
 
@@ -41,7 +45,8 @@ public class Session {
 //    }
 
     @FXML
-    public void Al(String txt) {
+    public void Al(String txt) 
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Information Dialog");
@@ -49,60 +54,64 @@ public class Session {
         alert.showAndWait();
     }
 
-    public void Loginn(String usr, String pass) throws ClassNotFoundException, SQLException, InstantiationException {
-
-        try {
-
+    public void Loginn(String usr, String pass) throws ClassNotFoundException, SQLException, InstantiationException 
+    {
+        try 
+        {
             Connection connection;
-
             PreparedStatement ps;
-
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
+<<<<<<< HEAD
             ps = connection.prepareStatement("SELECT `id`, `Email`, `test` ,`nom` , `username` FROM `user1` WHERE `email` = ? AND `password` = ? ");
+=======
+            ps = connection.prepareStatement("SELECT `id`, `Email`, `Roles` ,`nom` , `username` FROM `user1` WHERE `email` = ? AND `password` = ? ");
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
             ps.setString(1, String.valueOf(usr));
-
             ps.setString(2, String.valueOf(pass));
-
             ResultSet result = ps.executeQuery();
-
-            if (result.next()) {
-
+            if (result.next()) 
+            {
                 user = new User();
                 user.setId(result.getInt("id"));
                 user.setNom(result.getString("nom"));
                 user.setEmail(result.getString("email"));
                 user.setLogin(result.getString("username"));
                 LoginController in = new LoginController();
-
-                in.setStage("/gui/Profile.fxml");
-
-                String mr = result.getString("test");
-                switch (mr) { 
+                String mr = result.getString("Roles");
+                switch (mr) 
+                { 
                     case "Admin":
+<<<<<<< HEAD
                         in.setStage("/gui/BackendAdminAcceuil.fxml");
 
+=======
+                        in.setStage("BackendAdminAcceuil.fxml");
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
                         Al("Hello Admin!");
-
                         break;
+<<<<<<< HEAD
                     case "Member":
                         in.setStage("/gui/Home.fxml");   
+=======
+                        
+                    case "Membre":
+                        in.setStage("/gui/Profile.fxml");
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
                         Al("Hello Membre!");
-
                         break;
+                        
                     case "Membre professionnel":
-
                         break;
-
                 }
-
-//    }
-            } else {
-
+            } 
+            else 
+            {
                 //   jLabel_Message.setText("Invalide Username Or Password");
                 Al("Failed :(");
-
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) 
+        {
             Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

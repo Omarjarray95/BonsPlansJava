@@ -110,7 +110,6 @@ public class ProfileController implements Initializable {
                 {
                     burgerTask.setRate(burgerTask.getRate() * -1);
                     burgerTask.play();
-                    
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
@@ -119,6 +118,7 @@ public class ProfileController implements Initializable {
     }    
 
     @FXML
+<<<<<<< HEAD
     private void showProfile(ActionEvent event) {
         Main.getChildren().clear();
         Session ss =new Session();
@@ -137,6 +137,30 @@ public class ProfileController implements Initializable {
                 if (etablis.isEmpty()){
                            Label box = new Label();
          
+=======
+    private void showProfile(ActionEvent event) 
+    {
+        FXMLLoader FL= new FXMLLoader(getClass().getResource("Compte.fxml"));
+        try
+        {
+            Parent root = (Parent) FL.load();
+            MainPane.getChildren().setAll(root);
+        }
+        catch(IOException ex)
+        {
+        System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void showMine(ActionEvent event) 
+    {
+                EtablissementService service =new EtablissementService();
+                etablis=service.getMine(2);
+                if (etablis.isEmpty())
+                {
+                Label box = new Label();
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
                 box.setText("Vous ne possédez pas d'établissement");
                 box.setVisible(true);
                 box.setLayoutX(14.0);
@@ -149,34 +173,41 @@ public class ProfileController implements Initializable {
                 ajout.setTextFill(going.getTextFill());
                 Main.getChildren().addAll(box,ajout);
                 }
-                else{
-           pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
-           pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
-           pagination.setPageFactory(new Callback<Integer, Node>() {
-           public Node call(Integer pageIndex) {
-           VBox box = new VBox(5);
-         
-          box.setLayoutY(14.0);
-          box.setLayoutX(14.0);
-          box.setPrefHeight(240.0);
-          box.setPrefWidth(334.0);
-          int page = pageIndex * 6;
-        
-        
-             if (page+6>etablis.size()){
-            for (int i = page; i < etablis.size(); i++){
-        Etablissement e=etablis.get(i);
-        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
-        fromToLabel2.setText(e.getNom());
-                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
-            {
-            @Override
-            public void handle(ActionEvent action)
-            {
+                else
+                {
+                pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
+                pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+                pagination.setPageFactory(new Callback<Integer, Node>() {
+                public Node call(Integer pageIndex) 
+                {
+                VBox box = new VBox(5);
+                box.setLayoutY(14.0);
+                box.setLayoutX(14.0);
+                box.setPrefHeight(240.0);
+                box.setPrefWidth(334.0);
+                int page = pageIndex * 6;
+                
+             if (page+6>etablis.size())
+             {
+                for (int i = page; i < etablis.size(); i++)
+                {
+                Etablissement e=etablis.get(i);
+                Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+                fromToLabel2.setText(e.getNom());
+                
+                fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+                {
+                @Override
+                public void handle(ActionEvent action)
+                {
                 try 
                 {
                     int Id=e.getId();
+<<<<<<< HEAD
                   FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+=======
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
                     Parent root = (Parent) FL.load();
                     EtablissementVBoxController EVC = FL.getController();
                     EVC.ShowEtablissement(Id);
@@ -188,15 +219,16 @@ public class ProfileController implements Initializable {
                 }
             }
             });
-        
-        
         box.getChildren().add(fromToLabel2);
-                }}
-                   else{
-                               for (int i = page; i < page + 6; i++){
-        Etablissement e=etablis.get(i);
-        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
-        fromToLabel2.setText(e.getNom());
+             }
+             }
+                   else
+             {
+                   for (int i = page; i < page + 6; i++)
+                   {
+                    Etablissement e=etablis.get(i);
+                    Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+                    fromToLabel2.setText(e.getNom());
                     fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
             {
             @Override
@@ -205,8 +237,12 @@ public class ProfileController implements Initializable {
                 try 
                 {
                     int Id=e.getId();
+<<<<<<< HEAD
                     
                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+=======
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
                     Parent root = (Parent) FL.load();
                     EtablissementVBoxController EVC = FL.getController();
                     EVC.ShowEtablissement(Id);
@@ -218,16 +254,11 @@ public class ProfileController implements Initializable {
                 }
             }
             });
-        
-        
         box.getChildren().add(fromToLabel2);
-                }}
-                   
+                }}    
     return box;
        }
    });
-        
-        
                 AnchorPane.setTopAnchor(pagination, 10.0);
                 AnchorPane.setRightAnchor(pagination, 10.0);
                 AnchorPane.setBottomAnchor(pagination, 10.0);

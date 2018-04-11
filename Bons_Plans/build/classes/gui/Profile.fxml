@@ -3,14 +3,18 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<<<<<<< HEAD
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+=======
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="480.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileController">
             <children>
       <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
@@ -59,5 +63,22 @@
             <Font name="System Bold Italic" size="11.0" />
          </font>
       </JFXButton>
+=======
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileController">
+            <children>  
+      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="556.0" layoutY="18.0" />
+  
+            <JFXButton id="loginbtn" fx:id="profile" layoutX="150.0" layoutY="3.0" onAction="#showProfile" prefHeight="25.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Mon profile" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="etabs" layoutX="264.0" layoutY="3.0" onAction="#showMine" prefHeight="25.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Mes établissements" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="demandes" layoutX="395.0" layoutY="3.0" onAction="#showDemandes" prefHeight="25.0" prefWidth="113.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Mes demandes" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="Favoris" layoutX="150.0" layoutY="39.0" onAction="#showFavoris" prefHeight="25.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Favoris" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="visited" layoutX="395.0" layoutY="39.0" onAction="#showVisited" prefHeight="25.0" prefWidth="113.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Visités" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="reclamations" layoutX="264.0" layoutY="39.0" onAction="#showReclamations" prefHeight="25.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Mes réclamations" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="interesting" layoutX="151.0" layoutY="70.0" onAction="#showInteresting" prefHeight="25.0" prefWidth="175.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Evenements qui m'intéressent" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="going" layoutX="333.0" layoutY="70.0" onAction="#showGoing" prefHeight="25.0" prefWidth="175.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Evenements je vais participer" textFill="WHITE" />
+      <AnchorPane fx:id="Main" layoutX="178.0" layoutY="126.0" prefHeight="260.0" prefWidth="355.0">
+        </AnchorPane>
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
     </children>
 </AnchorPane>

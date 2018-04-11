@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<<<<<<< HEAD
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,15 +18,29 @@
          </image>
       </ImageView>
       <JFXTextField fx:id="emailtxt" focusColor="#f59d63" labelFloat="true" layoutX="247.0" layoutY="119.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Email">
+=======
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="APane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+   <children>
+      <JFXTextField fx:id="emailtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="131.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="E-Mail">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
+<<<<<<< HEAD
       <JFXPasswordField fx:id="passwordtxt" focusColor="#f59d63" labelFloat="true" layoutX="247.0" layoutY="161.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Password">
+=======
+      <JFXPasswordField fx:id="passwordtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="200.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Mot De Passe">
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
          <font>
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
+<<<<<<< HEAD
       <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="255.0" layoutY="211.0" onAction="#login" prefHeight="25.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Login" textFill="WHITE" />
       <JFXButton layoutX="255.0" layoutY="250.0" onAction="#Inscription" text="S'inscrire ? " />
       <Text layoutX="330.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2018 BONS PLANS POWERED BY DIGIMINDS" />
@@ -34,6 +49,15 @@
             <Image url="@../images/Bons-Plans-2.png" />
          </image>
       </ImageView>
+=======
+      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="249.0" layoutY="269.0" onAction="#login" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Se Connecter" textFill="WHITE" />
+      <JFXButton layoutX="263.0" layoutY="313.0" onAction="#Inscription" text="S'Inscrire ?" />
+      <Label alignment="CENTER" layoutX="182.0" layoutY="47.0" text="Bons Plans Tunisie" textFill="#192268">
+         <font>
+            <Font name="Comic Sans MS Bold" size="27.0" />
+         </font>
+      </Label>
+>>>>>>> 2121e57e4b70682b1ddac524b2b048ab97cef440
 
    </children>
 </AnchorPane>
