@@ -24,6 +24,45 @@ public class Offre {
     private Date date_fin;
     private String description;
     private String offre;
+    private String code;
+    private double pourcentage;
+
+    public Offre(int id_etablissement, Date date_debut, Date date_fin, String description, String offre, String code, double pourcentage) {
+        this.id_etablissement = id_etablissement;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.description = description;
+        this.offre = offre;
+        this.code = code;
+        this.pourcentage = pourcentage;
+    }
+
+    public Offre(int id, int id_etablissement, Date date_debut, Date date_fin, String description, String offre, String code, double pourcentage) {
+        this.id = id;
+        this.id_etablissement = id_etablissement;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.description = description;
+        this.offre = offre;
+        this.code = code;
+        this.pourcentage = pourcentage;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public double getPourcentage() {
+        return pourcentage;
+    }
+
+    public void setPourcentage(double pourcentage) {
+        this.pourcentage = pourcentage;
+    }
    
 
     public Offre(Date date_debut, Date date_fin, String description, String offre) {

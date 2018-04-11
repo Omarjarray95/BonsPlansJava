@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.CompteController">
+   <children>
+      <AnchorPane layoutY="-5.0" prefHeight="108.0" prefWidth="598.0" style="-fx-background-color: #293D52;">
+         <children>
+            <MaterialDesignIconView fx:id="iconClose" fill="#eb0e0e" glyphName="CLOSE" layoutX="565.0" layoutY="33.0" onMouseClicked="#closeStage" size="22" />
+            <Label fx:id="lbnom" layoutX="23.0" layoutY="39.0" prefHeight="35.0" prefWidth="126.0" text="Label" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font></Label>
+            <JFXButton fx:id="deconnexion" buttonType="RAISED" layoutX="413.0" layoutY="35.0" onAction="#deconnecter" prefHeight="39.0" prefWidth="135.0" style="-fx-background-color: #008F82; -fx-border-color: rgb(20, 95, 183,0.6);" text="Deconnexion" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btnRestore" layoutX="234.0" layoutY="448.0" onAction="#updatecompte" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #008F82;" text="   Actualiser " textFill="#f7f8f8">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="emailu" layoutX="75.0" layoutY="251.0" maxWidth="199.0" minWidth="199.0" prefHeight="31.0" prefWidth="199.0" promptText="E-mail" />
+      <JFXTextField fx:id="phoneu" layoutX="75.0" layoutY="309.0" maxWidth="216.0" minWidth="199.0" prefHeight="31.0" prefWidth="199.0" promptText="Numéro De Téléphone" />
+      <JFXTextField fx:id="nomu" layoutX="75.0" layoutY="195.0" maxWidth="199.0" minWidth="186.0" prefHeight="31.0" prefWidth="199.0" promptText="Nom &amp; Prenom" />
+      <JFXTextField fx:id="usernameu" layoutX="75.0" layoutY="142.0" maxWidth="199.0" minWidth="166.0" prefHeight="31.0" prefWidth="199.0" promptText="Username" />
+      <JFXButton fx:id="savee" buttonType="RAISED" layoutX="75.0" layoutY="448.0" onAction="#saveActio" prefHeight="22.0" prefWidth="150.0" style="-fx-background-color: #008F82;" text="Enregistrer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="CHECK_SQUARE_ALT" size="16.0" wrappingWidth="27.571428298950195" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="reclam" layoutX="458.0" layoutY="446.0" onAction="#envoyerrecla" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #DD4B39;" text="Reclamation" textFill="#f5f5f5">
+         <font>
+            <Font name="Sitka Small Bold Italic" size="14.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" layoutX="86.0" layoutY="381.0" size="24.0" wrappingWidth="15.285717010498047" />
+   </children>
+</AnchorPane>

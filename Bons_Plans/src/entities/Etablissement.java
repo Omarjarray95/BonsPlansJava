@@ -8,6 +8,25 @@ public class Etablissement
     private int id;
     private String nom;
     private String type;
+
+    private int partenaire;
+
+    public Etablissement(int id, String nom, String type, int partenaire, int responsable) {
+        this.id = id;
+        this.nom = nom;
+        this.type = type;
+        this.partenaire = partenaire;
+        this.responsable = responsable;
+    }
+
+    public int getPartenaire() {
+        return partenaire;
+    }
+
+    public void setPartenaire(int partenaire) {
+        this.partenaire = partenaire;
+    }
+
     private String adresse;
     private String description;
     private String horaire_ouverture;
@@ -20,6 +39,7 @@ public class Etablissement
     private String type_loisirs;
     private String type_shops;
     private String nbrStars;
+
     private int responsable;
 
     public Etablissement(int id, String nom, String type, int responsable) 
@@ -29,7 +49,12 @@ public class Etablissement
         this.type = type;
         this.responsable = responsable;
     }
-    
+    public Etablissement(){}
+
+    public int getResponsable() {
+        return responsable;
+
+    }
     public Etablissement(int id,String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String image, String type_resto, String type_loisirs, String type_shops, String nbrStars) 
     {
         this.id = id;
@@ -226,11 +251,6 @@ public class Etablissement
             return false;
         }
         return true;
-    }
-
-    public int getResponsable() 
-    {
-        return responsable;
     }
 
     public void setResponsable(int responsable) 

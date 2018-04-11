@@ -73,9 +73,12 @@ public class AffichagePaneController implements Initializable {
     private final EtablissementService ES0 = new EtablissementService();
     
     private ArrayList<Etablissement> ESL0 = new ArrayList<>();
+    
     @FXML
     private Pagination Pagination;
-
+    
+    private String type;
+    
     /**
      * Initializes the controller class.
      */
@@ -144,7 +147,6 @@ public class AffichagePaneController implements Initializable {
             Image I = new Image(F.toURI().toString());
             ImageView IV = new ImageView();
             IV.setImage(I);
-            System.out.println(F.toURI().toString());
             IV.setFitHeight(150);
             IV.setFitWidth(150);
             Hyperlink Nom1 = new Hyperlink(E.getNom());
@@ -181,7 +183,7 @@ public class AffichagePaneController implements Initializable {
                 return Grid;
             }
         });
-    }    
+    }  
 
     @FXML
     private void RechercherParNom(ActionEvent event) 
@@ -554,5 +556,13 @@ public class AffichagePaneController implements Initializable {
                 return Grid;
             }
         });
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

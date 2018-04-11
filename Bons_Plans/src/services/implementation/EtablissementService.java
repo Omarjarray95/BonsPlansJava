@@ -1,6 +1,7 @@
 package services.implementation;
 import entities.Etablissement;
 import entities.LikedEtablissement;
+import entities.Session;
 import entities.Tag;
 import entities.User;
 import entities.VisitedEtablissement;
@@ -25,9 +26,11 @@ public class EtablissementService
     
     public void Ajout(String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String type1, String image)
     {
+        Session S = new Session();
+        int ID = S.user.id;
         try
         {
-        PreparedStatement PS = connection.prepareStatement("Insert Into Etablissement(nom,type,adresse,description,horaire_ouverture,horaire_fermeture,numero,url,budget_moyen,type_loisirs,type_resto,type_shops,nbrStars,image_principale) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        PreparedStatement PS = connection.prepareStatement("Insert Into Etablissement(nom,type,adresse,description,horaire_ouverture,horaire_fermeture,numero,url,budget_moyen,type_loisirs,type_resto,type_shops,nbrStars,image_principale,id_representant) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         PS.setString(1, nom);
         PS.setString(2, type);
         PS.setString(3, adresse);
@@ -58,6 +61,7 @@ public class EtablissementService
         {
             PS.setString(10, type1);
         }
+        PS.setInt(15, ID);
         PS.executeUpdate();
         }
         catch(SQLException E)
@@ -320,7 +324,31 @@ public class EtablissementService
         }
         return AL;
     }
+        public int checkPartner(int id)
+        {
+            int resultat=0;
+        Etablissement etab = null;
+    try {
+            String req = "select * from etablissement where id =?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) 
+            {
+                
+                 etab = new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(20),rs.getInt(19));
+                 resultat=etab.getPartenaire();
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println(resultat + " Hedha");
+        return resultat;
     
+    }
+    
+
     public ArrayList<Etablissement> FindByTag(String T)
     {
         ArrayList<Etablissement> AL = new ArrayList<>();
@@ -367,9 +395,48 @@ public class EtablissementService
         }
         return AL;
     }
+    
+    public ArrayList<Etablissement> FindByType(String nom)
+    {
+        ArrayList<Etablissement> AL = new ArrayList<>();
+        try
+        {
+        PreparedStatement PS = connection.prepareStatement("Select * From Etablissement Where Type=?");
+        PS.setString(1, nom);
+        ResultSet Res = PS.executeQuery();
+        while (Res.next()) 
+            {
+                int s1 = Res.getInt("id");
+                String s2 = Res.getString("nom");
+                String s3 = Res.getString("type");
+                String s4 = Res.getString("adresse");
+                String s5 = Res.getString("description");
+                String s6 = Res.getString("horaire_ouverture");
+                String s7 = Res.getString("horaire_fermeture");
+                int s8 = Res.getInt("numero");
+                String s9 = Res.getString("url");
+                int s10 = Res.getInt("budget_moyen");
+                String s11 = Res.getString("image_principale");
+                String s12 = Res.getString("type_resto");
+                String s13 = Res.getString("type_loisirs");
+                String s14 = Res.getString("type_shops");
+                String s15 = Res.getString("nbrStars");
+                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                AL.add(E);
+            }
+            Res.close();
+            PS.close();
+        }
+        catch(SQLException E)
+        {
+        System.out.println(E);     
+        }
+        return AL;
+    }
         
         public int countVisited(int etablissement)
         {
+
         int res=0;
         try {
             String req = "select * from visited where favoris_id=?";
@@ -466,7 +533,7 @@ public class EtablissementService
         ArrayList<Etablissement> etabs = new ArrayList<>();
         try {
 
-            String req = "select * from etablissement where representant_id=?";
+            String req = "select * from etablissement where id_representant=?";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -521,5 +588,19 @@ public class EtablissementService
             ex.printStackTrace();
         }
         return res;
+    }        
+
+    void DeleteEtablissement(int id_etablissement) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Iterable<Etablissement> afficher() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+         
+                                
+                
+                
+
     } 
-}
+

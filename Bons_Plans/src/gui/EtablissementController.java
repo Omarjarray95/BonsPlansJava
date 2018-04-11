@@ -41,6 +41,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import services.implementation.DemandeService;
 import services.implementation.EtablissementService;
 
 public class EtablissementController implements Initializable 
@@ -92,6 +93,8 @@ public class EtablissementController implements Initializable
     private Button AGlobe;
     
     public String Add;
+    @FXML
+    private Button BoutonTest;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -163,16 +166,31 @@ public class EtablissementController implements Initializable
         }
         else
         {
-            EtablissementService ES = new EtablissementService();
-            Integer N = Integer.parseInt(Numero.getText());
-            Integer B = Integer.parseInt(BudgetMoyen.getText());
-            ES.Ajout(
+            DemandeService DS = new DemandeService();
+            int N = 0;
+            int B = 0;
+            String SO = null;
+            String SF = null;
+            if ((HoraireOuverture.getTime() != null) || (HoraireFermeture.getTime() != null))
+            {
+                SO = HoraireOuverture.getTime().toString();
+                SF = HoraireFermeture.getTime().toString();
+            }
+            if (Numero.getText().length() > 0)
+            {
+            N = Integer.parseInt(Numero.getText());
+            }
+            if (BudgetMoyen.getText().length() > 0)
+            {
+                B = Integer.parseInt(BudgetMoyen.getText());
+            }
+            DS.Ajout(
                 Nom.getText(),
                 Type.getValue().toString(),
                 Adresse.getText(),
                 Description.getText(),
-                HoraireOuverture.getTime().toString(),
-                HoraireFermeture.getTime().toString(),
+                SO,
+                SF,
                 N,
                 SiteWeb.getText(),
                 B,
