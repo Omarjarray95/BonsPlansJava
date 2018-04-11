@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Reservation_AfficheController">
+   <children>
+      <TableView fx:id="listReservation" layoutX="48.0" layoutY="179.0" prefHeight="242.0" prefWidth="663.0">
+        <columns>
+          <TableColumn fx:id="nomCol" prefWidth="75.0" text="nom" />
+          <TableColumn fx:id="prenCol" prefWidth="75.0" text="prenom" />
+            <TableColumn fx:id="numtelCol" prefWidth="75.0" text="num_tel" />
+            <TableColumn fx:id="nbPersonCol" prefWidth="143.0" text="nbr_personnes" />
+            <TableColumn fx:id="DateReservCol" prefWidth="180.0" text="Date_reservation" />
+        </columns>
+      </TableView>
+      <Button fx:id="modifierRes" layoutX="150.0" layoutY="484.0" mnemonicParsing="false" onAction="#modifierReserv" text="Modifier" />
+      <Button fx:id="SuprrimerReser" layoutX="261.0" layoutY="490.0" mnemonicParsing="false" onAction="#SuprrimerResera" text="Supprimer" />
+      <TextField fx:id="find" layoutX="243.0" layoutY="67.0" onKeyReleased="#findKey" />
+      <Button layoutX="424.0" layoutY="67.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
