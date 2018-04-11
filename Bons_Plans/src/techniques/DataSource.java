@@ -18,7 +18,7 @@ public class DataSource {
     private static DataSource dataSource;
     private Connection connection;
 
-    private DataSource() {
+    public DataSource() {
         url = "jdbc:mysql://localhost:3306/bonsplans";
         login = "root";
         password = "";
