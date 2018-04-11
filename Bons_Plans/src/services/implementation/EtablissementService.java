@@ -546,5 +546,19 @@ public class EtablissementService
             ex.printStackTrace();
         }
         return res;
+    }        
+
+    void DeleteEtablissement(int id_etablissement) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Iterable<Etablissement> afficher() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+         
+                                
+                
+                
+
     } 
-}
+

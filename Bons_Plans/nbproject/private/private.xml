@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/HomepanelController.java</file>
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/ActualitesController.java</file>
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/OffreProfileController.java</file>
@@ -10,6 +11,20 @@
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/ProfileEtablissementController.java</file>
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/Main.java</file>
             <file>file:/C:/Users/Ons%20Ben%20Othmen/Desktop/PiJava/BonsPlansJava/Bons_Plans/src/gui/Affichage.java</file>
+=======
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/gui/InscriptionController.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/gui/MainAdmin.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/entities/User.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/gui/Main.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/services/implementation/EtablissementService.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/test/AboutController.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/services/implementation/ServiceUser.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/entities/Etablissement.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/test/CompteController.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/gui/ProfileController.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/gui/LoginController.java</file>
+            <file>file:/C:/Users/DADOU/Documents/NetBeansProjects/Bons_Plans_Java/Bons_Plans/src/entities/Session.java</file>
+>>>>>>> 0b086b62f81ff28e4fbee24c4b2f72f5cebbeec1
         </group>
     </open-files>
 </project-private>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="Pane" prefHeight="430.0" prefWidth="583.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.AboutController">
+   <children>
+      <Pane prefHeight="127.0" prefWidth="583.0" style="-fx-background-color: #293D52;">
+         <children>
+            <Label fx:id="nomlabel" layoutX="183.0" layoutY="50.0" prefHeight="17.0" prefWidth="117.0" text="Label" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="124.0" fitWidth="135.0" layoutX="22.0" layoutY="7.0">
+               <image>
+                  <Image url="@../image/customer_group-512.png" />
+               </image>
+            </ImageView>
+            <MaterialDesignIconView fx:id="iconClose" fill="#eb0e0e" glyphName="CLOSE" layoutX="547.0" layoutY="35.0" onMouseClicked="#closeStage" size="22" />
+         </children>
+      </Pane>
+      <Label fx:id="codeemail" layoutX="32.0" layoutY="222.0" text="Code" visible="false" />
+      <JFXTextField fx:id="code" layoutX="32.0" layoutY="240.0" promptText="Code D'activation" />
+      <JFXButton fx:id="idact" layoutX="32.0" layoutY="278.0" onAction="#activecompte" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: grey;" text="Activer votre compte" />
+      <Hyperlink fx:id="pasaccees" layoutX="49.0" layoutY="346.0" onAction="#deconnexion" prefHeight="23.0" prefWidth="186.0" text="j'ai pas d'accès au mail .." />
+   </children>
+</AnchorPane>
