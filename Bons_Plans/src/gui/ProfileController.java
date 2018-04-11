@@ -95,7 +95,15 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void showProfile(ActionEvent event) {
-        
+        FXMLLoader FL= new FXMLLoader(getClass().getResource("Compte.fxml"));
+        try
+        {
+            Parent root = (Parent) FL.load();
+            MainPane.getChildren().setAll(root);
+            
+        }catch(IOException ex){
+        System.out.println(ex);
+                }
     }
 
     @FXML
