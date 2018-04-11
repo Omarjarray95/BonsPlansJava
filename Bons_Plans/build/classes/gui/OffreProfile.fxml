@@ -25,5 +25,6 @@
       <JFXButton id="loginbtn" fx:id="supp" layoutX="237.0" layoutY="303.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Supprimer" textFill="WHITE" />
       <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
       <JFXHamburger fx:id="Hamburger" layoutX="550.0" layoutY="20.0" />
+      <JFXButton id="loginbtn" fx:id="fb" layoutX="360.0" layoutY="336.0" onAction="#Share" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Partager sur Fb" textFill="WHITE" />
    </children>
 </AnchorPane>

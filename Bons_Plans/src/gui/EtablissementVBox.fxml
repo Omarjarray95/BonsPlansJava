@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
 <Pane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EtablissementVBoxController">
@@ -31,5 +34,15 @@
       <Hyperlink fx:id="SWB" layoutX="444.0" layoutY="183.0" />
       <TextFlow fx:id="Description" layoutX="23.0" layoutY="294.0" prefHeight="130.0" prefWidth="704.0" textAlignment="JUSTIFY" />
       <Button fx:id="Tags" layoutX="349.0" layoutY="219.0" mnemonicParsing="false" onAction="#AfficheTags" text="Tags" />
+      <ToggleButton fx:id="visited" layoutX="42.0" layoutY="424.0" mnemonicParsing="false" onAction="#SetVisited" style="-fx-background-color: #f59d63;" text="Marquer visité" textFill="WHITE" />
+      <ToggleButton fx:id="like" layoutX="147.0" layoutY="424.0" mnemonicParsing="false" onAction="#SetLike" style="-fx-background-color: #f59d63;" text="J'aime" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="event" layoutX="42.0" layoutY="472.0" onAction="#AjouterEvent" prefHeight="32.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un évenement" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="offre" layoutX="210.0" layoutY="519.0" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un offre" textFill="WHITE" />
+      <Text fx:id="visits" layoutX="564.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visits" />
+      <Text fx:id="likes" layoutX="565.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="likes" />
+      <JFXButton id="loginbtn" fx:id="events" layoutX="42.0" layoutY="519.0" onAction="#AllEvents" prefHeight="32.0" prefWidth="154.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les évenements" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="offres" layoutX="210.0" layoutY="472.0" onAction="#AllOffers" prefHeight="32.0" prefWidth="137.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les offres" textFill="WHITE" />
+      <Label fx:id="labelPartenaire" layoutX="527.0" layoutY="543.0" text="Vous etes un partenaire" />
+      <JFXButton id="loginbtn" fx:id="Demande" layoutX="516.0" layoutY="536.0" onAction="#DemandePartenariat" prefHeight="32.0" prefWidth="147.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Demande Partenariat" textFill="WHITE" />
    </children>
 </Pane>

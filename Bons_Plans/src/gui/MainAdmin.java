@@ -18,6 +18,7 @@ public class MainAdmin extends Application
         primaryStage.show();
         primaryStage.setResizable(false);
     }
+    
     public static void main(String[] args) 
     {
         launch(args);
