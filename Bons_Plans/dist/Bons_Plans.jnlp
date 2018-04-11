@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Bons_Plans.jar" size="23962972" download="eager" />
+    <jar href="Bons_Plans.jar" size="23967660" download="eager" />
     <jar href="lib\GMapsFX-2.0.9.jar" size="166541" download="eager" />
     <jar href="lib\RG84M6R.jar" size="7027599" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
@@ -18,6 +18,7 @@
     <jar href="lib\controlsfx-8.40.12.jar" size="996389" download="eager" />
     <jar href="lib\controlsfx-8.40.14.jar" size="1215643" download="eager" />
     <jar href="lib\dsn.jar" size="18190" download="eager" />
+    <jar href="lib\facebook4j-core-2.4.10.jar" size="533890" download="eager" />
     <jar href="lib\fontawesomefx-8.0.10.jar" size="108930" download="eager" />
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\gradle-wrapper.jar" size="54712" download="eager" />

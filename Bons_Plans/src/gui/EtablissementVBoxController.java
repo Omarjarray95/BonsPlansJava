@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import entities.Etablissement;
 import entities.Tag;
 import java.io.File;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -31,8 +33,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import services.implementation.DemandePartenariatService;
 import services.implementation.EtablissementService;
+import services.implementation.LikedEtablissementService;
+import services.implementation.PartenariatService;
 import services.implementation.TagService;
+import services.implementation.VisitedEtablissementService;
 
 public class EtablissementVBoxController implements Initializable {
 
@@ -64,6 +70,26 @@ public class EtablissementVBoxController implements Initializable {
     private Hyperlink Supprimer;
     @FXML
     private Button Tags;
+    @FXML
+    private ToggleButton visited;
+    @FXML
+    private ToggleButton like;
+    @FXML
+    private JFXButton event;
+    @FXML
+    private JFXButton offre;
+    @FXML
+    private Text visits;
+    @FXML
+    private Text likes;
+    @FXML
+    private JFXButton events;
+    @FXML
+    private JFXButton offres;
+    @FXML
+    private Label labelPartenaire;
+    @FXML
+    private JFXButton Demande;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -73,7 +99,23 @@ public class EtablissementVBoxController implements Initializable {
     
     public void ShowEtablissement(int Id)
     {
+        LikedEtablissementService service1=new LikedEtablissementService();
+    
+        VisitedEtablissementService service2=new VisitedEtablissementService();
         EtablissementService ES = new EtablissementService();
+        
+        
+        likes.setText("Aimé par "+ES.countLikes(Id)+" personne(e)");
+        visits.setText("Visité par "+ES.countVisited(Id)+" personne(e)");
+        if (service1.count(3,Id)==0){
+        like.setText("J'aime");
+        }
+        else {like.setText("Aimé!");}
+        if (service2.count(3,Id)==0){
+        visited.setText("Marquer visité");}
+        else {visited.setText("Visité");}
+        System.out.println(Id);
+        
         Etablissement E = ES.findById(Id);
         File F = new File(E.getImage());
         Image I = new Image(F.toURI().toString());
@@ -89,6 +131,26 @@ public class EtablissementVBoxController implements Initializable {
         Modifier.setText(Modifier.getText() + " " + E.getNom());
         Supprimer.setText(Supprimer.getText() + " " + E.getNom());
         Description.getChildren().addAll(T);
+        DemandePartenariatService service=new DemandePartenariatService();
+               PartenariatService service4=new PartenariatService();
+               System.out.println(Id);
+               System.out.println(service4.check(Id));
+               System.out.println(service.check(Id));
+               
+               if (service4.check(Id)==0 && service.check(Id)==0){
+               Demande.setVisible(true);
+               labelPartenaire.setVisible(false);
+               }
+               else {
+               if (service4.check(Id)!=0){
+               Demande.setVisible(false);
+               labelPartenaire.setText("Vous etes partenaire");
+               }
+               else if (service.check(Id)!=0){
+                Demande.setVisible(false);
+                labelPartenaire.setText("Demande partenariat en attente");
+               }
+               }
     }
 
     @FXML
@@ -256,6 +318,134 @@ public class EtablissementVBoxController implements Initializable {
         Scene dialogScene = new Scene(dialogVbox, 400, 200);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    @FXML
+    private void SetVisited(ActionEvent event) {
+         LikedEtablissementService service1=new LikedEtablissementService();
+    
+    VisitedEtablissementService service2=new VisitedEtablissementService();
+        if (visited.getText().equals("Marquer visité")){
+        service2.add(Id, 3);
+        visited.setText("Visité");}
+        else {
+        service2.delete(Id, 3);
+        visited.setText("Marquer visité");
+        }
+    EtablissementService service3=new EtablissementService();
+    
+    Etablissement e=service3.findById(Id);
+   
+    visits.setText("Visité par "+service3.countVisited(Id)+" personne(e)");
+    }
+
+    @FXML
+    private void SetLike(ActionEvent event) {
+            LikedEtablissementService service1=new LikedEtablissementService();
+    
+    VisitedEtablissementService service2=new VisitedEtablissementService();
+    if (like.getText().equals("J'aime")){
+    service1.add(Id, 3);
+    like.setText("Aimé");
+    }
+    else {
+        service1.delete(Id, 3);
+        like.setText("J'aime");
+    }
+    EtablissementService service3=new EtablissementService();
+    
+    Etablissement e=service3.findById(Id);
+    
+    likes.setText("Aimé par "+service3.countLikes(Id)+" personne(e)");
+    }
+
+    @FXML
+    private void AjouterEvent(ActionEvent event) {
+        try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("AjoutEvenement.fxml"));
+                    Parent root = (Parent) FL.load();
+                    AjoutEvenementController EVC = FL.getController();
+                    EVC.loadDate(Id);
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AjouterOffre(ActionEvent event) {
+            try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("AjoutOffre.fxml"));
+                    Parent root = (Parent) FL.load();
+                    AjoutOffreController EVC = FL.getController();
+                    EVC.loadDate(Id);
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AllEvents(ActionEvent event) {
+                         try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ListEventsEtab.fxml"));
+                    Parent root = (Parent) FL.load();
+                    ListEventsEtabController EVC = FL.getController();
+                    
+                    EVC.getList(Id,"");
+                    Pane.getChildren().setAll(root);
+                    
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AllOffers(ActionEvent event) {
+                 try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ListOffersEtab.fxml"));
+                    Parent root = (Parent) FL.load();
+                    ListOffersEtabController EVC = FL.getController();
+                    EVC.getList(Id,"");
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void DemandePartenariat(ActionEvent event) {
+          try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("DemandePartenariat.fxml"));
+                    Parent root = (Parent) FL.load();
+                    DemandePartenariatController EVC = FL.getController();
+                    
+                    EVC.loadData(Id);
+                    Pane.getChildren().setAll(root);
+                    
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
     
 }

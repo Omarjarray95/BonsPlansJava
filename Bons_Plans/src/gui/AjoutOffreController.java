@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -57,6 +58,8 @@ public class AjoutOffreController implements Initializable {
     private Label pourLabel;
     @FXML
     private Label codeLabel;
+    @FXML
+    private AnchorPane MainPane;
 
     public int getId() {
         return id;
@@ -170,6 +173,22 @@ public class AjoutOffreController implements Initializable {
                                 .hideAfter(Duration.seconds(4))
                                 .position(Pos.BASELINE_LEFT);
                         NotificationBuilder.showConfirm();
+                        
+                                        try 
+                {
+                    Offre off=service.findByName(offer.getOffre());
+                    int Idd = off.getId();
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("OffreProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    OffreProfileController EVC = FL.getController();
+                    EVC.loadData(Idd);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                        
             
         }
     

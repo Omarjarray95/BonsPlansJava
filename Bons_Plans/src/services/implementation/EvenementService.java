@@ -232,5 +232,20 @@ public class EvenementService {
         }
         return event;  
     }
+        public Evenement findByName(String id) {
+        Evenement event = null;
+        try {
+            String req = "select * from evenement where nom =?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                 event = new Evenement(rs.getInt(1),rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getString(5),rs.getInt(7), rs.getInt(6));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return event;  
+    }
 
 }
