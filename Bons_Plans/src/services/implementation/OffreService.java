@@ -176,4 +176,19 @@ public class OffreService{
         }
         return offer;  
     }
+     public Offre findByName(String id) {
+        Offre offer = null;
+        try {
+            String req = "select * from offre where offre =?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                 offer = new Offre( rs.getInt(1),rs.getInt(2), rs.getDate(5), rs.getDate(6),rs.getString(4), rs.getString(3),rs.getString(7),rs.getDouble(8));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return offer;  
+    }
 }

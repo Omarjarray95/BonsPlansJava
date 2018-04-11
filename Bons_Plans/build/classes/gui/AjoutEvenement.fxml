@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjoutEvenementController">
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjoutEvenementController">
    <children>
       <Button fx:id="ajouter" layoutX="371.0" layoutY="345.0" mnemonicParsing="false" onAction="#AjoutEvenement" style="-fx-background-color: #023956;" text="Ajouter" textFill="WHITE" />
       <JFXTextField fx:id="nom" focusColor="#f59d63" labelFloat="true" layoutX="320.0" layoutY="51.0" promptText="Evènement" />
