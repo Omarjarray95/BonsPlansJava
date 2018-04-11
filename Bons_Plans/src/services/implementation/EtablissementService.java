@@ -128,7 +128,10 @@ public class EtablissementService
              String s13 = Res.getString("type_loisirs");
              String s14 = Res.getString("type_shops");
              String s15 = Res.getString("nbrStars");
-             Etablissement E1 = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+             String s16 = Res.getString("ratiing");
+             int s17 = Res.getInt("nbrRates");
+             int s18 = Res.getInt("nombre");
+             Etablissement E1 = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18);
              E = E1;
              }
          } 
@@ -557,8 +560,25 @@ public class EtablissementService
     }
          
                                 
-                
-                
+    public void AjoutRate(Float rate ,int id_etab,int nbrRates,int nombre){
+             
+            try {
+            String req = "update Etablissement set ratiing = ? , nbrRates = ? , nombre= ? where id = ?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            int nbr=nbrRates+1;
+            int nbr3=(int)Math.round(rate);
+            int nbr1=nombre+nbr3;
+            String totalrate= Float.toString((nbr1)/(nbrRates));
+            ps.setString(1,totalrate);
+            ps.setInt(2,nbr );
+            ps.setInt(3,nbr1);
+            ps.setInt(4,id_etab);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        }
 
     } 
 

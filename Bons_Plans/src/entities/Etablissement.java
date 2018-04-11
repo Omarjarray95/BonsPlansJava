@@ -39,6 +39,9 @@ public class Etablissement
     private String type_loisirs;
     private String type_shops;
     private String nbrStars;
+    private String rating; 
+    private int nbrRates;
+    private int nombre; 
 
     private int responsable;
 
@@ -73,7 +76,52 @@ public class Etablissement
         this.type_shops = type_shops;
         this.nbrStars = nbrStars;
     }
+    public Etablissement(int id,String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String image, String type_resto, String type_loisirs, String type_shops, String nbrStars,String rating,int nbrRates,int nombre) 
+    {
+        this.id = id;
+        this.nom = nom;
+        this.type = type;
+        this.adresse = adresse;
+        this.description = description;
+        this.horaire_ouverture = horaire_ouverture;
+        this.horaire_fermeture = horaire_fermeture;
+        this.numtel = numtel;
+        this.url = url;
+        this.budgetmoyen = budgetmoyen;
+        this.image = image;
+        this.type_resto = type_resto;
+        this.type_loisirs = type_loisirs;
+        this.type_shops = type_shops;
+        this.nbrStars = nbrStars;
+        this.rating=rating;
+        this.nbrRates=nbrRates;
+        this.nombre=nombre;
+    }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public int getNbrRates() {
+        return nbrRates;
+    }
+
+    public void setNbrRates(int nbrRates) {
+        this.nbrRates = nbrRates;
+    }
+
+    public int getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
+    }
+    
     public int getId() 
     {
         return id;
