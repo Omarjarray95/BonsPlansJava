@@ -144,6 +144,7 @@ public class AffichagePaneController implements Initializable {
             Image I = new Image(F.toURI().toString());
             ImageView IV = new ImageView();
             IV.setImage(I);
+            System.out.println(F.toURI().toString());
             IV.setFitHeight(150);
             IV.setFitWidth(150);
             Hyperlink Nom1 = new Hyperlink(E.getNom());
