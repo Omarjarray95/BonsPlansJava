@@ -57,7 +57,7 @@ public class SignalerCommentaireController implements Initializable {
     }    
     
     
-    public void SignalerCommentaire(int Id, int id_etab)
+    public void SignalerCommentaire(int Id, int id_etab,int id_user)
     {
         Envoyer.setOnAction(new EventHandler<ActionEvent>() 
         {
@@ -79,7 +79,7 @@ public class SignalerCommentaireController implements Initializable {
         {
         S = TG.getSelectedToggle().getUserData().toString();
         }
-               CS.Signaler(Id,S);
+               CS.Signaler(Id,S,id_user);
         } 
         catch (IOException ex) 
         {

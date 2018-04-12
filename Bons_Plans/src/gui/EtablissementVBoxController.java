@@ -8,8 +8,12 @@ package gui;
 import UTILS.Utils;
 import com.jfoenix.controls.JFXTextField;
 import entities.Commentaire;
+import com.jfoenix.controls.JFXButton;
 import entities.Etablissement;
+import entities.Session;
 import entities.Tag;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -44,6 +48,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -60,7 +65,12 @@ import org.controlsfx.control.Rating;
 import services.implementation.CommentaireService;
 import services.implementation.EtablissementService;
 import services.implementation.RatingService;
+import services.implementation.DemandePartenariatService;
+import services.implementation.EtablissementService;
+import services.implementation.LikedEtablissementService;
+import services.implementation.PartenariatService;
 import services.implementation.TagService;
+import services.implementation.VisitedEtablissementService;
 
 /**
  * FXML Controller class
@@ -92,8 +102,6 @@ public class EtablissementVBoxController implements Initializable {
     @FXML
     private TextFlow Description;
     @FXML
-    private Button Tags;
-    @FXML
     private TextArea comm;
     @FXML
     private Button publier;
@@ -124,6 +132,35 @@ public class EtablissementVBoxController implements Initializable {
     final Stage stage=new Stage();
      private int Id;
     private Event AE;
+    @FXML
+    private Button Tags;
+    @FXML
+    private ToggleButton visited;
+    @FXML
+    private ToggleButton like;
+    @FXML
+    private JFXButton event;
+    @FXML
+    private JFXButton offre;
+    @FXML
+    private Text visits;
+    @FXML
+    private Text likes;
+    @FXML
+    private JFXButton events;
+    @FXML
+    private JFXButton offres;
+    @FXML
+    private Label labelPartenaire;
+    @FXML
+    private JFXButton Demande;
+    int idUser;
+    @FXML
+    private Label nomUser;
+    int  idUserB;
+    String nom; 
+    @FXML
+    private Button fcb;
 
     /**
      * Initializes the controller class.
@@ -132,11 +169,15 @@ public class EtablissementVBoxController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         CommentaireService CS = new CommentaireService();
-       List<Commentaire> AL= new ArrayList<Commentaire>();
-        AL = CS.Affiche();
-            ObservableList<Commentaire> liste_commentaires = FXCollections.observableArrayList(CS.Affiche());
-
-        ListeCommentaires.setItems(liste_commentaires);
+      List<Commentaire> AL= new ArrayList<Commentaire>();
+      AL = CS.Affiche();
+      ObservableList<Commentaire> liste_commentaires = FXCollections.observableArrayList(CS.Affiche());
+      Session ss = new Session(); 
+      System.out.println("******************");
+      nomUser.setText(ss.user.nom);
+      nom=ss.user.getNom();
+      idUser=ss.user.getId();
+      ListeCommentaires.setItems(liste_commentaires);
         
        ListeCommentaires.setCellFactory(new Callback<ListView<Commentaire>, ListCell<Commentaire>>() 
        {
@@ -154,7 +195,7 @@ public class EtablissementVBoxController implements Initializable {
         super.updateItem(item, empty); 
         setText(null); 
         if (!empty && item != null) { 
-            final String text = String.format("%s %s",item.getComment()," Ajouté le"+item.getCreated()); 
+            final String text = String.format("%s %s %s",item.getComment()," Ajouté le"+item.getCreated(),item.getNom()); 
             setText(text);
             File F = new File(item.getPhoto());
         Image I = new Image(F.toURI().toString());
@@ -180,7 +221,23 @@ public class EtablissementVBoxController implements Initializable {
     
     public void ShowEtablissement(int Id)
     {
+        LikedEtablissementService service1=new LikedEtablissementService();
+    
+        VisitedEtablissementService service2=new VisitedEtablissementService();
         EtablissementService ES = new EtablissementService();
+        
+        
+        likes.setText("Aimé par "+ES.countLikes(Id)+" personne(e)");
+        visits.setText("Visité par "+ES.countVisited(Id)+" personne(e)");
+        if (service1.count(3,Id)==0){
+        like.setText("J'aime");
+        }
+        else {like.setText("Aimé!");}
+        if (service2.count(3,Id)==0){
+        visited.setText("Marquer visité");}
+        else {visited.setText("Visité");}
+        System.out.println(Id);
+        
         Etablissement E = ES.findById(Id);
         File F = new File(E.getImage());
         Image I = new Image(F.toURI().toString());
@@ -197,6 +254,26 @@ public class EtablissementVBoxController implements Initializable {
         Modifier.setText(Modifier.getText() + " " + E.getNom());
         Supprimer.setText(Supprimer.getText() + " " + E.getNom());
         Description.getChildren().addAll(T);
+        DemandePartenariatService service=new DemandePartenariatService();
+               PartenariatService service4=new PartenariatService();
+               System.out.println(Id);
+               System.out.println(service4.check(Id));
+               System.out.println(service.check(Id));
+               
+               if (service4.check(Id)==0 && service.check(Id)==0){
+               Demande.setVisible(true);
+               labelPartenaire.setVisible(false);
+               }
+               else {
+               if (service4.check(Id)!=0){
+               Demande.setVisible(false);
+               labelPartenaire.setText("Vous etes partenaire");
+               }
+               else if (service.check(Id)!=0){
+                Demande.setVisible(false);
+                labelPartenaire.setText("Demande partenariat en attente");
+               }
+               }
     }
 
     
@@ -378,7 +455,7 @@ public class EtablissementVBoxController implements Initializable {
         Idd=this.recupererCom(Id);
         String photoCom;
         photoCom=uuid;
-        CS.add(comm.getText(),Idd,dat,photoCom);
+        CS.add(comm.getText(),Idd,dat,photoCom,idUser,nom);
          afficherComm();
         //****************
     }
@@ -406,7 +483,7 @@ public class EtablissementVBoxController implements Initializable {
         super.updateItem(item, empty); 
         setText(null); 
         if (!empty && item != null) { 
-            final String text = String.format("%s %s",item.getComment()," Ajouté le"+item.getCreated()); 
+            final String text = String.format("%s %s %s",item.getComment()," Ajouté le"+item.getCreated(),item.getNom()); 
             setText(text);
             File F = new File(item.getPhoto());
         Image I = new Image(F.toURI().toString());
@@ -421,33 +498,33 @@ public class EtablissementVBoxController implements Initializable {
     }
 
     @FXML
-    private void noter(MouseEvent event) {
+    private void noter(MouseEvent event) 
+    {
+        // if(      )
+        // 
           int Idd;
         Idd=this.recupererCom(Id);
         EtablissementService ES = new EtablissementService();
         RatingService RS = new RatingService();
         Etablissement E = ES.findById(Idd);
-        Idd=this.recupererCom(Id);
-
         ES.AjoutRate(Float.valueOf(msg.getText()),Idd,E.getNbrRates(),E.getNombre());
-        RS.addRating(Float.valueOf(msg.getText()),Idd);
-        rate.setText(E.getRating()+" /5");
+        RS.addRating(Float.valueOf(msg.getText()),Idd,idUser);
+        rate.setText(E.getRating()+" /5");   
         
     }
 
     @FXML
     private void DeleteComm(ActionEvent event) {
-         if (!ListeCommentaires.getSelectionModel().isEmpty()) {
+        
+       idUserB=ListeCommentaires.getSelectionModel().getSelectedItem().getId_user();
+       System.out.println(idUserB + " " + idUser);
+         if (!ListeCommentaires.getSelectionModel().isEmpty() && (idUserB == idUser)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Etes-vous sûr de vouloir supprimer?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                
-                
-                
-                
                 CommentaireService C = new CommentaireService();
                 C.delete(ListeCommentaires.getSelectionModel().getSelectedItem().getId());
                 afficherComm();
@@ -456,15 +533,17 @@ public class EtablissementVBoxController implements Initializable {
         else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Veuillez Selectionner un serveur!");
+            alert.setHeaderText("Vous ne pouvez pas supprimer ce commentaire !");
             alert.showAndWait();
         }
     }
 
     @FXML
     private void UpdateComm(ActionEvent event) {
-         int Idd=this.recupererCom(Id);
-            if (ListeCommentaires.getSelectionModel().getSelectedItem() != null) {
+        int Idd=this.recupererCom(Id); 
+        idUserB = ListeCommentaires.getSelectionModel().getSelectedItem().getId_user();
+        System.out.println(idUserB + " " + idUser);
+            if (!(ListeCommentaires.getSelectionModel().isEmpty()) && (idUserB == idUser))  {
                     FXMLLoader FL = new FXMLLoader(getClass().getResource("/gui/ModifierCommentaire.fxml"));
 
             try {
@@ -479,14 +558,20 @@ public class EtablissementVBoxController implements Initializable {
             } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Veuillez Selectionner un serveur !");
+            alert.setHeaderText("Vous ne pouvez pas modifier ce commentaire !");
             alert.showAndWait();
         }
     }
 
     @FXML
     private void signalerComm(ActionEvent event) {
-           FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/gui/SignalerCommentaire.fxml"));
+         
+        idUserB = ListeCommentaires.getSelectionModel().getSelectedItem().getId_user();
+        System.out.println(idUserB + " " + idUser);
+            if (!(ListeCommentaires.getSelectionModel().isEmpty()) && (idUserB != idUser))  {
+        
+        
+        FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/gui/SignalerCommentaire.fxml"));
 
             try {
                 Parent root = (Parent) fXMLLoader.load();
@@ -495,10 +580,20 @@ public class EtablissementVBoxController implements Initializable {
                 gui.SignalerCommentaireController SCC=fXMLLoader.getController(); 
                int Idd=this.recupererCom(Id);
 
-                SCC.SignalerCommentaire(ListeCommentaires.getSelectionModel().getSelectedItem().getId(),Idd);
+                SCC.SignalerCommentaire(ListeCommentaires.getSelectionModel().getSelectedItem().getId(),Idd,idUser);
             } catch (IOException ex) {
                 System.out.println(ex);
-            }
+            } }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Vous ne pouvez pas signaler ce commentaire !");
+            alert.showAndWait();
+        }
+            
+            
+            
+            
+            
     }
 
     @FXML
@@ -513,7 +608,140 @@ public class EtablissementVBoxController implements Initializable {
             /*String emplacement = "C:\\Users\\Maissa\\Documents\\NetBeansProjects\\pibonsplans5''\\src\\GUI\\"+uuid;
             System.out.println(emplacement);
             u.CopyImage(emplacement, file.toPath().toString());*/
-            System.out.println("rrrrr"); }
+            System.out.println("rrrrr"); }}
+    @FXML
+    private void SetVisited(ActionEvent event) {
+         LikedEtablissementService service1=new LikedEtablissementService();
+    
+    VisitedEtablissementService service2=new VisitedEtablissementService();
+        if (visited.getText().equals("Marquer visité")){
+        service2.add(Id, 3);
+        visited.setText("Visité");}
+        else {
+        service2.delete(Id, 3);
+        visited.setText("Marquer visité");
+        }
+    EtablissementService service3=new EtablissementService();
+    
+    Etablissement e=service3.findById(Id);
+   
+    visits.setText("Visité par "+service3.countVisited(Id)+" personne(e)");
+    }
+
+    @FXML
+    private void SetLike(ActionEvent event) {
+            LikedEtablissementService service1=new LikedEtablissementService();
+    
+    VisitedEtablissementService service2=new VisitedEtablissementService();
+    if (like.getText().equals("J'aime")){
+    service1.add(Id, 3);
+    like.setText("Aimé");
+    }
+    else {
+        service1.delete(Id, 3);
+        like.setText("J'aime");
+    }
+    EtablissementService service3=new EtablissementService();
+    
+    Etablissement e=service3.findById(Id);
+    
+    likes.setText("Aimé par "+service3.countLikes(Id)+" personne(e)");
+    }
+
+    @FXML
+    private void AjouterEvent(ActionEvent event) {
+        try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("AjoutEvenement.fxml"));
+                    Parent root = (Parent) FL.load();
+                    AjoutEvenementController EVC = FL.getController();
+                    EVC.loadDate(Id);
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AjouterOffre(ActionEvent event) {
+            try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("AjoutOffre.fxml"));
+                    Parent root = (Parent) FL.load();
+                    AjoutOffreController EVC = FL.getController();
+                    EVC.loadDate(Id);
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AllEvents(ActionEvent event) {
+                         try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ListEventsEtab.fxml"));
+                    Parent root = (Parent) FL.load();
+                    ListEventsEtabController EVC = FL.getController();
+                    
+                    EVC.getList(Id,"");
+                    Pane.getChildren().setAll(root);
+                    
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void AllOffers(ActionEvent event) {
+                 try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ListOffersEtab.fxml"));
+                    Parent root = (Parent) FL.load();
+                    ListOffersEtabController EVC = FL.getController();
+                    EVC.getList(Id,"");
+                    Pane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void DemandePartenariat(ActionEvent event) {
+          try 
+                {
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("DemandePartenariat.fxml"));
+                    Parent root = (Parent) FL.load();
+                    DemandePartenariatController EVC = FL.getController();
+                    
+                    EVC.loadData(Id);
+                    Pane.getChildren().setAll(root);
+                    
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    @FXML
+    private void Facebook(ActionEvent event) {
+        
+                Browser browser = new Browser();
+                Browser.load("www.facebook.com", new Dimension(300, 300), new Point(30, 20));
     }
     
    

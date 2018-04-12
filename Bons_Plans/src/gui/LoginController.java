@@ -115,7 +115,7 @@ public Session sess;
         PreparedStatement ps;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
-            ps = connection.prepareStatement("SELECT `email`, `password` FROM `user` WHERE `email` = ? AND `password` = ?");
+            ps = connection.prepareStatement("SELECT `email`, `password` FROM `user1` WHERE `email` = ? AND `password` = ?");
             ps.setString(1, String.valueOf(emailtxt.getText()));
             ps.setString(2, String.valueOf(passwordtxt.getText()));
             ResultSet result = ps.executeQuery();

@@ -39,14 +39,16 @@ public class CommentaireService {
     }
     
     
-    public void add(String Comment,int id_etab ,String dat,String img) {
+    public void add(String Comment,int id_etab ,String dat,String img,int id_user,String nom) {
         try {
-            String req = "insert into commentaire1(comment,id_etab,created,photo) values (?,?,?,?)";
+            String req = "insert into commentaire1(comment,id_etab,created,photo,id_user,nom) values (?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1,Comment);
             ps.setInt(2,id_etab);
              ps.setString(3,dat);
              ps.setString(4, img);
+             ps.setInt(5,id_user);
+             ps.setString(6,nom);
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -80,12 +82,13 @@ public class CommentaireService {
         }
     }
      
-     public void Signaler(int idS, String signal){
+     public void Signaler(int idS, String signal,int id_user){
           try {
-            String req = "insert into table_indications(id_commentaire,indication) values (?,?)";
+            String req = "insert into table_indications(id_commentaire,indication,user_id) values (?,?,?)";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setInt(1,idS);
             ps.setString(2,signal);
+            ps.setInt(3,id_user);
             ps.executeUpdate();
             
             
@@ -126,7 +129,9 @@ public class CommentaireService {
                 int s3 = Res.getInt("id_etab");
                 String s4= Res.getString("created");
                 String s5= Res.getString("photo");
-                Commentaire C = new Commentaire(s1,s2,s3,s4,s5);
+                int s6 =Res.getInt("id_user");
+                String s7 = Res.getString("nom");
+                Commentaire C = new Commentaire(s1,s2,s3,s4,s5,s6,s7);
                 AL.add(C);
             }
             Res.close();

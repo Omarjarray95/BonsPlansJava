@@ -120,7 +120,7 @@ public class ActualitesController implements Initializable {
     @FXML
     private void getEtabs(ActionEvent event) {
                  try {
-                        Parent page1 = FXMLLoader.load(getClass().getResource("ListEtablissements.fxml"));
+                        Parent page1 = FXMLLoader.load(getClass().getResource("AffichagePane.fxml"));
                         Scene scene = new Scene(page1);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);

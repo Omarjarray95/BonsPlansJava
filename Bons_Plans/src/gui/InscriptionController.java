@@ -462,11 +462,6 @@ sendM(mail.getText(),CodeX);
                        
 		}
     
-    }
-
-
-    
-
-    }
+    }}
     
 
