@@ -8,10 +8,15 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entities.Etablissement;
+import entities.Evenement;
+import entities.Session;
+import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -31,6 +36,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import services.implementation.EtablissementService;
+import services.implementation.EvenementService;
+import services.implementation.ServiceUser;
 
 /**
  * FXML Controller class
@@ -38,7 +45,8 @@ import services.implementation.EtablissementService;
  * @author Ons Ben Othmen
  */
 public class ProfileController implements Initializable {
-
+    private List<Etablissement> etabss;
+    private List<Evenement> events;
     @FXML
     private JFXDrawer drawer;
     @FXML
@@ -65,6 +73,22 @@ public class ProfileController implements Initializable {
     private AnchorPane Main;
     private Pagination pagination;
     private List<Etablissement> etablis;
+    @FXML
+    private JFXButton btnRestore1;
+    @FXML
+    private JFXTextField emailu;
+    @FXML
+    private JFXTextField phoneu;
+    @FXML
+    private JFXTextField nomu;
+    @FXML
+    private JFXTextField usernameu;
+    @FXML
+    private JFXButton savee1;
+    @FXML
+    private JFXButton reclam;
+    @FXML
+    private Label lbnom;
 
     /**
      * Initializes the controller class.
@@ -86,33 +110,30 @@ public class ProfileController implements Initializable {
                 {
                     burgerTask.setRate(burgerTask.getRate() * -1);
                     burgerTask.play();
-                    
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
+                
 
     }    
 
     @FXML
     private void showProfile(ActionEvent event) {
-        FXMLLoader FL= new FXMLLoader(getClass().getResource("Compte.fxml"));
-        try
-        {
-            Parent root = (Parent) FL.load();
-            MainPane.getChildren().setAll(root);
-            
-        }catch(IOException ex){
-        System.out.println(ex);
-                }
+        Main.getChildren().clear();
+        Session ss =new Session();
+              lbnom.setText(ss.user.nom);
+              emailu.setText(ss.user.Email);
+              nomu.setText(ss.user.nom);
     }
-
-    @FXML
-    private void showMine(ActionEvent event) {
-                        EtablissementService service =new EtablissementService();
-                etablis=service.getMine(2);
-                if (etablis.isEmpty()){
-                           Label box = new Label();
          
+    @FXML
+    private void showMine(ActionEvent event) 
+    {
+                EtablissementService service =new EtablissementService();
+                etablis=service.getMine(2);
+                if (etablis.isEmpty())
+                {
+                Label box = new Label();
                 box.setText("Vous ne possédez pas d'établissement");
                 box.setVisible(true);
                 box.setLayoutX(14.0);
@@ -124,6 +145,114 @@ public class ProfileController implements Initializable {
                 ajout.setText("Demander");
                 ajout.setTextFill(going.getTextFill());
                 Main.getChildren().addAll(box,ajout);
+                }
+                else
+                {
+                pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
+                pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+                pagination.setPageFactory(new Callback<Integer, Node>() {
+                public Node call(Integer pageIndex) 
+                {
+                VBox box = new VBox(5);
+                box.setLayoutY(14.0);
+                box.setLayoutX(14.0);
+                box.setPrefHeight(240.0);
+                box.setPrefWidth(334.0);
+                int page = pageIndex * 6;
+                
+             if (page+6>etablis.size())
+             {
+                for (int i = page; i < etablis.size(); i++)
+                {
+                Etablissement e=etablis.get(i);
+                Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+                fromToLabel2.setText(e.getNom());
+                
+                fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+                {
+                @Override
+                public void handle(ActionEvent action)
+                {
+                try 
+                {
+                    int Id=e.getId();
+                  FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        box.getChildren().add(fromToLabel2);
+             }
+             }
+                   else
+             {
+                   for (int i = page; i < page + 6; i++)
+                   {
+                    Etablissement e=etablis.get(i);
+                    Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+                    fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                   FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        box.getChildren().add(fromToLabel2);
+                }}    
+    return box;
+       }
+   });
+                AnchorPane.setTopAnchor(pagination, 10.0);
+                AnchorPane.setRightAnchor(pagination, 10.0);
+                AnchorPane.setBottomAnchor(pagination, 10.0);
+                AnchorPane.setLeftAnchor(pagination, 10.0);
+                Main.getChildren().addAll(pagination);
+                }
+    }
+
+    @FXML
+    private void showDemandes(ActionEvent event) {
+        Main.getChildren().clear();
+    }
+
+    @FXML
+    private void showFavoris(ActionEvent event) {
+          Session ss= new Session ();
+        int id_user=ss.user.id;
+        Main.getChildren().clear();
+                EtablissementService service =new EtablissementService();
+                etablis=service.getFavorits(id_user);
+                if (etablis.isEmpty()){
+                           Label box = new Label();
+         
+                box.setText("Vous n'aimez aucun Bon Plan");
+                box.setVisible(true);
+                box.setLayoutX(14.0);
+                box.setLayoutY(103.0);
+                
+                Main.getChildren().addAll(box);
                 }
                 else{
            pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
@@ -153,10 +282,10 @@ public class ProfileController implements Initializable {
                 {
                     int Id=e.getId();
                     
-                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+                   FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
                     Parent root = (Parent) FL.load();
-                    ProfileEtablissementController EVC = FL.getController();
-                    EVC.loadData(Id);
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
                     MainPane.getChildren().setAll(root);
                 } 
                 catch (IOException ex) 
@@ -183,9 +312,225 @@ public class ProfileController implements Initializable {
                 {
                     int Id=e.getId();
                     
-                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+                   FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
                     Parent root = (Parent) FL.load();
-                    ProfileEtablissementController EVC = FL.getController();
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   
+    return box;
+       }
+   });
+        
+        
+                AnchorPane.setTopAnchor(pagination, 10.0);
+                AnchorPane.setRightAnchor(pagination, 10.0);
+                AnchorPane.setBottomAnchor(pagination, 10.0);
+                AnchorPane.setLeftAnchor(pagination, 10.0);
+                Main.getChildren().addAll(pagination);
+                }
+    }
+
+    @FXML
+    private void showVisited(ActionEvent event) {
+        Main.getChildren().clear();
+          Session ss= new Session ();
+        int id_user=ss.user.id;
+        EtablissementService service =new EtablissementService();
+                etablis=service.getVisits(id_user);
+                if (etablis.isEmpty()){
+                           Label box = new Label();
+         
+                box.setText("Vous n'avez visité aucun Bon Plan");
+                box.setVisible(true);
+                box.setLayoutX(14.0);
+                box.setLayoutY(103.0);
+                
+                Main.getChildren().addAll(box);
+                }
+                else{
+           pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
+           pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+           pagination.setPageFactory(new Callback<Integer, Node>() {
+           public Node call(Integer pageIndex) {
+           VBox box = new VBox(5);
+         
+          box.setLayoutY(14.0);
+          box.setLayoutX(14.0);
+          box.setPrefHeight(240.0);
+          box.setPrefWidth(334.0);
+          int page = pageIndex * 6;
+        
+        
+             if (page+6>etablis.size()){
+            for (int i = page; i < etablis.size(); i++){
+        Etablissement e=etablis.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   else{
+                               for (int i = page; i < page + 6; i++){
+        Etablissement e=etablis.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   
+    return box;
+       }
+   });
+        
+        
+                AnchorPane.setTopAnchor(pagination, 10.0);
+                AnchorPane.setRightAnchor(pagination, 10.0);
+                AnchorPane.setBottomAnchor(pagination, 10.0);
+                AnchorPane.setLeftAnchor(pagination, 10.0);
+                Main.getChildren().addAll(pagination);
+                }
+    }
+
+    @FXML
+    private void showReclamations(ActionEvent event) {
+         Main.getChildren().clear();
+    }
+
+    @FXML
+    private void showInteresting(ActionEvent event) {
+                Main.getChildren().clear();
+          Session ss= new Session ();
+        int id_user=ss.user.id;
+        EvenementService service =new EvenementService();
+                events=service.getInteresting(id_user);
+                if (events.isEmpty()){
+                           Label box = new Label();
+         
+                box.setText("Vous n'etes pas intéressé par aucun évenement");
+                box.setVisible(true);
+                box.setLayoutX(14.0);
+                box.setLayoutY(103.0);
+                
+                Main.getChildren().addAll(box);
+                }
+                else{
+           pagination = new Pagination(Math.round(etablis.size()/6)+1, 0);
+           pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+           pagination.setPageFactory(new Callback<Integer, Node>() {
+           public Node call(Integer pageIndex) {
+           VBox box = new VBox(5);
+         
+          box.setLayoutY(14.0);
+          box.setLayoutX(14.0);
+          box.setPrefHeight(240.0);
+          box.setPrefWidth(334.0);
+          int page = pageIndex * 6;
+        
+        
+             if (page+6>events.size()){
+            for (int i = page; i < events.size(); i++){
+        Evenement e=events.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EvenementProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EvenementProfileController EVC = FL.getController();
+                    EVC.loadData(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   else{
+                               for (int i = page; i < page + 6; i++){
+        Evenement e=events.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EvenementProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EvenementProfileController EVC = FL.getController();
                     EVC.loadData(Id);
                     MainPane.getChildren().setAll(root);
                 } 
@@ -214,27 +559,132 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void showDemandes(ActionEvent event) {
-    }
-
-    @FXML
-    private void showFavoris(ActionEvent event) {
-    }
-
-    @FXML
-    private void showVisited(ActionEvent event) {
-    }
-
-    @FXML
-    private void showReclamations(ActionEvent event) {
-    }
-
-    @FXML
-    private void showInteresting(ActionEvent event) {
-    }
-
-    @FXML
     private void showGoing(ActionEvent event) {
+           Main.getChildren().clear();
+          Session ss= new Session ();
+        int id_user=ss.user.id;
+        EvenementService service =new EvenementService();
+                events=service.getGoing(id_user);
+                if (events.isEmpty()){
+                           Label box = new Label();
+         
+                box.setText("Vous n'avez pas des évenements à visiter");
+                box.setVisible(true);
+                box.setLayoutX(14.0);
+                box.setLayoutY(103.0);
+                
+                Main.getChildren().addAll(box);
+                }
+                else{
+           pagination = new Pagination(Math.round(events.size()/6)+1, 0);
+           pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+           pagination.setPageFactory(new Callback<Integer, Node>() {
+           public Node call(Integer pageIndex) {
+           VBox box = new VBox(5);
+         
+          box.setLayoutY(14.0);
+          box.setLayoutX(14.0);
+          box.setPrefHeight(240.0);
+          box.setPrefWidth(334.0);
+          int page = pageIndex * 6;
+        
+        
+             if (page+6>events.size()){
+            for (int i = page; i < events.size(); i++){
+        Evenement e=events.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EvenementProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EvenementProfileController EVC = FL.getController();
+                    EVC.loadData(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   else{
+                               for (int i = page; i < page + 6; i++){
+        Evenement e=events.get(i);
+        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+        fromToLabel2.setText(e.getNom());
+                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+            {
+            @Override
+            public void handle(ActionEvent action)
+            {
+                try 
+                {
+                    int Id=e.getId();
+                    
+                    
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EvenementProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EvenementProfileController EVC = FL.getController();
+                    EVC.loadData(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            });
+        
+        
+        box.getChildren().add(fromToLabel2);
+                }}
+                   
+    return box;
+       }
+   });
+        
+        
+                AnchorPane.setTopAnchor(pagination, 10.0);
+                AnchorPane.setRightAnchor(pagination, 10.0);
+                AnchorPane.setBottomAnchor(pagination, 10.0);
+                AnchorPane.setLeftAnchor(pagination, 10.0);
+                Main.getChildren().addAll(pagination);
+                }
+    }
+
+    @FXML
+    private void updatecompte(ActionEvent event) {
+    }
+
+     @FXML
+    private void saveActio(ActionEvent event) throws ClassNotFoundException {
+   
+        try {
+            ServiceUser ser=new ServiceUser();
+            User us=new User();
+          
+            ser.updateUser(phoneu.getText(),nomu.getText(),usernameu.getText(),lbnom.getText(),emailu.getText());
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(test.CompteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+
+    @FXML
+    private void envoyerrecla(ActionEvent event) {
     }
     }    
     

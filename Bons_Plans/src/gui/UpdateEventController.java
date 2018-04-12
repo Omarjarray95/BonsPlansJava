@@ -23,11 +23,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -43,6 +45,8 @@ import services.implementation.EvenementService;
 public class UpdateEventController implements Initializable {
 
     private int id;
+    @FXML
+    private AnchorPane MainPane;
 
     public int getId() {
         return id;
@@ -138,9 +142,24 @@ public void LoadData(int id){
                                 .hideAfter(Duration.seconds(4))
                                 .position(Pos.BASELINE_LEFT);
                         NotificationBuilder.showConfirm();
+                        try 
+                {
+                    Evenement Event=service.findByName(e.getNom());
+                    int Id = Event.getId();
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EvenementProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    EvenementProfileController EVC = FL.getController();
+                    EVC.loadData(Id);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    
             
         }
-    
+          
 }
     }
        

@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Bons_Plans.jar" size="30642332" download="eager" />
+    <jar href="Bons_Plans.jar" size="41051649" download="eager" />
     <jar href="lib\GMapsFX-2.0.9.jar" size="166541" download="eager" />
     <jar href="lib\RG84M6R.jar" size="7027599" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />

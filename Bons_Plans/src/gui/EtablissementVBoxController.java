@@ -9,6 +9,9 @@ import UTILS.Utils;
 import com.jfoenix.controls.JFXTextField;
 import entities.Commentaire;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entities.Etablissement;
 import entities.Session;
 import entities.Tag;
@@ -154,6 +157,7 @@ public class EtablissementVBoxController implements Initializable {
     private Label labelPartenaire;
     @FXML
     private JFXButton Demande;
+
     int idUser;
     @FXML
     private Label nomUser;
@@ -161,6 +165,11 @@ public class EtablissementVBoxController implements Initializable {
     String nom; 
     @FXML
     private Button fcb;
+
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
 
     /**
      * Initializes the controller class.
@@ -214,10 +223,32 @@ public class EtablissementVBoxController implements Initializable {
                 msg.setText(t1.toString());
             }
         });   
-    }   
+       
+         
+                 try 
+                 {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
+    }    
     Date now = new Date(); 
         DateFormat df = DateFormat.getDateTimeInstance();
-        String dat = df.format(now);  
+        String dat = df.format(now); 
     
     public void ShowEtablissement(int Id)
     {
@@ -226,17 +257,10 @@ public class EtablissementVBoxController implements Initializable {
         VisitedEtablissementService service2=new VisitedEtablissementService();
         EtablissementService ES = new EtablissementService();
         
-        
+
         likes.setText("Aimé par "+ES.countLikes(Id)+" personne(e)");
         visits.setText("Visité par "+ES.countVisited(Id)+" personne(e)");
-        if (service1.count(3,Id)==0){
-        like.setText("J'aime");
-        }
-        else {like.setText("Aimé!");}
-        if (service2.count(3,Id)==0){
-        visited.setText("Marquer visité");}
-        else {visited.setText("Visité");}
-        System.out.println(Id);
+
         
         Etablissement E = ES.findById(Id);
         File F = new File(E.getImage());
@@ -251,16 +275,21 @@ public class EtablissementVBoxController implements Initializable {
         rate.setText(E.getRating()+" /5");
         Text T = new Text(E.getDescription());
         this.Id = E.getId();
+        Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
+        System.out.println(E.getResponsable());
+        if (id_user==E.getResponsable()){
         Modifier.setText(Modifier.getText() + " " + E.getNom());
         Supprimer.setText(Supprimer.getText() + " " + E.getNom());
-        Description.getChildren().addAll(T);
-        DemandePartenariatService service=new DemandePartenariatService();
+        like.setVisible(false);
+        visited.setVisible(false);
+               DemandePartenariatService service=new DemandePartenariatService();
                PartenariatService service4=new PartenariatService();
                System.out.println(Id);
                System.out.println(service4.check(Id));
                System.out.println(service.check(Id));
-               
-               if (service4.check(Id)==0 && service.check(Id)==0){
+                      if (service4.check(Id)==0 && service.check(Id)==0){
                Demande.setVisible(true);
                labelPartenaire.setVisible(false);
                }
@@ -274,12 +303,28 @@ public class EtablissementVBoxController implements Initializable {
                 labelPartenaire.setText("Demande partenariat en attente");
                }
                }
+        }
+        else{
+               Modifier.setVisible(false);
+               Supprimer.setVisible(false);
+               event.setVisible(false);
+               offre.setVisible(false);
+               Demande.setVisible(false);
+               labelPartenaire.setVisible(false);
+            if (service1.count(id_user,Id)==0){
+        like.setText("J'aime");
+        }
+        else {like.setText("Aimé!");}
+        if (service2.count(id_user,Id)==0){
+        visited.setText("Marquer visité");}
+        else {visited.setText("Visité");}}
     }
 
     
-        public int recupererCom(int id){
+        public int recupererCom(int id)
+        {
         return id; 
-    }
+        }
         
     @FXML
     private void ModifierInfo(ActionEvent event) 
@@ -611,14 +656,17 @@ public class EtablissementVBoxController implements Initializable {
             System.out.println("rrrrr"); }}
     @FXML
     private void SetVisited(ActionEvent event) {
+                Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
          LikedEtablissementService service1=new LikedEtablissementService();
     
     VisitedEtablissementService service2=new VisitedEtablissementService();
         if (visited.getText().equals("Marquer visité")){
-        service2.add(Id, 3);
+        service2.add(Id, id_user);
         visited.setText("Visité");}
         else {
-        service2.delete(Id, 3);
+        service2.delete(Id, id_user);
         visited.setText("Marquer visité");
         }
     EtablissementService service3=new EtablissementService();
@@ -630,15 +678,18 @@ public class EtablissementVBoxController implements Initializable {
 
     @FXML
     private void SetLike(ActionEvent event) {
+           Session ss= new Session ();
+        int id_user;
+        id_user=ss.user.id;
             LikedEtablissementService service1=new LikedEtablissementService();
     
     VisitedEtablissementService service2=new VisitedEtablissementService();
     if (like.getText().equals("J'aime")){
-    service1.add(Id, 3);
+    service1.add(Id, id_user);
     like.setText("Aimé");
     }
     else {
-        service1.delete(Id, 3);
+        service1.delete(Id, id_user);
         like.setText("J'aime");
     }
     EtablissementService service3=new EtablissementService();

@@ -60,15 +60,18 @@ public class BackendEtabsController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-               try {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+               try 
+               {
                 VBox box = FXMLLoader.load(getClass().getResource("HomePanelBackend.fxml"));
                 drawer.setSidePane(box);
-                } catch (IOException ex) {
+               } 
+               catch (IOException ex) 
+                {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                //Hamburger
-                
+                }
+
                 HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
                 burgerTask.setRate(-1);
                 
@@ -76,33 +79,35 @@ public class BackendEtabsController implements Initializable {
                 {
                     burgerTask.setRate(burgerTask.getRate() * -1);
                     burgerTask.play();
-                    
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
+                
                 EtablissementService service =new EtablissementService();
                 etabs=service.getAll();
                 nom.setVisible(false);    
-      pagination = new Pagination(Math.round(service.countAll()/6), 0);
-        pagination.setStyle("-fx-border-color:red;");
-           pagination.setPageFactory(new Callback<Integer, Node>() {
-           public Node call(Integer pageIndex) {
-           VBox box = new VBox(5);
-          box.setLayoutY(-14.0);
-          box.setPrefHeight(315.0);
-          box.setPrefWidth(352.0);
-          int page = pageIndex * 6;
-        
-        if(!etabs.isEmpty()){
-            for (int i = page; i < page + 6; i++){
-        Etablissement e=etabs.get(i);
-        Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
-        fromToLabel2.setFont(nom.getFont());
-        fromToLabel2.setTextFill(nom.getTextFill());
-        fromToLabel2.setLayoutX(nom.getLayoutX());
-        fromToLabel2.setLayoutY(nom.getLayoutY());
-        fromToLabel2.setText(e.getNom());
-                    fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
+                pagination = new Pagination(Math.round(service.countAll()/6), 0);
+                pagination.setStyle("-fx-border-color:red;");
+                pagination.setPageFactory(new Callback<Integer, Node>() {
+                public Node call(Integer pageIndex) {
+                VBox box = new VBox(5);
+                box.setLayoutY(-14.0);
+                box.setPrefHeight(315.0);
+                box.setPrefWidth(352.0);
+                int page = pageIndex * 6;
+                
+                if(!etabs.isEmpty())
+                {
+                for (int i = page; i < page + 6; i++)
+                {
+                Etablissement e=etabs.get(i);
+                Hyperlink fromToLabel2 = new Hyperlink(e.getNom());
+                fromToLabel2.setFont(nom.getFont());
+                fromToLabel2.setTextFill(nom.getTextFill());
+                fromToLabel2.setLayoutX(nom.getLayoutX());
+                fromToLabel2.setLayoutY(nom.getLayoutY());
+                fromToLabel2.setText(e.getNom());
+                fromToLabel2.setOnAction(new EventHandler<ActionEvent>() 
             {
             @Override
             public void handle(ActionEvent action)
@@ -110,7 +115,6 @@ public class BackendEtabsController implements Initializable {
                 try 
                 {
                     int Id=e.getId();
-                    
                     FXMLLoader FL = new FXMLLoader(getClass().getResource("BackendProfileEtablissement.fxml"));
                     Parent root = (Parent) FL.load();
                     BackendProfileEtablissementController EVC = FL.getController();
@@ -123,23 +127,18 @@ public class BackendEtabsController implements Initializable {
                 }
             }
             });
-        
-        
         box.getChildren().add(fromToLabel2);
-                }}
-    return box;
+            }}
+        return box;
        }
    });
-        
-        
-                AnchorPane.setTopAnchor(pagination, 10.0);
-                AnchorPane.setRightAnchor(pagination, 10.0);
-                AnchorPane.setBottomAnchor(pagination, 10.0);
-                AnchorPane.setLeftAnchor(pagination, 10.0);
-                Main.getChildren().addAll(pagination);
-                 
-                 // TODO
+        AnchorPane.setTopAnchor(pagination, 10.0);
+        AnchorPane.setRightAnchor(pagination, 10.0);
+        AnchorPane.setBottomAnchor(pagination, 10.0);
+        AnchorPane.setLeftAnchor(pagination, 10.0);
+        Main.getChildren().addAll(pagination);
     }
+    
     public void getList() throws IOException{
         EtablissementService service =new EtablissementService();
         etabs=service.getAll();

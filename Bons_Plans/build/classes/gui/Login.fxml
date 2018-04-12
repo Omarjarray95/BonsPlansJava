@@ -3,24 +3,31 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import com.jfoenix.controls.JFXDrawer?>
-<?import com.jfoenix.controls.JFXHamburger?>
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="APane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
-      <JFXTextField fx:id="emailtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="131.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Email">
+      <JFXTextField fx:id="emailtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="131.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="E-Mail">
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="182.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Password">
+      <JFXPasswordField fx:id="passwordtxt" focusColor="#f59d63" labelFloat="true" layoutX="247.0" layoutY="161.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Password">
          <font>
             <Font size="13.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="174.0" layoutY="281.0" onAction="#login" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Login" textFill="WHITE" />
-      <JFXButton layoutX="274.0" layoutY="323.0" onAction="#Inscription" text="S'inscrire ? " />
-
+      <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="255.0" layoutY="211.0" onAction="#login" prefHeight="25.0" prefWidth="107.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Login" textFill="WHITE" />
+      <JFXButton layoutX="255.0" layoutY="250.0" onAction="#Inscription" text="S'inscrire ? " />
+      <Text layoutX="330.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2018 BONS PLANS POWERED BY DIGIMINDS" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="280.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Bons-Plans-2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

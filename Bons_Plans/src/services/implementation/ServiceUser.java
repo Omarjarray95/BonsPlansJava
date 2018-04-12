@@ -85,7 +85,7 @@ public class ServiceUser {
         return status;}
     
 //          public void Loginn(String usr, String pass) throws SQLException{
-//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user` WHERE `email` = ? AND `password` = ? ");
+//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user1` WHERE `email` = ? AND `password` = ? ");
 //              PreparedStatement ps = ds.getConnection().prepareStatement(sql);
 //            
 //            ps.setString(1, String.valueOf(usr));
