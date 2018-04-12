@@ -77,14 +77,16 @@ public class BackendAdminAcceuilController  implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-               try {
+                try 
+                {
                 VBox box = FXMLLoader.load(getClass().getResource("HomePanelBackend.fxml"));
                 drawer.setSidePane(box);
-                } catch (IOException ex) {
+                } 
+                catch (IOException ex) 
+                {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                }
                 //Hamburger
-                
                 HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
                 burgerTask.setRate(-1);
                 
@@ -92,10 +94,10 @@ public class BackendAdminAcceuilController  implements Initializable {
                 {
                     burgerTask.setRate(burgerTask.getRate() * -1);
                     burgerTask.play();
-                    
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
+                
                 EtablissementService service=new EtablissementService();
                 users.setText(service.countUsers()+" Utilisateurs");
                 etabs.setText(service.countAll()+" Etablissements");
@@ -132,33 +134,47 @@ public class BackendAdminAcceuilController  implements Initializable {
              
     }    
     
-    public Chart createChart(int i){
-    if (i==0) return createPieChart();
-    else if (i==1){return createBarChart();}
-    else if (i==2){return createBarChart2();}
-    else {return createPieChart();}
+    public Chart createChart(int i)
+    {
+    if (i==0) 
+    {
+        return createPieChart();
     }
-           public Chart createPieChart() {
-               EtablissementService etabService=new EtablissementService();
-               
-                     ObservableList<PieChart.Data> data =
-         FXCollections.observableArrayList();
-         data.addAll(
-         new PieChart.Data("Restaurants/Café  "+Math.round(etabService.Pourcentage("Resto_Café")*100)+"%", etabService.Pourcentage("Resto_Café")),
-         new PieChart.Data("Boutiques  "+Math.round(etabService.Pourcentage("Shops")*100)+"%",etabService.Pourcentage("Shops")),
-         new PieChart.Data("Hotels  "+Math.round(etabService.Pourcentage("hotels")*100)+"%", etabService.Pourcentage("hotels")),
-         new PieChart.Data("Autres  "+Math.round(etabService.Pourcentage("Autres")*100)+"%",etabService.Pourcentage("Autres")));
-      PieChart pie = new PieChart();
-      pie.setData(data);
-      pie.setTitle("Pourcentages des établissements par type");
-      return pie;
-              
-   }
-          public XYChart<CategoryAxis, NumberAxis>
-         createBarChart() {
-             VisitedEtablissementService service=new VisitedEtablissementService();
-             ObservableList<XYChart.Series<String, Double>> data =
-         FXCollections.observableArrayList();
+    else if (i==1)
+    {
+        return createBarChart();
+    }
+    else if (i==2)
+    {
+        return createBarChart2();
+    }
+    else 
+    {
+        return createPieChart();
+    }
+    }
+    
+           public Chart createPieChart() 
+           {
+                EtablissementService etabService=new EtablissementService();
+                ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+                data.addAll(
+         new PieChart.Data("Restaurants/Cafés  "+Math.round(etabService.Pourcentage("Restaurants/Cafés")*100)+"%", etabService.Pourcentage("Restaurants/Cafés")),
+         new PieChart.Data("Boutiques  "+Math.round(etabService.Pourcentage("Boutiques")*100)+"%",etabService.Pourcentage("Boutiques")),
+         new PieChart.Data("Hotels  "+Math.round(etabService.Pourcentage("Hotels")*100)+"%", etabService.Pourcentage("Hotels")),
+         new PieChart.Data("Autres  "+Math.round(etabService.Pourcentage("Autres")*100)+"%",etabService.Pourcentage("Autres"))
+                            );
+                PieChart pie = new PieChart();
+                pie.setData(data);
+                pie.setTitle("Pourcentages Des Etablissements Par Type");
+                return pie;         
+            }
+           
+            public XYChart<CategoryAxis, NumberAxis> createBarChart() 
+            {
+                VisitedEtablissementService service=new VisitedEtablissementService();
+                ObservableList<XYChart.Series<String, Double>> data =
+                FXCollections.observableArrayList();
       Series<String, Double> as = new Series<>();
       Series<String, Double> bs = new Series<>();
       Series<String, Double> cs = new Series<>();
@@ -168,24 +184,24 @@ public class BackendAdminAcceuilController  implements Initializable {
       cs.setName("Hotels");
       ds.setName("Autres");
       as.getData().add(new XYChart.Data<>
-         ("Restaurants/Café", service.countVisits("Resto_Café")));
+         ("Restaurants/Café", service.countVisits("Restaurants/Cafés")));
       bs.getData().add(new XYChart.Data<>
-         ("Boutiques", service.countVisits("Shops")));
+         ("Boutiques", service.countVisits("Boutiques")));
       cs.getData().add(new XYChart.Data<>
-         ("Hotels", service.countVisits("hotels")));
+         ("Hotels", service.countVisits("Hotels")));
       ds.getData().add(new XYChart.Data<>
          ("Autres", service.countVisits("Autres")));
       data.addAll(as, bs, cs, ds);
-      System.out.println(service.countVisits("Resto_Café"));
       CategoryAxis xAxis = new CategoryAxis();
       NumberAxis yAxis = new NumberAxis();
       BarChart bc = new BarChart<>(xAxis, yAxis);
       bc.setData(data);
-      bc.setTitle("Nombre de visites des établissements par type");
+      bc.setTitle("Nombre De Visites Des Etablissements Par Type");
       return bc;
-   }
-         public XYChart<CategoryAxis, NumberAxis>
-         createBarChart2() {
+            }
+            
+         public XYChart<CategoryAxis, NumberAxis> createBarChart2() 
+         {
              LikedEtablissementService service=new LikedEtablissementService();
              ObservableList<XYChart.Series<String, Double>> data =
          FXCollections.observableArrayList();
@@ -193,30 +209,26 @@ public class BackendAdminAcceuilController  implements Initializable {
       Series<String, Double> bs = new Series<>();
       Series<String, Double> cs = new Series<>();
       Series<String, Double> ds = new Series<>();
-      as.setName("Restaurants/Café");
+      as.setName("Restaurants/Cafés");
       bs.setName("Boutiques");
       cs.setName("Hotels");
       ds.setName("Autres");
       as.getData().add(new XYChart.Data<>
-         ("Restaurants/Café", service.countLikes("Resto_Café")));
+         ("Restaurants/Café", service.countLikes("Restaurants/Cafés")));
       bs.getData().add(new XYChart.Data<>
-         ("Boutiques", service.countLikes("Shops")));
+         ("Boutiques", service.countLikes("Boutiques")));
       cs.getData().add(new XYChart.Data<>
-         ("Hotels", service.countLikes("hotels")));
+         ("Hotels", service.countLikes("Hotels")));
       ds.getData().add(new XYChart.Data<>
          ("Autres", service.countLikes("Autres")));
       data.addAll(as, bs, cs, ds);
-      System.out.println(service.countLikes("Resto_Café"));
       CategoryAxis xAxis = new CategoryAxis();
       NumberAxis yAxis = new NumberAxis();
       BarChart bc = new BarChart<>(xAxis, yAxis);
       bc.setData(data);
-      bc.setTitle("Nombre de visites des établissements par type");
+      bc.setTitle("Nombre De Visites Des Etablissements Par Type");
       return bc;
    }
-           
-       
-    
 }
 
 
