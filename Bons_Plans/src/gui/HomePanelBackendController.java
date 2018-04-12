@@ -66,8 +66,9 @@ public class HomePanelBackendController implements Initializable {
     }
 
     @FXML
-    private void SetEtabs(ActionEvent event) throws IOException {
-        Parent homePage = FXMLLoader.load(getClass().getResource("BackendEtabs.fxml"));
+    private void SetEtabs(ActionEvent event) throws IOException 
+    {
+        Parent homePage = FXMLLoader.load(getClass().getResource("AffichagePane1.fxml"));
         
         Scene homePage_scene=new Scene(homePage);
         

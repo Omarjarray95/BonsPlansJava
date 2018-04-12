@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package services.implementation;
 
 import entities.DemandePartenariat;
@@ -20,12 +15,16 @@ import techniques.DataSource;
  */
 public class DemandePartenariatService {
 
-    public DemandePartenariatService() {
+    public DemandePartenariatService() 
+    {
         connection = DataSource.getInstance().getConnection();
     }
+    
     private Connection connection;
-        public void add(DemandePartenariat demande) {
-        try {
+        public void add(DemandePartenariat demande) 
+        {
+        try 
+        {
             String req = "insert into demande_partenariat(favoris_id,"
                     + "user_id,"
                     + "Description)"

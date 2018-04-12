@@ -9,8 +9,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Etablissement;
+import facebook4j.Facebook;
 import entities.Offre;
+import entities.Session;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.PostUpdate;
+import facebook4j.conf.ConfigurationBuilder;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -31,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import services.implementation.EtablissementService;
 import services.implementation.EvenementService;
 import services.implementation.OffreService;
 
@@ -42,6 +51,14 @@ import services.implementation.OffreService;
 public class OffreProfileController implements Initializable {
 
     private int id;
+    @FXML
+    private Text labelCode;
+    @FXML
+    private Label code;
+    @FXML
+    private Text labelPouc;
+    @FXML
+    private Label off;
 
     public int getId() {
         return id;
@@ -57,7 +74,7 @@ public class OffreProfileController implements Initializable {
     @FXML
     private Label fin;
     @FXML
-    private TextArea des;
+    private Label des;
     @FXML
     private JFXButton modifer;
     @FXML
@@ -93,12 +110,32 @@ public class OffreProfileController implements Initializable {
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
+                EtablissementService serviceEtab=new EtablissementService();
+                     OffreService service=new OffreService();
+                    Offre e=service.findById(id);
+                     if (serviceEtab.checkPartner(e.getId_etablissement())==0){
+                                code.setVisible(false);
+                                off.setVisible(false);
+                                labelCode.setVisible(false);
+                                labelPouc.setVisible(false);
+            }
+            
+
         
     }    
     public void loadData(int id){
+        OffreService service=new OffreService();
+        Offre e=service.findById(id);
+        Session ss= new Session ();
+        int id_user=ss.user.id;
+        EtablissementService serviceEtab=new EtablissementService();
+        
+        Etablissement E=serviceEtab.findById(e.getId_etablissement());
+        if (id_user!=E.getResponsable()){
+        modifer.setVisible(false);
+        supp.setVisible(false);
+        }
    
-          OffreService service=new OffreService();
-          Offre e=service.findById(id);
           nom.setText(e.getOffre());
           deb.setText(e.getDate_debut().toString());
           fin.setText(e.getDate_fin().toString());
@@ -136,7 +173,8 @@ public class OffreProfileController implements Initializable {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                              }
     }
-    }
+
+}
    
     
 

@@ -1,6 +1,9 @@
 package gui;
 
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import entities.Etablissement;
 import java.io.File;
@@ -41,6 +44,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import services.implementation.DemandeService;
 import services.implementation.EtablissementService;
 
 public class EtablissementController implements Initializable 
@@ -92,10 +96,34 @@ public class EtablissementController implements Initializable
     private Button AGlobe;
     
     public String Add;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
+    private Button BoutonTest;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+                 try {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
         Type.setItems(TypeItems);
         Image I = new Image(getClass().getResourceAsStream("Phone.png"));
         Image I1 = new Image(getClass().getResourceAsStream("Globe.png"));
@@ -104,7 +132,6 @@ public class EtablissementController implements Initializable
         AGlobe.setGraphic(new ImageView(I1));
     }
 
-    @FXML
     private void ChoisirImage(ActionEvent event) 
     {
         final Stage stage = null;
@@ -163,16 +190,31 @@ public class EtablissementController implements Initializable
         }
         else
         {
-            EtablissementService ES = new EtablissementService();
-            Integer N = Integer.parseInt(Numero.getText());
-            Integer B = Integer.parseInt(BudgetMoyen.getText());
-            ES.Ajout(
+            DemandeService DS = new DemandeService();
+            int N = 0;
+            int B = 0;
+            String SO = null;
+            String SF = null;
+            if ((HoraireOuverture.getTime() != null) || (HoraireFermeture.getTime() != null))
+            {
+                SO = HoraireOuverture.getTime().toString();
+                SF = HoraireFermeture.getTime().toString();
+            }
+            if (Numero.getText().length() > 0)
+            {
+            N = Integer.parseInt(Numero.getText());
+            }
+            if (BudgetMoyen.getText().length() > 0)
+            {
+                B = Integer.parseInt(BudgetMoyen.getText());
+            }
+            DS.Ajout(
                 Nom.getText(),
                 Type.getValue().toString(),
                 Adresse.getText(),
                 Description.getText(),
-                HoraireOuverture.getTime().toString(),
-                HoraireFermeture.getTime().toString(),
+                SO,
+                SF,
                 N,
                 SiteWeb.getText(),
                 B,

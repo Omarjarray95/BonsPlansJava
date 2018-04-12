@@ -80,6 +80,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import test.AboutController;
@@ -116,14 +117,14 @@ public class InscriptionController implements Initializable {
     private static Pattern pattern;
     
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
-    @FXML
     private RadioButton mem;
-    @FXML
-    private ToggleGroup gender;
-    @FXML
     private RadioButton mempro;
     @FXML
     private ToggleGroup gender1;
+    @FXML
+    private JFXButton connect;
+    @FXML
+    private AnchorPane main;
 
     /**
      * Initializes the controller class.
@@ -266,8 +267,19 @@ CodeX = Integer.toString(getRandomNumberInRange(100000,999999));
 personneController.setcodeemail(CodeX);
 //        personneController.setTypLabel(.getText());
 
-name.getScene().setRoot(root);
+//name.getScene().setRoot(root);
 
+        FXMLLoader FL = new FXMLLoader(getClass().getResource("About.fxml"));
+        Parent roott;
+        try 
+        {
+            roott = (Parent) FL.load();
+            main.getChildren().setAll(roott);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(EtablissementVBoxController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 sendM(mail.getText(),CodeX);
            } catch (Exception ex) {
                Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -306,7 +318,6 @@ sendM(mail.getText(),CodeX);
         }
     }
 
-    @FXML
     private void hlLogin(ActionEvent event)  {
         Stage hideThis = (Stage) loginbnt.getScene().getWindow();
         hideThis.close();
@@ -462,6 +473,22 @@ sendM(mail.getText(),CodeX);
                        
 		}
     
+    }
+    
+
+    @FXML
+    private void connecter(ActionEvent event) {
+        FXMLLoader FL = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root;
+        try 
+        {
+            root = (Parent) FL.load();
+            main.getChildren().setAll(root);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(EtablissementVBoxController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

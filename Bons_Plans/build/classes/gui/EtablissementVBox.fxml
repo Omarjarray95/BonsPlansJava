@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<<<<<<< HEAD
+=======
+<?import com.jfoenix.controls.JFXTextField?>
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
+<<<<<<< HEAD
 <?import javafx.scene.web.WebView?>
+=======
+<?import org.controlsfx.control.Rating?>
 
-<Pane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EtablissementVBoxController">
+
+<Pane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EtablissementVBoxController">
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
+
    <children>
-      <VBox alignment="BASELINE_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="300.0" prefWidth="300.0">
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="BASELINE_CENTER" layoutX="181.0" layoutY="21.0" prefHeight="201.0" prefWidth="220.0">
          <children>
             <ImageView fx:id="IV" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="Label">
+            <Hyperlink fx:id="Modifier" onAction="#ModifierInfo" prefHeight="21.0" prefWidth="230.0" text="Modifier Les Informations De" textAlignment="CENTER" textFill="#f59d63">
                <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Hyperlink fx:id="Modifier" onAction="#ModifierInfo" text="Modifier Les Informations De" />
-            <Hyperlink fx:id="Supprimer" onAction="#Supp" text="Supprimer" />
+                  <Font name="System Bold" size="10.0" />
+               </font></Hyperlink>
+            <Hyperlink fx:id="Supprimer" onAction="#Supp" prefHeight="21.0" prefWidth="229.0" text="Supprimer" textAlignment="CENTER" textFill="#f59d63">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font></Hyperlink>
          </children>
       </VBox>
-      <Label fx:id="Adresse" layoutX="347.0" layoutY="30.0" text="Adresse :" />
-      <Label fx:id="Horaire" layoutX="347.0" layoutY="65.0" text="Horaire :" />
-      <Label fx:id="NDT" layoutX="347.0" layoutY="106.0" text="Numéro De Téléphone :" />
-      <Label fx:id="BM" layoutX="347.0" layoutY="147.0" text="Budget Moyen :" />
-      <Label layoutX="347.0" layoutY="186.0" text="Site Web / Blog :" />
+      <Label fx:id="Adresse" layoutX="411.0" layoutY="32.0" text="Adresse :" />
+      <Label fx:id="Horaire" layoutX="412.0" layoutY="59.0" text="Horaire :" />
+      <Label fx:id="NDT" layoutX="414.0" layoutY="89.0" text="Numéro De Téléphone :" />
+      <Label fx:id="BM" layoutX="413.0" layoutY="120.0" text="Budget Moyen :" />
+      <Label layoutX="413.0" layoutY="151.0" text="Site Web / Blog :" />
       <Hyperlink fx:id="SWB" layoutX="444.0" layoutY="183.0" />
+<<<<<<< HEAD
       <TextFlow fx:id="Description" layoutX="23.0" layoutY="294.0" prefHeight="130.0" prefWidth="704.0" textAlignment="JUSTIFY">
          <children>
             <WebView prefHeight="200.0" prefWidth="200.0" />
@@ -39,5 +65,65 @@
       <Button fx:id="Tags" layoutX="349.0" layoutY="219.0" mnemonicParsing="false" onAction="#AfficheTags" text="Tags" />
       <JFXButton fx:id="btn" layoutX="528.0" layoutY="146.0" onAction="#weather" prefHeight="35.0" prefWidth="191.0" text="Consulter la météo  " />
       <Button fx:id="reserv" layoutX="342.0" layoutY="249.0" mnemonicParsing="false" onAction="#ajouterReserv" prefHeight="25.0" prefWidth="269.0" text="Passer une réservation" />
+=======
+      <TextFlow fx:id="Description" layoutX="23.0" layoutY="294.0" prefHeight="45.0" prefWidth="704.0" textAlignment="JUSTIFY" />
+      <Button fx:id="Tags" layoutX="349.0" layoutY="219.0" mnemonicParsing="false" onAction="#AfficheTags" text="Tags" />
+      <TextArea fx:id="comm" layoutX="23.0" layoutY="380.0" prefHeight="157.0" prefWidth="532.0" promptText="Votre Commentaire.." />
+      <Button fx:id="publier" layoutX="555.0" layoutY="502.0" mnemonicParsing="false" onAction="#AjoutCommentaire" style="-fx-background-color: #FDF5E6;" text="Publier" />
+      <Button fx:id="fcb" layoutX="622.0" layoutY="502.0" mnemonicParsing="false" onAction="#Facebook" style="-fx-background-color: #000080;" text="Partager sur Facebook" textFill="#f8f6f6" />
+      <Rating fx:id="rating" layoutX="371.0" layoutY="339.0" onMouseClicked="#noter" />
+      <Label layoutX="23.0" layoutY="346.0" prefHeight="31.0" prefWidth="323.0" text="Partager Votre Commentaire" textFill="#1b1b1a">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nouv" layoutX="424.0" layoutY="216.0" prefHeight="31.0" prefWidth="99.0" text="Rating : " textFill="#dd0505">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="rate" layoutX="475.0" layoutY="216.0" maxWidth="48.0" minWidth="48.0" prefHeight="31.0" prefWidth="48.0" />
+      <Label layoutX="580.0" layoutY="347.0" prefHeight="25.0" prefWidth="88.0" text="Rating : " textFill="#d01919">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="msg" layoutX="624.0" layoutY="344.0" maxWidth="45.0" minWidth="45.0" prefHeight="31.0" prefWidth="45.0" />
+      <Label layoutX="655.0" layoutY="351.0" text="/5">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+           <Button fx:id="photo" layoutX="415.0" layoutY="502.0" mnemonicParsing="false" onAction="#SavePhoto" text="Importer une photo" />
+      <ImageView fx:id="imageCommentaire" fitHeight="112.0" fitWidth="144.0" layoutX="401.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="ListeCommentaires" layoutX="23.0" layoutY="543.0" prefHeight="208.0" prefWidth="532.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem fx:id="supp" mnemonicParsing="false" onAction="#DeleteComm" text="Supprimer" />
+                <MenuItem fx:id="modif" mnemonicParsing="false" onAction="#UpdateComm" text="Modifier" />
+                  <MenuItem fx:id="signal" mnemonicParsing="false" onAction="#signalerComm" text="Signaler" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </ListView>
+      <ToggleButton fx:id="visited" layoutX="324.0" layoutY="256.0" mnemonicParsing="false" onAction="#SetVisited" style="-fx-background-color: #f59d63;" text="Marquer visité" textFill="WHITE" />
+      <ToggleButton fx:id="like" layoutX="449.0" layoutY="256.0" mnemonicParsing="false" onAction="#SetLike" style="-fx-background-color: #f59d63;" text="J'aime" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="event" layoutX="619.0" layoutY="14.0" onAction="#AjouterEvent" prefHeight="32.0" prefWidth="126.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un évenement" textFill="WHITE">
+         <font>
+            <Font size="11.0" />
+         </font></JFXButton>
+      <JFXButton id="loginbtn" fx:id="offre" layoutX="637.0" layoutY="140.0" onAction="#AjouterOffre" prefHeight="32.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Ajouter un offre" textFill="WHITE" />
+      <Text fx:id="visits" layoutX="634.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="visits" />
+      <Text fx:id="likes" layoutX="625.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="likes" />
+      <JFXButton id="loginbtn" fx:id="events" layoutX="633.0" layoutY="99.0" onAction="#AllEvents" prefHeight="32.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les évenements" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="offres" layoutX="630.0" layoutY="58.0" onAction="#AllOffers" prefHeight="32.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Les offres" textFill="WHITE" />
+      <Label fx:id="labelPartenaire" layoutX="631.0" layoutY="278.0" text="Vous etes un partenaire" />
+      <JFXButton id="loginbtn" fx:id="Demande" layoutX="637.0" layoutY="179.0" onAction="#DemandePartenariat" prefHeight="32.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Demande Partenariat" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font></JFXButton>
+      <Label fx:id="nomUser" layoutX="648.0" layoutY="554.0" text="Label" />
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
    </children>
 </Pane>

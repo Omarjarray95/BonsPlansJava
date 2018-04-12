@@ -43,18 +43,32 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+<<<<<<< HEAD
 import services.implementation.ServiceUser;
 import techniques.InputValidation;
+=======
+import java.util.regex.*; 
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
 
+
+//Ok : la saisie est bonne
 /**
  * FXML Controller class
  *
  * @author Ons Ben Othmen
  */
+<<<<<<< HEAD
 public class LoginController implements Initializable {
     
 public Session sess;
 
+=======
+public class LoginController implements Initializable 
+{
+
+    public Session sess;
+    
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
     @FXML
     private JFXTextField emailtxt;
     @FXML
@@ -62,20 +76,22 @@ public Session sess;
     @FXML
     private JFXButton loginbnt;
     @FXML
+<<<<<<< HEAD
     private Hyperlink forgetpw;
     public static final String ACCOUNT_SID = "AC7185b945059e749f980f0bf2e55ea174";
     public static final String AUTH_TOKEN = "367e1cf028a830948f42e4e9dc2fc589";
    
+=======
+    private AnchorPane APane;
+>>>>>>> da9dea62fbda45dbd9d798f54404e0b7a42cf76a
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-         
-             sess = new Session();
-    
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        sess = new Session();
     }    
  @FXML
     private void On_forgetpw(ActionEvent event) {
@@ -124,102 +140,109 @@ public Session sess;
     }
     
     @FXML
-    private void recheck(KeyEvent event) {
+    private void recheck(KeyEvent event) 
+    {
+        
     }
 
     @FXML
-   private void login(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException {
-     
-        boolean test = false;
+   private void login(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException 
+   {
+      boolean test = false;
       
-      if (passwordtxt.getText().trim().isEmpty() && emailtxt.getText().trim().isEmpty()) {
+      if (passwordtxt.getText().trim().isEmpty() && emailtxt.getText().trim().isEmpty()) 
+      {
         Al("Entrez vote email et votre mot de passe");
         return;
-       }else{}
-      
-      if (emailtxt.getText().trim().isEmpty()){
-       Al("Entrez vote email");
-        
-       }else if (passwordtxt.getText().trim().isEmpty()){
-         
-        Al("entrez vote mot de passe");
-       }else{
+      }
+      else
+      {
           
-              // Al("Btn Clicked");
-              
-                // Log();
-              
-              String username = emailtxt.getText();
-              String password = passwordtxt.getText();
-              
-              
-              sess.Loginn(username,password);
-              
-              
-        
-        
-        
-       }   
+      }
+      
+      if (emailtxt.getText().trim().isEmpty())
+      {
+       Al("Entrez vote email"); 
+      }
+      else if (passwordtxt.getText().trim().isEmpty())
+      {
+        Al("entrez vote mot de passe");
+      }
+      else
+      { 
+        // Al("Btn Clicked");
+        // Log();
+        String username = emailtxt.getText();
+        String password = passwordtxt.getText();
+        sess.Loginn(username,password);
+      }   
     }
   
-    public void Al(String txt){
+    public void Al(String txt)
+    {
      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Information Dialog");
-        alert.setContentText(txt);
-        alert.showAndWait();
+     alert.setHeaderText(null);
+     alert.setTitle("Information Dialog");
+     alert.setContentText(txt);
+     alert.showAndWait();
     }
     
-    public void Log() throws ClassNotFoundException, SQLException {
-         Al("Open Void Log");
-        if (emailtxt.getText() != null && passwordtxt.getText() != null) {
+    public void Log() throws ClassNotFoundException, SQLException 
+    {
+        Al("Open Void Log");
+        if (emailtxt.getText() != null && passwordtxt.getText() != null) 
+        {
           Al("if Open");
-            Connection connection;
-        PreparedStatement ps;
-        try {
+          Connection connection;
+          PreparedStatement ps;
+        try 
+        {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
             ps = connection.prepareStatement("SELECT `email`, `password` FROM `user1` WHERE `email` = ? AND `password` = ?");
             ps.setString(1, String.valueOf(emailtxt.getText()));
             ps.setString(2, String.valueOf(passwordtxt.getText()));
             ResultSet result = ps.executeQuery();
-            
-           
-            if(result.next()){
+            if(result.next())
+            {
               //  jLabel_Message.setText("Login Successesfully");
                Al("Login Succes :)");
-               
-               
-               
             }
-            else{
+            else
+            {
              //   jLabel_Message.setText("Invalide Username Or Password");
                Al("Failed("); 
-               
-               
-               
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) 
+        {
            System.out.println("Errer");
-            System.out.println(ex);
+           System.out.println(ex);
         }
-        
         }
     }
+    
     @FXML
-    private void Inscription(ActionEvent event) {
-         try {
-                        Parent page1 = FXMLLoader.load(getClass().getResource("Inscription.fxml"));
-                        Scene scene = new Scene(page1);
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.setTitle("Bons Plans - Inscription");
-                        stage.show();
-                        } catch (IOException ex) {
-                            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                             }
+    private void Inscription(ActionEvent event) 
+    {
+    try 
+    {
+        Parent page1 = FXMLLoader.load(getClass().getResource("Inscription.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Bons Plans - Inscription");
+        stage.show();
+    } 
+    catch (IOException ex) 
+    {
+        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    public void setStage(String fxml) {
-        try {
+    }
+    
+    public void setStage(String fxml) 
+    {
+        try 
+        {
             //dim overlay on new stage opening
             Region veil = new Region();
             veil.setPrefSize(1100, 650);
@@ -228,23 +251,28 @@ public Session sess;
             Parent parent = FXMLLoader.load(getClass().getResource(fxml));
             
             Scene scene = new Scene(parent);
+            //APane.getChildren().setAll(parent);
             scene.setFill(Color.TRANSPARENT);
             newStage.setScene(scene);
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.initStyle(StageStyle.TRANSPARENT);
+            newStage.initModality(Modality.WINDOW_MODAL);
+            newStage.initStyle(StageStyle.DECORATED);
             newStage.getScene().getRoot().setEffect(new DropShadow());
-            newStage.showingProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) {
+            newStage.showingProperty().addListener((observable, oldValue, newValue) -> 
+            {
+            if (newValue) 
+            {
 //                    rootPane.getChildren().add(veil);
 //                } else if (rootPane.getChildren().contains(veil)) {
 //                    rootPane.getChildren().removeAll(veil);
 //                }
-                }
-                
+            }
             });
+            
             newStage.centerOnScreen();
             newStage.show();
-        } catch (IOException ex) {
+        } 
+        catch (IOException ex) 
+        {
             Logger.getLogger(InscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
