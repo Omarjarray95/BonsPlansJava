@@ -44,7 +44,8 @@ public class User
         this.login=login;
     }
 
-    public User(int id, String username, String password, String roles,String nom, Date datedenaissance, int phone, String sex) {
+    public User(int id, String username, String password, String roles
+            ,String nom, Date datedenaissance, int phone, String sex) {
     
                         this.id=id;
                         this.login=username;

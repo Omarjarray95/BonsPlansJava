@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 package services.implementation;
+import entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,8 @@ import techniques.DataSource;
  */
 public class UserService{
     private Connection connection;
+        private PreparedStatement PS;
+
     
     public UserService() {
         connection = DataSource.getInstance().getConnection();
@@ -54,6 +57,25 @@ public class UserService{
         System.out.println(E);
         }
     }
+//    public User findbynum(String num) {
+//        String req = "select * from user where tel =?";
+//        User u = null;
+//
+//        try {
+//            
+//            PS = connection.prepareStatement(req);
+//            PS.setString(1, num);
+//            ResultSet rs = PS.executeQuery();
+//            while (rs.next()) {
+//                u = new User (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8));
+//                u.setDTYPE(rs.getString("Role"));
+//                u.setID(rs.getInt("ID"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return u;
+//    }
     
     }
 

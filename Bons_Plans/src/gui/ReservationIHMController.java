@@ -5,21 +5,31 @@
  */
 package gui;
 
+import entities.Etablissement;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import services.implementation.ControlleurChamps;
+import services.implementation.EtablissementService;
 import services.implementation.ReservationService;
 
 /**
@@ -70,6 +80,8 @@ public class ReservationIHMController implements Initializable {
     private Label erreurnum;
     @FXML
     private Label erreurnbrp;
+    
+    Etablissement E = null;
             
     /**
      * Initializes the controller class.
@@ -124,7 +136,9 @@ public class ReservationIHMController implements Initializable {
 
 
     @FXML
-    private void ajouterReserv(ActionEvent event) {
+    private void ajouterReserv(ActionEvent event) 
+    {
+        int ID = E.getId();       
         if (verif()){
          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //          SimpleDateFormat formater1 = new SimpleDateFormat ("HH:mm:ss");        
@@ -134,9 +148,10 @@ public class ReservationIHMController implements Initializable {
             
         } catch (ParseException ex) {
 
-            System.out.println(ex.toString());}
+            System.out.println(ex.toString());
+        }
         ReservationService rs=new ReservationService();
-        rs.ajouterReservation(1, 1, date, nom.getText(), prenom.getText(), Num_tel.getText(),  Integer.parseInt(NbrP.getText()));
+        rs.ajouterReservation(ID,1, date, nom.getText(), prenom.getText(), Num_tel.getText(),  Integer.parseInt(NbrP.getText()));
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
@@ -144,6 +159,39 @@ public class ReservationIHMController implements Initializable {
             alert.showAndWait();
     }
     }
+//    @Override
+//            public void handle(ActionEvent e)
+//            {
+//                try 
+//                {
+//                    int Id = E.getId();
+//                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
+//                    Parent root = (Parent) FL.load();
+//                    EtablissementVBoxController EVC = FL.getController();
+//                    EVC.ShowEtablissement(Id);
+//                    Pane.getChildren().setAll(root);
+//                } 
+//                catch (IOException ex) 
+//                {
+//                    Logger.getLogger(AffichagePaneController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//            });
+//            Nom1.setFont(Font.font("Verdana",FontWeight.BOLD,16));
+//            VB.setAlignment(Pos.BASELINE_CENTER);
+//            VB.getChildren().addAll(IV,Nom1);
+//            i++;
+//            if (i == 4)
+//                                   {
+//                break;
+//            }
+//            Grid.add(VB, i, j);
+//        }
+//                return Grid;
+//            }
+//        });
+//    }   
+    
 //    @FXML
 //    private void modi(ActionEvent event) throws ParseException {
 //        int id = listeFicheDeDressage.getItems().get(listeFicheDeDressage.getSelectionModel().getSelectedIndex()).getId_f_Dressage();
@@ -166,4 +214,11 @@ public class ReservationIHMController implements Initializable {
 //        }
 //    }
     
+    
+    public void GetE(int ID)
+    {
+        EtablissementService ES = new EtablissementService();
+        E = ES.findById(ID);
+        System.out.println(E.getNom());
+    }
 }

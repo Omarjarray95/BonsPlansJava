@@ -3,11 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import com.jfoenix.controls.JFXDrawer?>
-<?import com.jfoenix.controls.JFXHamburger?>
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+
+<AnchorPane id="AnchorPane" fx:id="forgetpw0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
       <JFXTextField fx:id="emailtxt" focusColor="#f59d63" labelFloat="true" layoutX="166.0" layoutY="131.0" onKeyPressed="#recheck" prefHeight="25.0" prefWidth="265.0" promptText="Email">
          <font>
@@ -21,6 +21,7 @@
       </JFXPasswordField>
       <JFXButton id="loginbtn" fx:id="loginbnt" layoutX="174.0" layoutY="281.0" onAction="#login" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Login" textFill="WHITE" />
       <JFXButton layoutX="274.0" layoutY="323.0" onAction="#Inscription" text="S'inscrire ? " />
+      <Hyperlink fx:id="forgetpw" layoutX="319.0" layoutY="282.0" onAction="#On_forgetpw" prefHeight="23.0" prefWidth="265.0" text="Vous avez oblié votre mot de passe ?" />
 
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import entities.Etablissement;
 import entities.Tag;
 import java.io.File;
@@ -15,7 +16,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,9 +30,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import services.implementation.EtablissementService;
@@ -64,6 +71,10 @@ public class EtablissementVBoxController implements Initializable {
     private Hyperlink Supprimer;
     @FXML
     private Button Tags;
+    @FXML
+    private JFXButton btn;
+    @FXML
+    private Button reserv;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -125,7 +136,63 @@ public class EtablissementVBoxController implements Initializable {
             Logger.getLogger(EtablissementVBoxController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  @FXML
+    void weather(ActionEvent event) 
+    {
+//        Stage stage = new Stage();
+//        stage.setTitle("Web View");
+//        Scene scene = new Scene(new Browser(),750,500, Color.web("#666970"));
+//        stage.setScene(scene);
+//        scene.getStylesheets().add("webviewsample/BrowserToolbar.css");        
+//        stage.show();
+        Stage s = new Stage() ;
+        //           System.out.println("ena lahne"+new Utils().extractVilleFromAdresse(adresse.getText()));
+        new WebViewSample().start(s,"tunis");
+    }
 
+    @FXML
+    private void ajouterReserv(ActionEvent event) throws IOException 
+    {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReservationIHM.fxml"));
+          Parent root1 = (Parent) fxmlLoader.load();
+          ReservationIHMController RIC = fxmlLoader.getController();
+          RIC.GetE(Id);
+          Pane.getChildren().setAll(root1);
+    }
+    class Browser extends javafx.scene.layout.Region {
+ 
+    final WebView browser = new WebView();
+    final WebEngine webEngine = browser.getEngine();
+     
+    public Browser(String ville) {
+        //apply the styles
+        getStyleClass().add("browser");
+        // load the web page
+        webEngine.load("http://www.accuweather.com/en/tn/"+ville+"/321398/weather-forecast/321398");
+        //add the web view to the scene
+        getChildren().add(browser);
+ 
+    }
+    private Node createSpacer() {
+        javafx.scene.layout.Region spacer = new javafx.scene.layout.Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        return spacer;
+    }
+ 
+    @Override protected void layoutChildren() {
+        double w = getWidth();
+        double h = getHeight();
+        layoutInArea(browser,0,0,w,h,0, HPos.CENTER, VPos.CENTER);
+    }
+ 
+    @Override protected double computePrefWidth(double height) {
+        return 750;
+    }
+ 
+    @Override protected double computePrefHeight(double width) {
+        return 500;
+    }
+    }
     @FXML
     private void AfficheTags(ActionEvent event) 
     {

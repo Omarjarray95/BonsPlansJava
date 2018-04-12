@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileController">
@@ -22,5 +20,6 @@
       <JFXButton id="loginbtn" fx:id="going" layoutX="355.0" layoutY="82.0" onAction="#showGoing" prefHeight="25.0" prefWidth="175.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Evenements je vais participer" textFill="WHITE" />
       <AnchorPane fx:id="Main" layoutX="178.0" layoutY="126.0" prefHeight="260.0" prefWidth="355.0">
         </AnchorPane>
+      <JFXButton fx:id="reservation" layoutX="320.0" layoutY="114.0" onAction="#showReserved" prefHeight="25.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Mes réservations" textFill="WHITE" />
     </children>
 </AnchorPane>

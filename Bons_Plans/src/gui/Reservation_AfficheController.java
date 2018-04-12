@@ -118,9 +118,13 @@ public class Reservation_AfficheController implements Initializable {
      public ArrayList<Reservation> recherche(String x) {
         return (ArrayList<Reservation>) listReservation.getItems().stream().filter(
         t -> t.getNom().startsWith(x)
-        || t.getPrenom().startsWith(x)
+        || t.getPrenom().startsWith(x) 
+                
         
-                        || t.getNum_tel().startsWith(x) 
+                        || t.getNum_tel().startsWith(x)   
+                
+               
+                
                         
                        
 
@@ -153,9 +157,9 @@ public void ref() {
     private void findKey(KeyEvent event) {
          String mot = find.getText();
          if (mot.length() > 0) {
-            List<Reservation> vet = recherche(mot);
+            List<Reservation> res = recherche(mot);
             listReservation.getItems().clear();
-            listReservation.getItems().addAll(vet);
+            listReservation.getItems().addAll(res);
         } else {
             listReservation.getItems().clear();
             listReservation.getItems().addAll(rs.AfficherReservation());

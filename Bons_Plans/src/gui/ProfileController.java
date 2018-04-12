@@ -65,6 +65,8 @@ public class ProfileController implements Initializable {
     private AnchorPane Main;
     private Pagination pagination;
     private List<Etablissement> etablis;
+    @FXML
+    private JFXButton reservation;
 
     /**
      * Initializes the controller class.
@@ -105,6 +107,7 @@ public class ProfileController implements Initializable {
         System.out.println(ex);
                 }
     }
+    
 
     @FXML
     private void showMine(ActionEvent event) {
@@ -235,6 +238,10 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void showGoing(ActionEvent event) {
+    }
+
+    @FXML
+    private void showReserved(ActionEvent event) {
     }
     }    
     

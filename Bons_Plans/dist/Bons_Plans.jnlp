@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Bons_Plans.jar" size="23928233" download="eager" />
+    <jar href="Bons_Plans.jar" size="23936152" download="eager" />
     <jar href="lib\GMapsFX-2.0.9.jar" size="166541" download="eager" />
     <jar href="lib\RG84M6R.jar" size="7027599" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
@@ -42,6 +42,7 @@
     <jar href="lib\restfb-2.0.0-rc.2.jar" size="1055207" download="eager" />
     <jar href="lib\slf4j-api-1.7.25.jar" size="41203" download="eager" />
     <jar href="lib\smtp.jar" size="52195" download="eager" />
+    <jar href="lib\twilio-7.17.8-jar-with-dependencies.jar" size="8810465" download="eager" />
     <jar href="lib\twilio-7.8.0.jar" size="1268794" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Bons_Plans" >

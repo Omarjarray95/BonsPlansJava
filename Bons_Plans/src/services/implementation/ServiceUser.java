@@ -31,6 +31,10 @@ public class ServiceUser {
     static DataSource ds = new DataSource ();
     Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
+            private PreparedStatement PS;
+                private Connection connection;
+
+
     
     public ServiceUser() {
         try {
@@ -45,7 +49,7 @@ public class ServiceUser {
         
         
         
-            String req = "INSERT INTO `user` (username,email,password,roles,nom,datedenaissance,phone,sex,valid,test)"
+            String req = "INSERT INTO `user1` (username,email,password,roles,nom,datedenaissance,phone,sex,valid,test)"
                     + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             
             PreparedStatement pre ;
@@ -71,7 +75,7 @@ public class ServiceUser {
     public static int deleteUser (User u){
     int status =0;
         try {
-            String sql = "DELETE FROM `user` WHERE id=?";
+            String sql = "DELETE FROM `user1` WHERE id=?";
 
             PreparedStatement src = ds.getConnection().prepareStatement(sql);
 
@@ -138,7 +142,7 @@ public class ServiceUser {
        public List<User> afficher() {
             List<User> user = new ArrayList<User>();
         try {
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user1";
 
             PreparedStatement src = con.prepareStatement(sql);
               
@@ -187,7 +191,7 @@ public class ServiceUser {
 //      Connection conn = DriverManager.getConnection(myUrl, "root", "");
     
       // create the java mysql update preparedstatement
-      String query = "update user set username = ? ,nom = ? ,email = ?,phone = ? where `username` = ?";
+      String query = "update user1 set username = ? ,nom = ? ,email = ?,phone = ? where `username` = ?";
 //      PreparedStatement preparedStmt = con.prepareStatement(query);
 //PreparedStatement preparedStmt ;
             
@@ -221,7 +225,7 @@ public class ServiceUser {
      public boolean notExistUser(String email,String pas) throws ClassNotFoundException, SQLException {
          
              PreparedStatement ps;            
-             ps = con.prepareStatement("SELECT `email` ,`password` FROM `user` WHERE `email` = ? AND `password` = ?");
+             ps = con.prepareStatement("SELECT `email` ,`password` FROM `user1` WHERE `email` = ? AND `password` = ?");
              ps.setString(1, String.valueOf(email));
              ps.setString(2, String.valueOf(pas));
              ResultSet result = ps.executeQuery();
@@ -230,7 +234,29 @@ public class ServiceUser {
       
     }
      
-     
+        public User findbynum(String num) {
+        String req = "select * from user1 where phone =?";
+        User u = null;
+        try 
+        {
+            
+            PreparedStatement PS1 = con.prepareStatement("select * from user1 where id=1");
+            System.out.println("uu");
+            PS1.setString(1, num);
+            ResultSet rs = PS1.executeQuery();
+            while (rs.next()) {
+                
+                u = new User (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8));
+                System.out.println(rs.getInt(1) + "aaaa");
+                            }
+        } 
+        catch (SQLException e) 
+        {
+           System.out.println("aaaa");
+        }
+        return u;
+    }
+    
      
      
      
