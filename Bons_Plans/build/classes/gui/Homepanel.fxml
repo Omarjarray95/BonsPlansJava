@@ -3,17 +3,49 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="137.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomepanelController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="160.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomepanelController">
    <children>
-      <JFXButton fx:id="acceuil" onAction="#SetAcceuil" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Acceuil" textFill="WHITE" />
-      <Label prefHeight="47.0" prefWidth="100.0" />
-      <JFXButton fx:id="actu" onAction="#SetAct" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Actualités" textFill="WHITE" />
-      <Label prefHeight="55.0" prefWidth="100.0" />
-      <JFXButton fx:id="profile" onAction="#GoProfile" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Profile" textFill="WHITE" />
-      <Label prefHeight="57.0" prefWidth="100.0" />
-      <JFXButton fx:id="para" onAction="#SetPara" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Paramètres" textFill="#eeeeee" />
-      <Label prefHeight="49.0" prefWidth="100.0" />
-      <JFXButton fx:id="contact" onAction="#GoContact" prefHeight="40.0" prefWidth="142.0" style="-fx-background-color: #f59d63;" text="Contact" textFill="WHITE" />
+      <JFXButton fx:id="acceuil" buttonType="RAISED" onAction="#SetAcceuil" prefHeight="80.0" prefWidth="161.0" style="-fx-background-color: #e5c1b3 #e5c1b3;" text="Acceuil" textFill="#023956">
+         <ripplerFill>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Label prefHeight="24.0" prefWidth="169.0" />
+      <JFXButton fx:id="actu" buttonType="RAISED" onAction="#SetAct" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #e5c1b3;" text="Actualités" textFill="#023956">
+         <ripplerFill>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Label prefHeight="24.0" prefWidth="173.0" />
+      <JFXButton fx:id="profile" buttonType="RAISED" onAction="#GoProfile" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #e5c1b3;" text="Profile" textFill="#023956">
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+            </RadialGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Label prefHeight="24.0" prefWidth="181.0" />
+      <JFXButton fx:id="para" buttonType="RAISED" onAction="#SetPara" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #e5c1b3;" text="Paramètres" textFill="#023956">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Label prefHeight="24.0" prefWidth="183.0" />
+      <JFXButton fx:id="contact" buttonType="RAISED" onAction="#GoContact" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #e5c1b3;" text="Contact" textFill="#023956">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <Label prefHeight="24.0" prefWidth="100.0" />
+      <JFXButton fx:id="deconnexion" buttonType="RAISED" onAction="#deconnect" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #e5c1b3;" text="Déconnexion" textFill="#023956">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
    </children>
 </VBox>

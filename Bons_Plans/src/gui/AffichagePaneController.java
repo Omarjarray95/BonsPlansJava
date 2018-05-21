@@ -1,5 +1,8 @@
 package gui;
 
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entities.Etablissement;
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +35,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -76,6 +80,10 @@ public class AffichagePaneController implements Initializable {
     
     @FXML
     private Pagination Pagination;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
     
     private String type;
     
@@ -85,6 +93,29 @@ public class AffichagePaneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+                try 
+                {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } 
+                catch (IOException ex) 
+                {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
+                
         ESL0 = ES0.Affiche();
         int P = (ESL0.size()/4);
         if(ESL0.size()%4>0)
@@ -120,6 +151,7 @@ public class AffichagePaneController implements Initializable {
         HFDESC.setToggleGroup(TG);
         BMASC.setToggleGroup(TG);
         BMDESC.setToggleGroup(TG);
+        
         Pagination.setPageFactory(new Callback<Integer, Node>() 
         {
             @Override
@@ -469,8 +501,8 @@ public class AffichagePaneController implements Initializable {
             VB.setAlignment(Pos.BASELINE_CENTER);
             Label LBM = new Label(Integer.toString(E.getBudgetmoyen()) + " DT");
             Label LHOHF = new Label(E.getHoraire_ouverture() + " - " + E.getHoraire_fermeture());
-            LBM.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-            LHOHF.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+            LBM.setFont(Font.font("Verdana",FontWeight.BOLD,14));
+            LHOHF.setFont(Font.font("Verdana",FontWeight.BOLD,14));
             VB.getChildren().addAll(IV,Nom1,LBM,LHOHF);
             i++;
             if (i == 4)

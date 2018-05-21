@@ -17,7 +17,8 @@ public class DemandePartenariatService {
 
     public DemandePartenariatService() 
     {
-        connection = DataSource.getInstance().getConnection();
+        connection =  DataSource.getInstance().getConnection();
+       
     }
     
     private Connection connection;

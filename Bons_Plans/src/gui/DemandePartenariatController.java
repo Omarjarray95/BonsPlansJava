@@ -92,10 +92,10 @@ public class DemandePartenariatController implements Initializable {
          try 
                 {
                     
-                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
                     Parent root = (Parent) FL.load();
-                    ProfileEtablissementController EVC = FL.getController();
-                    EVC.loadData(id);
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(id);
                     MainPane.getChildren().setAll(root);
                 } 
                 catch (IOException ex) 

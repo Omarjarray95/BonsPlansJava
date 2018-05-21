@@ -100,10 +100,11 @@ Parent root = FXMLLoader.load(getClass().getResource("ListEtablissements.fxml"))
                 {
                     int Id=e.getId();
                     
-                    FXMLLoader FL = new FXMLLoader(getClass().getResource("ProfileEtablissement.fxml"));
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("EtablissementVBox.fxml"));
                     Parent root = (Parent) FL.load();
-                    ProfileEtablissementController EVC = FL.getController();
-                    EVC.loadData(Id);
+                    EtablissementVBoxController EVC = FL.getController();
+                    EVC.ShowEtablissement(Id);
+                    
                     MainPane.getChildren().setAll(root);
                 } 
                 catch (IOException ex) 

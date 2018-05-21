@@ -6,32 +6,45 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListEventsController">
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="480.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListEventsController">
    <children>
-      <Label layoutX="158.0" layoutY="18.0" prefHeight="35.0" prefWidth="117.0" text="Les évenements actuels" textFill="#009688">
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="481.0" layoutY="60.0" prefHeight="35.0" prefWidth="160.0" text="Les évenements actuels" textAlignment="CENTER" textFill="#023956">
          <font>
-            <Font name="Gill Sans MT Ext Condensed Bold" size="20.0" />
+            <Font name="Gill Sans MT Ext Condensed Bold" size="23.0" />
          </font>
       </Label>
-<Label layoutX="182.0" layoutY="75.0" prefHeight="17.0" prefWidth="72.0" text="Evenement" textFill="#f59d63" />
-<Label layoutX="361.0" layoutY="75.0" prefHeight="17.0" prefWidth="60.0" text="Date" textFill="#f59d63" />
-<Separator fx:id="sep" layoutX="158.0" layoutY="100.0" prefHeight="0.0" prefWidth="317.0" />
-<VBox fx:id="VboxEvent" layoutX="147.0" layoutY="100.0" prefHeight="292.0" prefWidth="317.0">
+<Label layoutX="291.0" layoutY="118.0" prefHeight="21.0" prefWidth="96.0" text="Evenement" textFill="#f59d63">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+<Label layoutX="470.0" layoutY="118.0" prefHeight="17.0" prefWidth="60.0" text="Date" textFill="#f59d63">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+<Separator fx:id="sep" layoutX="267.0" layoutY="143.0" prefHeight="0.0" prefWidth="317.0" />
+<VBox fx:id="VboxEvent" layoutX="267.0" layoutY="146.0" prefHeight="318.0" prefWidth="331.0">
    <children>
       <AnchorPane fx:id="EventsAnchorPane" prefHeight="23.0" prefWidth="329.0">
                <children>
-                  <Label fx:id="date" layoutX="211.0" layoutY="3.0" prefHeight="17.0" prefWidth="72.0" text="Label" />
+                  <Label fx:id="date" layoutX="200.0" layoutY="3.0" prefHeight="17.0" prefWidth="72.0" text="Label" />
                   <Hyperlink fx:id="event" layoutX="28.0" prefHeight="23.0" prefWidth="131.0" text="Hyperlink" />
                </children>
             </AnchorPane>
    </children>
 </VBox>
-      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
-      <JFXHamburger fx:id="Hamburger" layoutX="541.0" layoutY="35.0" />
-      <JFXTextField fx:id="searchText" focusColor="#f59d63" labelFloat="true" layoutX="300.0" layoutY="23.0" onKeyTyped="#ChangeList" />
+      <JFXTextField fx:id="searchText" focusColor="#f59d63" labelFloat="true" layoutX="614.0" layoutY="62.0" onKeyTyped="#ChangeList" unFocusColor="#f59d63" />
+      <JFXDrawer fx:id="drawer" prefHeight="480.0" prefWidth="160.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="770.0" layoutY="44.0" />
    </children>
 </AnchorPane>

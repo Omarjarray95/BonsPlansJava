@@ -4,27 +4,37 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OffreProfileController">
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="480.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OffreProfileController">
    <children>
-      <Text fx:id="nom" layoutX="203.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="CENTER" wrappingWidth="263.029478861019">
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="351.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début :" wrappingWidth="54.861328125" />
+      <Label fx:id="deb" layoutX="450.0" layoutY="105.0" text="deb" />
+      <Text layoutX="351.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin :" wrappingWidth="54.861328125" />
+      <Label fx:id="fin" layoutX="450.0" layoutY="167.0" text="fin" />
+      <JFXButton id="loginbtn" fx:id="modifer" layoutX="356.0" layoutY="412.0" onAction="#modify" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Modifier" textFill="WHITE" />
+      <JFXButton id="loginbtn" fx:id="supp" layoutX="356.0" layoutY="379.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Supprimer" textFill="WHITE" />
+      <JFXDrawer fx:id="drawer" prefHeight="480.0" prefWidth="160.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="770.0" layoutY="44.0" />
+      <Text fx:id="nom" fill="#023956" layoutX="487.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="CENTER" wrappingWidth="228.02947886101902">
          <font>
-            <Font name="Arial Rounded MT Bold" size="20.0" />
+            <Font name="Gill Sans MT Ext Condensed Bold" size="28.0" />
          </font>
       </Text>
-      <Text layoutX="240.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début :" wrappingWidth="54.861328125" />
-      <Label fx:id="deb" layoutX="339.0" layoutY="94.0" text="deb" />
-      <Text layoutX="240.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin :" wrappingWidth="54.861328125" />
-      <Label fx:id="fin" layoutX="339.0" layoutY="156.0" text="fin" />
-      <TextArea fx:id="des" layoutX="237.0" layoutY="193.0" prefHeight="92.0" prefWidth="195.0" text="Description" />
-      <JFXButton id="loginbtn" fx:id="modifer" layoutX="237.0" layoutY="336.0" onAction="#modify" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Modifier" textFill="WHITE" />
-      <JFXButton id="loginbtn" fx:id="supp" layoutX="237.0" layoutY="303.0" onAction="#delete" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Supprimer" textFill="WHITE" />
-      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
-      <JFXHamburger fx:id="Hamburger" layoutX="550.0" layoutY="20.0" />
-      <JFXButton id="loginbtn" fx:id="fb" layoutX="360.0" layoutY="336.0" onAction="#Share" prefHeight="25.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Partager sur Fb" textFill="WHITE" />
+      <Label fx:id="des" layoutX="351.0" layoutY="308.0" prefHeight="55.0" prefWidth="258.0" text="Label" />
+      <Text fx:id="labelCode" layoutX="351.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code promotion" wrappingWidth="70.861328125" />
+      <Label fx:id="code" layoutX="450.0" layoutY="200.0" text="deb" />
+      <Text fx:id="labelPouc" layoutX="351.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pourcentage Off" wrappingWidth="70.86132529657334" />
+      <Label fx:id="off" layoutX="450.0" layoutY="262.0" text="fin" />
+ 
    </children>
 </AnchorPane>

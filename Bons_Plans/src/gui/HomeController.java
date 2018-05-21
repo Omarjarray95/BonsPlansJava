@@ -103,6 +103,7 @@ public class HomeController implements Initializable {
                 
                 EtablissementService ES = new EtablissementService();
                 ArrayList<Etablissement> ALE = ES.FindByType("Restaurants/Cafés");
+                System.out.println(ALE);
                 ArrayList<Etablissement> ALE1 = ES.FindByType("Boutiques");
                 ArrayList<Etablissement> ALE2 = ES.FindByType("Hotels");
                 ArrayList<Etablissement> ALE3 = ES.FindByType("Autres");
@@ -165,6 +166,8 @@ public class HomeController implements Initializable {
             }});
                     
                 HBResto.getChildren().add(AfficherTout);
+                AfficherTout.setAlignment(Pos.BASELINE_CENTER);
+                HBResto.setAlignment(Pos.BASELINE_CENTER);
                 if (ALE1.size() > 0)
                 {
                 for(int i = 0; i < 3; i++)

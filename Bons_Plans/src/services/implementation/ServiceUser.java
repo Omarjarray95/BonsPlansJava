@@ -31,6 +31,10 @@ public class ServiceUser {
     static DataSource ds = new DataSource ();
     Connection con = DataSource.getInstance().getConnection();
     private Statement ste;
+            private PreparedStatement PS;
+                private Connection connection;
+
+
     
     public ServiceUser() {
         try {
@@ -85,7 +89,7 @@ public class ServiceUser {
         return status;}
     
 //          public void Loginn(String usr, String pass) throws SQLException{
-//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user` WHERE `email` = ? AND `password` = ? ");
+//              String sql=("SELECT `id`, `Email`, `password`, `test` ,`nom` ,`prenom` FROM `user1` WHERE `email` = ? AND `password` = ? ");
 //              PreparedStatement ps = ds.getConnection().prepareStatement(sql);
 //            
 //            ps.setString(1, String.valueOf(usr));
@@ -201,7 +205,7 @@ public class ServiceUser {
 
       // execute the java preparedstatement
       preparedStmt.executeUpdate();
-     System.out.println("Done :) <--------------");
+     System.out.println(username);
 //      conn.close();
     }
     catch (Exception e)
@@ -230,7 +234,29 @@ public class ServiceUser {
       
     }
      
-     
+        public User findbynum(String num) {
+        String req = "select * from user1 where phone =?";
+        User u = null;
+        try 
+        {
+            
+            PreparedStatement PS1 = con.prepareStatement("select * from user1 where id=1");
+            System.out.println("uu");
+            PS1.setString(1, num);
+            ResultSet rs = PS1.executeQuery();
+            while (rs.next()) {
+                
+                u = new User (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7), rs.getString(8));
+                System.out.println(rs.getInt(1) + "aaaa");
+                            }
+        } 
+        catch (SQLException e) 
+        {
+           System.out.println("aaaa");
+        }
+        return u;
+    }
+    
      
      
      

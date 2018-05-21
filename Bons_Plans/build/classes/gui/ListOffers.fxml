@@ -6,34 +6,50 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListOffersController">
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="480.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListOffersController">
     <children>
-      <Label layoutX="207.0" layoutY="18.0" prefHeight="35.0" prefWidth="147.0" text="Les offres actuels" textFill="#009688">
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="483.0" layoutY="77.0" prefHeight="35.0" prefWidth="122.0" text="Les offres actuels" textFill="#023956">
          <font>
-            <Font name="Gill Sans MT Ext Condensed Bold" size="20.0" />
+            <Font name="Gill Sans MT Ext Condensed Bold" size="23.0" />
          </font>
       </Label>
-<Label layoutX="197.0" layoutY="70.0" prefHeight="17.0" prefWidth="72.0" text="Offre" textFill="#f59d63" />
-<Label layoutX="322.0" layoutY="70.0" prefHeight="17.0" prefWidth="60.0" text="Date début" textFill="#f59d63" />
-<Separator fx:id="sep" layoutX="171.0" layoutY="87.0" prefHeight="8.0" prefWidth="341.0" />
-<VBox fx:id="VboxEvent" layoutX="164.0" layoutY="95.0" prefHeight="295.0" prefWidth="355.0">
+<Label layoutX="243.0" layoutY="125.0" prefHeight="17.0" prefWidth="72.0" text="Offre" textFill="#f59d63">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+<Label layoutX="368.0" layoutY="125.0" prefHeight="17.0" prefWidth="60.0" text="Date début" textFill="#f59d63">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+<Separator fx:id="sep" layoutX="217.0" layoutY="142.0" prefHeight="8.0" prefWidth="341.0" />
+<VBox fx:id="VboxEvent" layoutX="189.0" layoutY="150.0" prefHeight="312.0" prefWidth="416.0">
    <children>
       <AnchorPane fx:id="EventsAnchorPane" prefHeight="8.0" prefWidth="759.0">
                <children>
-                  <Hyperlink fx:id="offre" layoutX="19.0" layoutY="-3.0" text="Hyperlink" />
-                  <Label fx:id="deb" layoutX="161.0" layoutY="2.0" text="Label" />
-                  <Label fx:id="fin" layoutX="274.0" text="Label" />
+                  <Hyperlink fx:id="offre" layoutX="20.0" layoutY="-3.0" prefHeight="23.0" prefWidth="111.0" text="Hyperlink" />
+                  <Label fx:id="deb" layoutX="194.0" layoutY="2.0" prefHeight="17.0" prefWidth="43.0" text="Label" />
+                  <Label fx:id="fin" layoutX="323.0" layoutY="2.0" prefHeight="17.0" prefWidth="43.0" text="Label" />
                </children>
             </AnchorPane>
    </children>
 </VBox>
-      <Label layoutX="438.0" layoutY="70.0" prefHeight="17.0" prefWidth="60.0" text="Date fin " textFill="#f59d63" />
-      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="137.0" />
-      <JFXHamburger fx:id="Hamburger" layoutX="541.0" layoutY="35.0" />
-      <JFXTextField fx:id="searchText" focusColor="#f59d63" labelFloat="true" layoutX="363.0" layoutY="23.0" onKeyTyped="#ChangeList" />
+      <Label layoutX="498.0" layoutY="125.0" prefHeight="17.0" prefWidth="60.0" text="Date fin " textFill="#f59d63">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <JFXTextField fx:id="searchText" focusColor="#f59d63" labelFloat="true" layoutX="610.0" layoutY="79.0" onKeyTyped="#ChangeList" unFocusColor="#f59d63" />
+      <JFXDrawer fx:id="drawer" prefHeight="480.0" prefWidth="160.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="770.0" layoutY="44.0" />
    </children>
 </AnchorPane>

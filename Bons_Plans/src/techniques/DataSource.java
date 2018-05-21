@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @author Ons Ben Othmen
  */
 public class DataSource {
-       private String url;
+    private String url;
     private String login;
     private String password;
     private static DataSource dataSource;

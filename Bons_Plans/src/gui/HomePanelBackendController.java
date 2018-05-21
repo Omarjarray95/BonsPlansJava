@@ -115,7 +115,17 @@ public class HomePanelBackendController implements Initializable {
     }
 
     @FXML
-    private void SetDemandes(ActionEvent event) {
+    private void SetDemandes(ActionEvent event) throws IOException 
+    {
+        Parent homePage = FXMLLoader.load(getClass().getResource("BackendDemandes.fxml"));
+        
+        Scene homePage_scene=new Scene(homePage);
+        
+        Stage app_stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        
+        app_stage.setScene(homePage_scene);
+        
+        app_stage.show();
     }
 
     @FXML

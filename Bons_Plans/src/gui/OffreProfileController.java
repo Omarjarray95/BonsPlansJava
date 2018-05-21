@@ -9,8 +9,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Etablissement;
 import facebook4j.Facebook;
 import entities.Offre;
+import entities.Session;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.PostUpdate;
@@ -37,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import services.implementation.EtablissementService;
 import services.implementation.EvenementService;
 import services.implementation.OffreService;
 
@@ -49,7 +52,13 @@ public class OffreProfileController implements Initializable {
 
     private int id;
     @FXML
-    private JFXButton fb;
+    private Text labelCode;
+    @FXML
+    private Label code;
+    @FXML
+    private Text labelPouc;
+    @FXML
+    private Label off;
 
     public int getId() {
         return id;
@@ -65,7 +74,7 @@ public class OffreProfileController implements Initializable {
     @FXML
     private Label fin;
     @FXML
-    private TextArea des;
+    private Label des;
     @FXML
     private JFXButton modifer;
     @FXML
@@ -101,14 +110,32 @@ public class OffreProfileController implements Initializable {
                     if(drawer.isShown()) drawer.close();
                     else drawer.open();
                 });
-            
+                EtablissementService serviceEtab=new EtablissementService();
+                     OffreService service=new OffreService();
+                    Offre e=service.findById(id);
+//                     if (serviceEtab.checkPartner(e.getId_etablissement())==0){
+//                                code.setVisible(false);
+//                                off.setVisible(false);
+//                                labelCode.setVisible(false);
+//                                labelPouc.setVisible(false);
+//            }
+//            
 
         
     }    
     public void loadData(int id){
+        OffreService service=new OffreService();
+        Offre e=service.findById(id);
+        Session ss= new Session ();
+        int id_user=ss.user.id;
+        EtablissementService serviceEtab=new EtablissementService();
+        
+        Etablissement E=serviceEtab.findById(e.getId_etablissement());
+        if (id_user!=E.getResponsable()){
+        modifer.setVisible(false);
+        supp.setVisible(false);
+        }
    
-          OffreService service=new OffreService();
-          Offre e=service.findById(id);
           nom.setText(e.getOffre());
           deb.setText(e.getDate_debut().toString());
           fin.setText(e.getDate_fin().toString());
@@ -147,38 +174,6 @@ public class OffreProfileController implements Initializable {
                              }
     }
 
-    @FXML
-    private void Share(ActionEvent event) {
-             PostUpdate post = null;
-
-
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthAppId("2100000006903508")
-                .setOAuthAppSecret("06094bbee10e79f657d5600f739c8c3e")
-                .setOAuthAccessToken("EAACEdEose0cBAHShinyZALOEr5VxWtsZCwvcrBUmfMPTtzegPOcL0YdNVIjCsm8Ko8jUAOXyB3doJiHIRfa9g7iBIJZB8XJEgvvSGGUiQnx8vZCWty0F16ZAAYOtFllAeWdNvErhZA7fhPFFcrQG2154gVB8h4ogRZAfi8zNYRrEzw3kxRu6bfHhMBdwyZCPvRohAMosUE56bAZDZD")
-                .setOAuthPermissions("publish_actions,manage_pages,publish_pages...");
-        FacebookFactory ff = new FacebookFactory(cb.build());
-
-        Facebook facebook = ff.getInstance();
-
-        try {
-            post = new PostUpdate(new URL("http://localhost/Bons_Plans/web/app_dev.php/BonsPlans/offreUser/"+id))
-                    .picture(new URL("http://localhost/Bons_Plans/web/app_dev.php/BonsPlans/offreUser/"+id))
-                    .name("Facebook4J - A Java library for the Facebook Graph API")
-                    .caption("facebook4j.org")
-                    .description("Facebook4J is a Java library for the Facebook Graph API.");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-
-            facebook.postFeed(post);
-        } catch (FacebookException e) {
-            e.printStackTrace();
-       
-         System.out.println("klj")   ; }
-    }
 }
    
     

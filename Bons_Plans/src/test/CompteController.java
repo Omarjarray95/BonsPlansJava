@@ -6,10 +6,14 @@
 package test;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import entities.Session;
 import entities.User;
+import gui.HomeController;
 import gui.LoginController;
 import gui.ReclamationController;
 import java.io.IOException;
@@ -30,6 +34,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import services.implementation.ServiceUser;
 
 /**
@@ -39,8 +44,6 @@ import services.implementation.ServiceUser;
  */
 public class CompteController implements Initializable {
 
-    @FXML
-    private MaterialDesignIconView iconClose;
     @FXML
     private Label lbnom;
     @FXML
@@ -59,14 +62,37 @@ public class CompteController implements Initializable {
     private JFXTextField phoneu;
     @FXML
     private JFXTextField usernameu;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try
-         {
+                  try 
+                  {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
+        try{
             Session ss =new Session();
               lbnom.setText(ss.user.nom);
               /*emailu.setText(ss.user.Email);
@@ -155,6 +181,7 @@ public class CompteController implements Initializable {
         alert.setContentText(txt);
         alert.showAndWait();
         }
+
 
 
     @FXML

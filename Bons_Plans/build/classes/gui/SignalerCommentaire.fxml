@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SignalerCommentaireController">
+
+   <children>
+      <ImageView fx:id="alert" fitHeight="745.0" fitWidth="749.0" opacity="0.32" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/pascontent.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Envoyer" layoutX="222.0" layoutY="403.0" mnemonicParsing="false" onAction="#Envoyer" prefHeight="31.0" prefWidth="305.0" style="-fx-background-color: #B22222;" text="Envoyer" textFill="#f8f7f7">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <RadioButton fx:id="Grossier" layoutX="119.0" layoutY="328.0" mnemonicParsing="false" text="Grossier">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="Spam" layoutX="349.0" layoutY="330.0" mnemonicParsing="false" text="Spam">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="PlusPertinent" layoutX="555.0" layoutY="332.0" mnemonicParsing="false" text="N'est plus pertinent">
+         <toggleGroup>
+            <ToggleGroup fx:id="TG" />
+         </toggleGroup>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="59.0" layoutY="265.0" prefHeight="17.0" prefWidth="456.0" text="Pourquoi desirez vous signaler ce commentaire ?" textFill="#0d0d0d">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

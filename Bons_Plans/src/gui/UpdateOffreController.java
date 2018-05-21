@@ -7,7 +7,9 @@ package gui;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import entities.Etablissement;
 import entities.Evenement;
 import entities.Offre;
 import java.io.IOException;
@@ -23,15 +25,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.validation.ValidationMessage;
 import org.controlsfx.validation.ValidationSupport;
+import services.implementation.EtablissementService;
 import services.implementation.EvenementService;
 import services.implementation.OffreService;
 
@@ -42,6 +48,16 @@ import services.implementation.OffreService;
  */
 public class UpdateOffreController implements Initializable {
    private int id;
+    @FXML
+    private AnchorPane MainPane;
+    @FXML
+    private JFXTextField pourcentage;
+    @FXML
+    private Label pourLabel;
+    @FXML
+    private Label codeLabel;
+    @FXML
+    private JFXTextField code;
 
     public int getId() {
         return id;
@@ -75,6 +91,16 @@ public void LoadData(int id){
           deb.setValue(ddatedeb);
           fin.setValue(ddatefin);
           setId(id);
+            EtablissementService serviceEtab=new EtablissementService();
+                        Etablissement etab=serviceEtab.findById(id);
+                        System.out.println(serviceEtab.checkPartner(id));
+                        System.out.println(id);
+     if (serviceEtab.checkPartner(id)==0){
+                                code.setVisible(false);
+                                pourcentage.setVisible(false);
+                                pourLabel.setVisible(false);
+                                codeLabel.setVisible(false);
+            }
    
      
 }
@@ -140,9 +166,27 @@ public void LoadData(int id){
                                 .hideAfter(Duration.seconds(4))
                                 .position(Pos.BASELINE_LEFT);
                         NotificationBuilder.showConfirm();
+                            try 
+                {
+                    Offre off=service.findByName(offer.getOffre());
+                    int Idd = off.getId();
+                    FXMLLoader FL = new FXMLLoader(getClass().getResource("OffreProfile.fxml"));
+                    Parent root = (Parent) FL.load();
+                    OffreProfileController EVC = FL.getController();
+                    EVC.loadData(Idd);
+                    MainPane.getChildren().setAll(root);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(ActualitesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
         }
     
+    }
+
+    @FXML
+    private void AjoutOffre(ActionEvent event) {
     }
     
 }

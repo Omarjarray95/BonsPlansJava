@@ -5,15 +5,27 @@
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandePartenariatController">
+<AnchorPane id="AnchorPane" fx:id="MainPane" prefHeight="480.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandePartenariatController">
      <children>
-     
-      <JFXDrawer fx:id="drawer" prefHeight="400.0" prefWidth="100.0" />
-      <JFXHamburger fx:id="Hamburger" layoutX="544.0" layoutY="41.0" />
-      <JFXTextArea fx:id="des" layoutX="261.0" layoutY="81.0" prefHeight="143.0" prefWidth="283.0" />
-      <Label layoutX="186.0" layoutY="73.0" text="Description" />
-      <JFXButton id="loginbtn" fx:id="submit" layoutX="261.0" layoutY="279.0" onAction="#Demander" prefHeight="25.0" prefWidth="124.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Envoyer demande" textFill="WHITE" />
+      <ImageView fitHeight="480.0" fitWidth="850.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.jpg" />
+         </image>
+      </ImageView>
+      <JFXTextArea fx:id="des" layoutX="284.0" layoutY="196.0" prefHeight="143.0" prefWidth="283.0" />
+      <Label layoutX="284.0" layoutY="166.0" prefHeight="17.0" prefWidth="275.0" text="Pourquoi vous voulez etre notre partenaire ? " />
+      <JFXButton id="loginbtn" fx:id="submit" layoutX="284.0" layoutY="361.0" onAction="#Demander" prefHeight="25.0" prefWidth="177.0" ripplerFill="WHITE" style="-fx-background-color: #023956;" text="Envoyer la demande" textFill="WHITE" />
+      <JFXDrawer fx:id="drawer" prefHeight="480.0" prefWidth="160.0" />
+      <JFXHamburger fx:id="Hamburger" layoutX="770.0" layoutY="44.0" />
+      <Label layoutX="547.0" layoutY="67.0" prefHeight="51.0" prefWidth="192.0" text="Etre notre partenaire ? " textFill="#023956">
+         <font>
+            <Font name="Gill Sans MT Ext Condensed Bold" size="28.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

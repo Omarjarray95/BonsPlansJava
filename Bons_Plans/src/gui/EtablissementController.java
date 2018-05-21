@@ -1,7 +1,11 @@
 package gui;
 
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import entities.Demande;
 import entities.Etablissement;
 import java.io.File;
 import java.io.IOException;
@@ -94,11 +98,33 @@ public class EtablissementController implements Initializable
     
     public String Add;
     @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger Hamburger;
     private Button BoutonTest;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+                 try {
+                VBox box = FXMLLoader.load(getClass().getResource("Homepanel.fxml"));
+                drawer.setSidePane(box);
+                } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                //Hamburger
+                
+                HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(Hamburger);
+                burgerTask.setRate(-1);
+                
+                Hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e ->
+                {
+                    burgerTask.setRate(burgerTask.getRate() * -1);
+                    burgerTask.play();
+                    
+                    if(drawer.isShown()) drawer.close();
+                    else drawer.open();
+                });
         Type.setItems(TypeItems);
         Image I = new Image(getClass().getResourceAsStream("Phone.png"));
         Image I1 = new Image(getClass().getResourceAsStream("Globe.png"));
@@ -129,11 +155,25 @@ public class EtablissementController implements Initializable
         {
             Type1.setVisible(true);
             Type1.setItems(Type1RItems);
+            Horaire.setVisible(true);
+            HoraireOuverture.setVisible(true);
+            HoraireFermeture.setVisible(true);
+            BudMoy.setVisible(true);
+            BudgetMoyen.setVisible(true);
+            BMDT.setVisible(true);
+            NVK1.setVisible(true);
         }
         if (T == "Boutiques")
         {
             Type1.setVisible(true);
             Type1.setItems(Type1BItems);
+            Horaire.setVisible(true);
+            HoraireOuverture.setVisible(true);
+            HoraireFermeture.setVisible(true);
+            BudMoy.setVisible(true);
+            BudgetMoyen.setVisible(true);
+            BMDT.setVisible(true);
+            NVK1.setVisible(true);
         }
         if (T == "Hotels")
         {
@@ -145,11 +185,19 @@ public class EtablissementController implements Initializable
             BudMoy.setVisible(false);
             BudgetMoyen.setVisible(false);
             BMDT.setVisible(false);
+            NVK1.setVisible(false);
         }
         if (T == "Autres")
         {
             Type1.setVisible(true);
             Type1.setItems(Type1LItems);
+            Horaire.setVisible(true);
+            HoraireOuverture.setVisible(true);
+            HoraireFermeture.setVisible(true);
+            BudMoy.setVisible(true);
+            BudgetMoyen.setVisible(true);
+            BMDT.setVisible(true);
+            NVK1.setVisible(true);
         }
     }
 
@@ -463,6 +511,65 @@ public class EtablissementController implements Initializable
         System.out.println(Add);
         Adresse.setPromptText(Add);
         System.out.println(Adresse.getText());
+    }
+    
+    public void ModifDEtablissement(int Id)
+    {
+        DemandeService DS = new DemandeService();
+        Demande D = DS.findById(Id);
+        Nom.setText(D.getNom());
+        Type.setValue(D.getType());
+        String S = D.getType();
+        if (S.equals("Restaurants/Cafés"))
+                {
+                    Type1.setValue(D.getType_resto());
+                }
+        if (S.equals("Boutiques"))
+                {
+                    Type1.setValue(D.getType_shops());
+                }
+        if (S.equals("Hotels"))
+                {
+                    Type1.setValue(D.getNbrStars());
+                }
+        if (S.equals("Autres"))
+                {
+                    Type1.setValue(D.getType_loisirs());
+                }
+        Adresse.setText(D.getAdresse());
+        Description.setText(D.getDescription());
+        LocalTime LTO = LocalTime.parse(D.getHoraire_ouverture());
+        LocalTime LTF = LocalTime.parse(D.getHoraire_fermeture());
+        HoraireOuverture.setTime(LTO);
+        HoraireFermeture.setTime(LTF);
+        Numero.setText(Integer.toString(D.getNumtel()));
+        SiteWeb.setText(D.getUrl());
+        BudgetMoyen.setText(Integer.toString(D.getBudgetmoyen()));
+        Path.setText(D.getImage());
+        Submit.setText("Modifier Les Informations De " + D.getNom());
+        Submit.setOnAction(new EventHandler<ActionEvent>() 
+        {
+        @Override 
+        public void handle(ActionEvent e) 
+        {
+        EtablissementService ES = new EtablissementService();
+        Integer N = Integer.parseInt(Numero.getText());
+        Integer B = Integer.parseInt(BudgetMoyen.getText());
+        ES.Ajout(
+                Nom.getText(),
+                Type1.getValue().toString(),
+                Adresse.getText(),
+                Description.getText(),
+                HoraireOuverture.getTime().toString(),
+                HoraireFermeture.getTime().toString(),
+                N,
+                SiteWeb.getText(),
+                B,
+                Type.getValue().toString(),
+                Path.getText(),
+                D.getId_user());
+        }
+        });
     }
     
 }

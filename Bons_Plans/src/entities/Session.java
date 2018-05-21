@@ -61,7 +61,9 @@ public class Session
             Connection connection;
             PreparedStatement ps;
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bonsplans", "root", "");
-            ps = connection.prepareStatement("SELECT `id`, `Email`, `Roles` ,`nom` , `username` FROM `user1` WHERE `email` = ? AND `password` = ? ");
+            ps = connection.prepareStatement("SELECT `id`, `Email`, `test` ,`nom` , `username` FROM `user1` WHERE `email` = ? AND `password` = ? ");
+            ps.setString(1, String.valueOf(usr));
+            ps = connection.prepareStatement("SELECT `id`, `Email`, `Roles` ,`nom` , `username`, phone FROM `user1` WHERE `email` = ? AND `password` = ? ");
             ps.setString(1, String.valueOf(usr));
             ps.setString(2, String.valueOf(pass));
             ResultSet result = ps.executeQuery();
@@ -72,6 +74,7 @@ public class Session
                 user.setNom(result.getString("nom"));
                 user.setEmail(result.getString("email"));
                 user.setLogin(result.getString("username"));
+                user.setTel(result.getInt("phone"));
                 LoginController in = new LoginController();
                 String mr = result.getString("Roles");
                 switch (mr) 
@@ -79,10 +82,10 @@ public class Session
                     case "Admin":
                         in.setStage("BackendAdminAcceuil.fxml");
                         Al("Hello Admin!");
-                        break;
+                        break;   
                         
                     case "Membre":
-                        in.setStage("/gui/Profile.fxml");
+                        in.setStage("Profile.fxml");
                         Al("Hello Membre!");
                         break;
                         

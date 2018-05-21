@@ -32,6 +32,7 @@ public class User
     }
  
  public User(){}
+ 
     public User(String DTYPE, int id, String Email, Date birthDate, String nom, String password, String prenom, String sex, int tel, String login) {
         this.DTYPE = DTYPE;
         this.id = id;
@@ -44,7 +45,8 @@ public class User
         this.login=login;
     }
 
-    public User(int id, String username, String password, String roles,String nom, Date datedenaissance, int phone, String sex) {
+    public User(int id, String username, String password, String roles
+            ,String nom, Date datedenaissance, int phone, String sex) {
     
                         this.id=id;
                         this.login=username;

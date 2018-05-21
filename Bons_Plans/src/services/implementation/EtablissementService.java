@@ -24,10 +24,8 @@ public class EtablissementService
         connection = DataSource.getInstance().getConnection();
     }
     
-    public void Ajout(String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String type1, String image)
+    public void Ajout(String nom, String type, String adresse, String description, String horaire_ouverture, String horaire_fermeture, int numtel, String url, int budgetmoyen, String type1, String image, int ID)
     {
-        Session S = new Session();
-        int ID = S.user.id;
         try
         {
         PreparedStatement PS = connection.prepareStatement("Insert Into Etablissement(nom,type,adresse,description,horaire_ouverture,horaire_fermeture,numero,url,budget_moyen,type_loisirs,type_resto,type_shops,nbrStars,image_principale,id_representant) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -94,7 +92,8 @@ public class EtablissementService
                 String s13 = Res.getString("type_loisirs");
                 String s14 = Res.getString("type_shops");
                 String s15 = Res.getString("nbrStars");
-                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                int resp=Res.getInt("id_representant");
+                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,resp);
                 AL.add(E);
             }
             Res.close();
@@ -132,7 +131,11 @@ public class EtablissementService
              String s13 = Res.getString("type_loisirs");
              String s14 = Res.getString("type_shops");
              String s15 = Res.getString("nbrStars");
-             Etablissement E1 = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+             String s16 = Res.getString("rating");
+             int s17 = Res.getInt("nbrrating");
+             int s18 = Res.getInt("nbruser");
+             int resp=Res.getInt("id_representant");
+             Etablissement E1 = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,resp);
              E = E1;
              }
          } 
@@ -258,7 +261,8 @@ public class EtablissementService
                 String s13 = Res.getString("type_loisirs");
                 String s14 = Res.getString("type_shops");
                 String s15 = Res.getString("nbrStars");
-                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                int resp=Res.getInt("id_representant");
+                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,resp);
                 AL.add(E);
             }
             Res.close();
@@ -312,7 +316,8 @@ public class EtablissementService
                 String s13 = Res.getString("type_loisirs");
                 String s14 = Res.getString("type_shops");
                 String s15 = Res.getString("nbrStars");
-                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                int resp=Res.getInt("id_representant");
+                 Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,resp);
                 AL.add(E);
             }
             Res.close();
@@ -383,7 +388,8 @@ public class EtablissementService
                 String s13 = Res.getString("type_loisirs");
                 String s14 = Res.getString("type_shops");
                 String s15 = Res.getString("nbrStars");
-                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                int resp=Res.getInt("id_representant");
+                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,resp);
                 AL.add(E);
             }
             Res.close();
@@ -421,7 +427,8 @@ public class EtablissementService
                 String s13 = Res.getString("type_loisirs");
                 String s14 = Res.getString("type_shops");
                 String s15 = Res.getString("nbrStars");
-                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15);
+                int s16 = Res.getInt("id_representant");
+                Etablissement E = new Etablissement(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16);
                 AL.add(E);
             }
             Res.close();
@@ -546,11 +553,45 @@ public class EtablissementService
         }
         return etabs;
     }  
+        public ArrayList<Etablissement> getFavorits(int id) {
+        ArrayList<Etablissement> etabs = new ArrayList<>();
+        try {
+
+            String req = "select * from etablissement inner join wishliste on etablissement.id=wishliste.favoris_id where user_id=?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Etablissement etab = new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(19));
+                etabs.add(etab);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return etabs;
+    }  
+            public ArrayList<Etablissement> getVisits(int id) {
+        ArrayList<Etablissement> etabs = new ArrayList<>();
+        try {
+
+            String req = "select * from etablissement inner join visited on etablissement.id=visited.favoris_id where user_id=?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Etablissement etab = new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(19));
+                etabs.add(etab);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return etabs;
+    }  
     
     public int countUsers(){
         int res=0;
         try {
-            String req = "select * from user";
+            String req = "select * from user1";
             PreparedStatement ps = connection.prepareStatement(req);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -599,8 +640,25 @@ public class EtablissementService
     }
          
                                 
-                
-                
+    public void AjoutRate(Float rate ,int id_etab,int nbrrating,int nbruser){
+             
+            try {
+            String req = "update Etablissement set rating = ? , nbrrating = ? , nbruser= ? where id = ?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            int nbr=nbrrating+1;
+            int nbr3=(int)Math.round(rate);
+            int nbr1=nbruser+nbr3;
+            String totalrate= Float.toString((nbr1)/(nbrrating));
+            ps.setString(1,totalrate);
+            ps.setInt(2,nbr );
+            ps.setInt(3,nbr1);
+            ps.setInt(4,id_etab);
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        }
 
     } 
 

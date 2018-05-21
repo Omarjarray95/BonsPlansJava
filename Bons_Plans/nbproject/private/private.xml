@@ -3,7 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/entities/LikedEtablissement.java</file>
             <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/Main.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/BackendDemandesController.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/techniques/DataSource.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/services/implementation/ReservationService.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/services/implementation/EtablissementService.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/services/implementation/DemandeService.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/entities/Etablissement.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/entities/Reservation.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/entities/Demande.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/entities/Reclamation.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/Browser/Browser.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/DemandePartenariatController.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/EtablissementController.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/BackendPartenairesController.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/services/implementation/DemandePartenariatService.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/AffichagePaneController.java</file>
+            <file>file:/C:/Users/omar/Documents/BPJ/Bons_Plans/src/gui/EtablissementVBoxController.java</file>
         </group>
     </open-files>
 </project-private>
